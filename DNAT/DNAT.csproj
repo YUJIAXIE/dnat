@@ -50,6 +50,7 @@
     <Compile Include="AddTunnel.Designer.cs">
       <DependentUpon>AddTunnel.cs</DependentUpon>
     </Compile>
+    <Compile Include="IniFiles.cs" />
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -110,6 +111,7 @@
     <EmbeddedResource Include="Tunnel.resx">
       <DependentUpon>Tunnel.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Config.ini" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -146,6 +148,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\btn_save_nor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\login1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

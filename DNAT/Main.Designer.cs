@@ -28,11 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.pBar = new System.Windows.Forms.Panel();
             this.lbTitle = new System.Windows.Forms.Label();
             this.pMin = new System.Windows.Forms.Panel();
             this.pClose = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btn_AddTunnel = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -67,7 +69,7 @@
             // 
             // pMin
             // 
-            this.pMin.BackgroundImage = global::DNAT.Properties.Resources.btn_min_nor;
+            this.pMin.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pMin.BackgroundImage")));
             this.pMin.Location = new System.Drawing.Point(217, 7);
             this.pMin.Name = "pMin";
             this.pMin.Size = new System.Drawing.Size(24, 24);
@@ -78,7 +80,7 @@
             // 
             // pClose
             // 
-            this.pClose.BackgroundImage = global::DNAT.Properties.Resources.btn_close_nor;
+            this.pClose.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pClose.BackgroundImage")));
             this.pClose.Location = new System.Drawing.Point(246, 7);
             this.pClose.Name = "pClose";
             this.pClose.Size = new System.Drawing.Size(24, 24);
@@ -90,12 +92,25 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(210)))), ((int)(((byte)(249)))));
+            this.panel1.Controls.Add(this.btn_AddTunnel);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Location = new System.Drawing.Point(0, 151);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(280, 47);
+            this.panel1.Size = new System.Drawing.Size(280, 41);
             this.panel1.TabIndex = 2;
+            // 
+            // btn_AddTunnel
+            // 
+            this.btn_AddTunnel.BackColor = System.Drawing.Color.Transparent;
+            this.btn_AddTunnel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_AddTunnel.Location = new System.Drawing.Point(182, 9);
+            this.btn_AddTunnel.Name = "btn_AddTunnel";
+            this.btn_AddTunnel.Size = new System.Drawing.Size(75, 23);
+            this.btn_AddTunnel.TabIndex = 2;
+            this.btn_AddTunnel.Text = "添加隧道";
+            this.btn_AddTunnel.UseVisualStyleBackColor = false;
+            this.btn_AddTunnel.Click += new System.EventHandler(this.btn_AddTunnel_Click);
             // 
             // label1
             // 
@@ -119,7 +134,7 @@
             // 
             this.flowLayoutPanel1.AutoScroll = true;
             this.flowLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(225)))), ((int)(((byte)(238)))));
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(-4, 198);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(-4, 191);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(305, 305);
             this.flowLayoutPanel1.TabIndex = 3;
@@ -129,13 +144,14 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SkyBlue;
-            this.BackgroundImage = global::DNAT.Properties.Resources.bg0;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(280, 600);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pBar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Main";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Main";
             this.pBar.ResumeLayout(false);
             this.pBar.PerformLayout();
@@ -155,5 +171,6 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.Button btn_AddTunnel;
     }
 }

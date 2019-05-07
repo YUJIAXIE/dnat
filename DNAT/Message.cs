@@ -15,12 +15,7 @@ namespace DNAT
         private Point mousePoint = new Point();
         private void pClose_MouseClick(object sender, MouseEventArgs e)
         {
-            DialogResult result = MessageBox.Show("是否退出？", "操作提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (result == DialogResult.Yes)
-            {
-                //this.Dispose();
-                Application.Exit();
-            }
+            this.Dispose();
         }
 
         private void pMin_MouseClick(object sender, MouseEventArgs e)
@@ -44,12 +39,33 @@ namespace DNAT
                 this.Left = Control.MousePosition.X - mousePoint.X;
             }
         }
+
+        private void pClose_MouseLeave(object sender, EventArgs e)
+        {
+            pClose.BackgroundImage = Properties.Resources.btn_close_nor;
+        }
+
+        private void pClose_MouseEnter(object sender, EventArgs e)
+        {
+            pClose.BackgroundImage = Properties.Resources.btn_close_down;
+        }
+
         #endregion
         public Message()
         {
             InitializeComponent();
         }
 
-        
+        private void btnPreservation_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Yes;
+            this.Dispose();
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+            this.Dispose();
+        }
     }
 }

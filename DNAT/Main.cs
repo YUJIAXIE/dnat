@@ -15,10 +15,12 @@ namespace DNAT
         private Point mousePoint = new Point();
         private void pClose_MouseClick(object sender, MouseEventArgs e)
         {
-            DialogResult result = MessageBox.Show("是否退出？", "操作提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (result == DialogResult.Yes)
+            Message m = new Message();
+            m.lbTitle.Text = "操作提示";
+            m.lbContent.Text = "是否退出？";
+            m.ShowDialog();
+            if (m.DialogResult==DialogResult.Yes)
             {
-                //this.Dispose();
                 Application.Exit();
             }
         }
@@ -44,12 +46,7 @@ namespace DNAT
                 this.Left = Control.MousePosition.X - mousePoint.X;
             }
         }
-        #endregion
-        public Main()
-        {
-            InitializeComponent();
-            dd();
-        }
+
         private void pClose_MouseLeave(object sender, EventArgs e)
         {
             pClose.BackgroundImage = Properties.Resources.btn_close_nor;
@@ -69,6 +66,13 @@ namespace DNAT
         {
             pMin.BackgroundImage = Properties.Resources.btn_min_nor;
         }
+        #endregion
+        public Main()
+        {
+            InitializeComponent();
+            dd();
+        }
+        
         
 
 
@@ -87,5 +91,10 @@ namespace DNAT
             }
         }
 
+        private void btn_AddTunnel_Click(object sender, EventArgs e)
+        {
+            AddTunnel at = new AddTunnel();
+            at.ShowDialog();
+        }
     }
 }
