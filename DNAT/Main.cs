@@ -11,6 +11,9 @@ namespace DNAT
 {
     public partial class Main : Form
     {
+        public static int adminid;//用户ID，登录成功后保存
+        public static string level;//权限，登录成功后保存
+        public static string name;//名称，登录成功后保存
         #region 无边框属性
         private Point mousePoint = new Point();
         private void pClose_MouseClick(object sender, MouseEventArgs e)
@@ -95,6 +98,13 @@ namespace DNAT
         {
             AddTunnel at = new AddTunnel();
             at.ShowDialog();
+        }
+
+        private void Main_Load(object sender, EventArgs e)
+        {
+            Login l = new Login();
+            l.Owner = this;
+            l.ShowDialog();
         }
     }
 }

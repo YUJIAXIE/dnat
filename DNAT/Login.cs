@@ -88,5 +88,15 @@ namespace DNAT
                 this.TbAccount.Text = "用户名";
             }
         }
+
+        private void btnOk_Click(object sender, EventArgs e)
+        {
+            if (TbAccount.Text=="123"&&TbPassWord.Text=="123")
+            {
+                Main.adminid = 123;
+                Main.name = TbAccount.Text;
+                this.Close();
+            }
+        }
     }
 }
