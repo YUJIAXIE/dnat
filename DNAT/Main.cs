@@ -11,6 +11,7 @@ namespace DNAT
 {
     public partial class Main : Form
     {
+        IniFiles ini = new IniFiles(Application.StartupPath + "\\Config.ini");
         public static int adminid;//用户ID，登录成功后保存
         public static string level;//权限，登录成功后保存
         public static string name;//名称，登录成功后保存
@@ -22,7 +23,7 @@ namespace DNAT
             m.lbTitle.Text = "操作提示";
             m.lbContent.Text = "是否退出？";
             m.ShowDialog();
-            if (m.DialogResult==DialogResult.Yes)
+            if (m.DialogResult == DialogResult.Yes)
             {
                 Application.Exit();
             }
@@ -75,9 +76,6 @@ namespace DNAT
             InitializeComponent();
             dd();
         }
-        
-        
-
 
         void dd()
         {
@@ -90,7 +88,7 @@ namespace DNAT
                 t.lbPort.Text = "21" + i;
                 //t.Location = new Point(5, 5 + 60 * i);
                 flowLayoutPanel1.Controls.Add(t);
-                
+
             }
         }
 
@@ -102,9 +100,14 @@ namespace DNAT
 
         private void Main_Load(object sender, EventArgs e)
         {
-            Login l = new Login();
-            l.Owner = this;
-            l.ShowDialog();
+            string AutoLogin = ini.IniReadValue("Account", "AutoLogin");
+            if (AutoLogin!="1")
+            {
+                Login l = new Login();
+                l.Owner = this;
+                l.ShowDialog();
+            }
+           
         }
     }
 }
