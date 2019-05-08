@@ -1,0 +1,177 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>注册</title>
+    <link href="~/Content/Client/Register/css/style.css" rel="stylesheet" />
+    <script src="~/Content/Client/Register/js/jquery-2.1.0.min.js"></script>
+    <script type="text/javascript">
+        //验证用户名
+        function checkUsername(id, infoId) {
+            var reg = /^[a-zA-Z][\w]{1,9}$/;
+            var txtUsername = document.getElementById(id).value;
+            if (!reg.test(txtUsername)) {
+                setInfo(infoId, '用户名必须为2-10位字母数字，第一位是字母');
+                return false;
+            } else {
+                $.ajax({
+                    url: "@Url.Action("IsValidName", "Client")",
+                    data: { UserName: document.getElementById(id).value},
+                    success: function (data) {
+                        if (data==200) {
+                            setInfo(infoId, '用户名存在');
+                        }
+                    }
+                });
+                
+            }
+            
+        }
+
+        //设置提示信息
+        function setInfo(id, info) {
+            document.getElementById(id).innerText = info;
+        }
+
+        //验证密码
+        function checkPassword(id, infoId) {
+            var reg = /^(\w){6,20}$/;
+            var txtPassword = document.getElementById(id).value;
+            if (!reg.test(txtPassword)) {
+                setInfo(infoId, '密码只能输入6-20个字母、数字、下划线');
+                return false;
+            }
+            return true;
+        }
+        //重复密码
+        function checkPasswordAgain(pwd1, pwd2, infoId) {
+            var txtPwd1 = document.getElementById(pwd1).value;
+            var txtPwd2 = document.getElementById(pwd2).value;
+            if (txtPwd1 != txtPwd2) {
+                setInfo(infoId, "密码不一致");
+                return false;
+            }
+            var reg = /^(\w){6,20}$/;
+            if (!reg.test(txtPwd2)) {
+                setInfo(infoId, '密码只能输入6-20个字母、数字、下划线');
+                return false;
+            }
+            return true;
+        }
+        function checkEmail(id, infoId) {
+            var reg = /^[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?$/;
+            //var reg = /^\w+([-+.]\w+)*@@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+            var txtEmail = document.getElementById(id).value;
+            if(!reg.test(txtEmail)) {
+                setInfo(infoId, '请输入正确邮箱地址');
+                return false;
+            }
+            return true;
+        }
+        //电话号码
+        function checkTel(id, infoId) {
+            var reg = /^[1][0-9]{10}$/;
+            var txtTel = document.getElementById(id).value;
+            if (!reg.test(txtTel)) {
+                setInfo(infoId, '请输入正确手机号');
+                return false;
+            }
+            return true;
+        }
+        //清除信息
+        function clearInfo(id) {
+            document.getElementById(id).innerText = " ";
+        }
+
+        //校验所有表单元素的内容
+        function checkAll() {
+            if (checkUsername('username', 'usernameInfo') & checkPassword('pass', 'passwordInfo') & checkPasswordAgain('pass', 'passwordAgain', 'passwordAgainInfo') & checkEmail('email', 'emailInfo') & checkTel('tel', 'telInfo') & checkQq('qq', 'qqInfo')) {
+                return true;
+            }
+            return false;
+        }
+    </script>
+</head>
+<body>
+    <div class="form-div">
+        <div id="reg-form">
+            <table>
+                <tr>
+                    <td>
+                        <label>账号</label>
+                    </td>
+                    <td>
+                        <input type="text" id="username" placeholder="请输入账号" autofocus="autofocus" onblur="checkUsername('username', 'usernameInfo')" onfocus="clearInfo('usernameInfo')" />
+                    </td>
+                    <td>
+                        <span id="usernameInfo"></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label>密码</label>
+                    </td>
+                    <td>
+                        <input type="password" id="pass" placeholder="请输入密码" onblur="checkPassword('pass', 'passwordInfo')" onfocus="clearInfo('passwordInfo')" />
+                    </td>
+                    <td>
+                        <span id="passwordInfo"></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label>重复密码</label>
+                    </td>
+                    <td>
+                        <input type="password" id="passwordAgain" placeholder="请再次输入密码" onblur="checkPasswordAgain('pass', 'passwordAgain', 'passwordAgainInfo')" onfocus="clearInfo('passwordAgainInfo')" />
+                    </td>
+                    <td>
+                        <span id="passwordAgainInfo"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>手机号</label>
+                    </td>
+                    <td>
+                        <input type="text" id="tel" placeholder="请输入手机号" onblur="checkTel('tel', 'telInfo')" onfocus="clearInfo('telInfo')" />
+                    </td>
+                    <td>
+                        <span id="telInfo"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>邮箱</label>
+                    </td>
+                    <td>
+                        <input type="text" id="email" placeholder="请输入电子邮箱" onblur="checkEmail('email', 'emailInfo')" onfocus="clearInfo('emailInfo')" />
+                    </td>
+                    <td>
+                        <span id="emailInfo"></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan="6">
+                        <input type="submit" value="注册">
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+           
+        });
+    </script>
+</body>
+</html>
