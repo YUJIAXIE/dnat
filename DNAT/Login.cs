@@ -73,7 +73,7 @@ namespace DNAT
             TbAccount.AutoSize = TbPassWord.AutoSize = false;
             TbAccount.Height = TbPassWord.Height = 35;
             string Name = ini.IniReadValue("Account", "Name");
-            if (Name!="")
+            if (Name != "")
             {
                 TbAccount.Text = Name;
             }
@@ -90,7 +90,7 @@ namespace DNAT
                 cbAutoLogin.Enabled = true;
             }
             string AutoLogin = ini.IniReadValue("Account", "AutoLogin");
-            if (AutoLogin=="1")
+            if (AutoLogin == "1")
             {
                 cbAutoLogin.Checked = true;
             }
@@ -120,12 +120,15 @@ namespace DNAT
             {
                 Pwd = ini.IniReadValue("Account", "PassWord");
             }
-            if (TbAccount.Text == "kf" && Pwd == "202CB962AC59075B964B07152D234B70")
+            var DD = Convert.ToBoolean(HTTP.Get("http://localhost:46324/Client/ClientLogin", "?DoMain=" + TbAccount.Text + "&PassWord=" + Pwd + ""));
+
+            //if (TbAccount.Text == "kf" && Pwd == "202CB962AC59075B964B07152D234B70")
+            if (DD)
             {
                 ini.IniWriteValue("Account", "Name", TbAccount.Text);
                 if (cbSavePwd.Checked)
                 {
-                    ini.IniWriteValue("Account", "SavePassWord","1");
+                    ini.IniWriteValue("Account", "SavePassWord", "1");
                     ini.IniWriteValue("Account", "PassWord", Pwd);
                 }
                 else
@@ -141,7 +144,6 @@ namespace DNAT
                 {
                     ini.IniWriteValue("Account", "AutoLogin", "0");
                 }
-                Main.adminid = 123;
                 Main.name = TbAccount.Text;
                 this.Close();
             }
@@ -162,7 +164,7 @@ namespace DNAT
             }
             else
             {
-                cbAutoLogin.Enabled =  true;
+                cbAutoLogin.Enabled = true;
             }
         }
     }

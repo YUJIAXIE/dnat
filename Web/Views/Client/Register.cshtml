@@ -14,26 +14,30 @@
     <script type="text/javascript">
         //验证用户名
         function checkUsername(id, infoId) {
+            var bool;
             var reg = /^[a-zA-Z][\w]{1,9}$/;
             var txtUsername = document.getElementById(id).value;
             if (!reg.test(txtUsername)) {
                 setInfo(infoId, '用户名必须为2-10位字母数字，第一位是字母');
-                return false;
+                bool = false;
             } else {
                 $.ajax({
                     url: "@Url.Action("IsValidName", "Client")",
+                    //type: "POST",
+                    async: false,
                     data: { UserName: document.getElementById(id).value},
                     success: function (data) {
-                        if (data==200) {
+                        if (data=="200") {
                             setInfo(infoId, '用户名存在');
+                            bool = false;
+                        } else {
+                            bool = true;
                         }
                     }
                 });
-                
             }
-            
+            return bool;
         }
-
         //设置提示信息
         function setInfo(id, info) {
             document.getElementById(id).innerText = info;
@@ -88,50 +92,56 @@
         function clearInfo(id) {
             document.getElementById(id).innerText = " ";
         }
-
+            
+       
         //校验所有表单元素的内容
         function checkAll() {
-            if (checkUsername('username', 'usernameInfo') & checkPassword('pass', 'passwordInfo') & checkPasswordAgain('pass', 'passwordAgain', 'passwordAgainInfo') & checkEmail('email', 'emailInfo') & checkTel('tel', 'telInfo') & checkQq('qq', 'qqInfo')) {
+            console.log(checkUsername('username', 'usernameInfo'));
+            console.log(checkPassword('pass', 'passwordInfo'));
+            if (checkUsername('username', 'usernameInfo') &&
+                checkPassword('pass', 'passwordInfo') &&
+                checkPasswordAgain('pass', 'passwordAgain', 'passwordAgainInfo') &&
+                checkEmail('email', 'emailInfo') &&
+                checkTel('tel', 'telInfo')) {
                 return true;
             }
             return false;
         }
+
     </script>
 </head>
 <body>
     <div class="form-div">
-        <div id="reg-form">
+        <form id="reg-form" action="@Url.Action("AddClient")" method="post" onsubmit="return checkAll();">
             <table>
                 <tr>
                     <td>
                         <label>账号</label>
                     </td>
                     <td>
-                        <input type="text" id="username" placeholder="请输入账号" autofocus="autofocus" onblur="checkUsername('username', 'usernameInfo')" onfocus="clearInfo('usernameInfo')" />
+                        <input type="text" id="username" name="DoMain" placeholder="请输入账号" autofocus="autofocus" onblur="checkUsername('username', 'usernameInfo')" onfocus="clearInfo('usernameInfo')"  value="kf1"/>
                     </td>
                     <td>
                         <span id="usernameInfo"></span>
                     </td>
                 </tr>
-
                 <tr>
                     <td>
                         <label>密码</label>
                     </td>
                     <td>
-                        <input type="password" id="pass" placeholder="请输入密码" onblur="checkPassword('pass', 'passwordInfo')" onfocus="clearInfo('passwordInfo')" />
+                        <input type="password" id="pass" placeholder="请输入密码" onblur="checkPassword('pass', 'passwordInfo')" onfocus="clearInfo('passwordInfo')" value="111111"/>
                     </td>
                     <td>
                         <span id="passwordInfo"></span>
                     </td>
                 </tr>
-
                 <tr>
                     <td>
                         <label>重复密码</label>
                     </td>
                     <td>
-                        <input type="password" id="passwordAgain" placeholder="请再次输入密码" onblur="checkPasswordAgain('pass', 'passwordAgain', 'passwordAgainInfo')" onfocus="clearInfo('passwordAgainInfo')" />
+                        <input type="password" id="passwordAgain" name="PassWord" placeholder="请再次输入密码" onblur="checkPasswordAgain('pass', 'passwordAgain', 'passwordAgainInfo')" onfocus="clearInfo('passwordAgainInfo')" value="111111"/>
                     </td>
                     <td>
                         <span id="passwordAgainInfo"></span>
@@ -142,7 +152,7 @@
                         <label>手机号</label>
                     </td>
                     <td>
-                        <input type="text" id="tel" placeholder="请输入手机号" onblur="checkTel('tel', 'telInfo')" onfocus="clearInfo('telInfo')" />
+                        <input type="text" id="tel" name="Phone" placeholder="请输入手机号" onblur="checkTel('tel', 'telInfo')" onfocus="clearInfo('telInfo')" value="13323941769"/>
                     </td>
                     <td>
                         <span id="telInfo"></span>
@@ -153,7 +163,7 @@
                         <label>邮箱</label>
                     </td>
                     <td>
-                        <input type="text" id="email" placeholder="请输入电子邮箱" onblur="checkEmail('email', 'emailInfo')" onfocus="clearInfo('emailInfo')" />
+                        <input type="text" id="email" name="Email" placeholder="请输入电子邮箱" onblur="checkEmail('email', 'emailInfo')" onfocus="clearInfo('emailInfo')"  value="907842226@qq.com"/>
                     </td>
                     <td>
                         <span id="emailInfo"></span>
@@ -166,7 +176,7 @@
                     </td>
                 </tr>
             </table>
-        </div>
+        </form>
     </div>
     <script type="text/javascript">
         $(document).ready(function () {

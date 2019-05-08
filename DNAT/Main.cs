@@ -107,7 +107,10 @@ namespace DNAT
                 l.Owner = this;
                 l.ShowDialog();
             }
-           
+            else
+            {
+
+            }
         }
     }
 }

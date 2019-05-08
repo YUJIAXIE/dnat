@@ -51,6 +51,7 @@
     <Compile Include="AddTunnel.Designer.cs">
       <DependentUpon>AddTunnel.cs</DependentUpon>
     </Compile>
+    <Compile Include="HTTP.cs" />
     <Compile Include="IniFiles.cs" />
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
@@ -112,6 +113,8 @@
     <EmbeddedResource Include="Tunnel.resx">
       <DependentUpon>Tunnel.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="bin\Debug\Config.ini" />
+    <None Include="bin\Debug\DNAT.vshost.exe.manifest" />
     <None Include="Config.ini" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -152,6 +155,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\login1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\DNAT.exe" />
+    <Content Include="bin\Debug\DNAT.pdb" />
+    <Content Include="bin\Debug\DNAT.vshost.exe" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
