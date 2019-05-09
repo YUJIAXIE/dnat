@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DLL;
 using DLL.Models;
+using System.Data;
 
 namespace DLL.DAL
 {
@@ -22,14 +23,16 @@ namespace DLL.DAL
 
         public int InsertUsers(Users users)
         {
-            string sql = $"INSERT INTO Users VALUES ('{users.DoMain}','{users.PassWord}','{users.Phone}','{users.Email}','{users.RegDate}','{users.EndDate}','{users.Version}')";
+            string sql = $"INSERT INTO Users VALUES ('{users.DoMain}','{users.PassWord}','{users.Phone}','{users.Email}','{users.RegDate}','{users.EndDate}','{users.Version}',{users.Login})";
             return SqlHelper.ExecuteNonQuery(sql);
         }
 
-        public object Select(Users Users)
+        public DataTable SelectUsers(Users Users)
         {
-            string sql = $"select login from Users where domain='{Users.DoMain}'and PassWord='{Users.PassWord}'";
-            return SqlHelper.ExecuteScalar(sql);
+            string sql = $@"select u.id,u.DoMain,u.RegDate,u.EndDate,u.Login,c.Value,c1.Value as DoMainName from Users u
+join config c on u.version=c.id
+join config c1 on c1.info='DomainName' where domain ='{Users.DoMain}'and PassWord='{Users.PassWord}'";
+            return SqlHelper.ExecuteDataTable(sql);
 
         }
     }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -6,6 +8,7 @@ using System.Drawing;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Web.Script.Serialization;
 using System.Web.Security;
 using System.Windows.Forms;
 
@@ -82,8 +85,12 @@ namespace DNAT
             {
                 TbPassWord.Text = string.Empty;
                 cbAutoLogin.Enabled = false;
+            }else if(SavePwd == "")
+            {
+                TbPassWord.Text = string.Empty;
+                cbAutoLogin.Enabled = false;
             }
-            else
+            else 
             {
                 TbPassWord.Text = "12345678910";
                 cbSavePwd.Checked = true;
@@ -114,16 +121,21 @@ namespace DNAT
 
         private void btnOk_Click(object sender, EventArgs e)
         {
+            bool IsLogin = false;
             string Pwd = FormsAuthentication.HashPasswordForStoringInConfigFile(TbPassWord.Text, "MD5");
             string SavePwd = ini.IniReadValue("Account", "SavePassWord");
-            if (SavePwd == "1")
+            string Name = ini.IniReadValue("Account", "Name");
+            if (SavePwd == "1" && TbAccount.Text == Name)
             {
                 Pwd = ini.IniReadValue("Account", "PassWord");
             }
-            var DD = Convert.ToBoolean(HTTP.Get("http://localhost:46324/Client/ClientLogin", "?DoMain=" + TbAccount.Text + "&PassWord=" + Pwd + ""));
-
-            //if (TbAccount.Text == "kf" && Pwd == "202CB962AC59075B964B07152D234B70")
-            if (DD)
+            var json = HTTP.Get("http://localhost:46324/Client/ClientLogin", "?DoMain=" + TbAccount.Text + "&PassWord=" + Pwd + "");
+            DataTable dt = Json.Json2DataTable(json);
+            if (dt.Rows.Count == 1)
+            {
+                IsLogin = Convert.ToBoolean(dt.Rows[0]["Login"].ToString());
+            }
+            if (IsLogin)
             {
                 ini.IniWriteValue("Account", "Name", TbAccount.Text);
                 if (cbSavePwd.Checked)
@@ -144,7 +156,10 @@ namespace DNAT
                 {
                     ini.IniWriteValue("Account", "AutoLogin", "0");
                 }
-                Main.name = TbAccount.Text;
+                Main.Id = Convert.ToInt32(dt.Rows[0]["id"]);
+                Main.Version = dt.Rows[0]["Value"].ToString();
+                Main.DoMain = dt.Rows[0]["DoMain"].ToString();
+                Main.DoMainInfo = dt.Rows[0]["DoMainName"].ToString() + " [" + dt.Rows[0]["RegDate"] + "---" + dt.Rows[0]["EndDate"].ToString() + "]";
                 this.Close();
             }
             else
@@ -166,6 +181,11 @@ namespace DNAT
             {
                 cbAutoLogin.Enabled = true;
             }
+        }
+
+        private void llbReg_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://www.baidu.com");
         }
     }
 }

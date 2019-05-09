@@ -40,7 +40,7 @@
             this.cbSavePwd = new System.Windows.Forms.CheckBox();
             this.cbAutoLogin = new System.Windows.Forms.CheckBox();
             this.btnOk = new System.Windows.Forms.Button();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.llbReg = new System.Windows.Forms.LinkLabel();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -179,16 +179,17 @@
             this.btnOk.UseVisualStyleBackColor = false;
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
-            // linkLabel1
+            // llbReg
             // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
-            this.linkLabel1.Location = new System.Drawing.Point(44, 417);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(53, 12);
-            this.linkLabel1.TabIndex = 9;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "注册账户";
+            this.llbReg.AutoSize = true;
+            this.llbReg.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
+            this.llbReg.Location = new System.Drawing.Point(44, 417);
+            this.llbReg.Name = "llbReg";
+            this.llbReg.Size = new System.Drawing.Size(53, 12);
+            this.llbReg.TabIndex = 9;
+            this.llbReg.TabStop = true;
+            this.llbReg.Text = "注册账户";
+            this.llbReg.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llbReg_LinkClicked);
             // 
             // linkLabel2
             // 
@@ -231,7 +232,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.linkLabel2);
-            this.Controls.Add(this.linkLabel1);
+            this.Controls.Add(this.llbReg);
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.cbAutoLogin);
             this.Controls.Add(this.cbSavePwd);
@@ -267,7 +268,7 @@
         private System.Windows.Forms.CheckBox cbSavePwd;
         private System.Windows.Forms.CheckBox cbAutoLogin;
         private System.Windows.Forms.Button btnOk;
-        private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.LinkLabel llbReg;
         private System.Windows.Forms.LinkLabel linkLabel2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;

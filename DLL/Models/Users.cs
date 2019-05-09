@@ -12,8 +12,9 @@ namespace DLL.Models
         public string PassWord { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
-        public DateTime RegDate { get; set; }
-        public DateTime EndDate { get; set; }
+        public string RegDate { get; set; }
+        public string EndDate { get; set; }
         public int Version { get; set; }
+        public int Login { get; set; }
     }
 }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
 
 namespace DLL.BLL
 {
@@ -18,9 +19,9 @@ namespace DLL.BLL
         {
             return ud.InsertUsers(users);
         }
-        public object Select(Users Users)
+        public DataTable SelectUsers(Users Users)
         {
-            return ud.Select(Users);
+            return ud.SelectUsers(Users);
 
         }
     }

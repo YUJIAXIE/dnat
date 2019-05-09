@@ -42,9 +42,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLL\ConfigBLL.cs" />
+    <Compile Include="BLL\FRPConfigBLL.cs" />
     <Compile Include="BLL\UsersBLL.cs" />
     <Compile Include="Common\SqlHelper.cs" />
     <Compile Include="DAL\ConfigDAL.cs" />
+    <Compile Include="DAL\FRPConfigDAL.cs" />
     <Compile Include="DAL\UsersDAL.cs" />
     <Compile Include="Models\Users.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
