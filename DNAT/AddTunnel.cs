@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -83,8 +84,16 @@ namespace DNAT
         /// <returns></returns>
         public static bool IsValidProt(string Prot)
         {
-            Regex regExp = new Regex("^[0-9]*$");
-            return regExp.IsMatch(Prot);
+            if (Prot == "")
+            {
+                return false;
+            }
+            else
+            {
+                Regex regExp = new Regex("^[0-9]*$");
+                return regExp.IsMatch(Prot);
+            }
+
         }
         private void RbDiyIpAddress_CheckedChanged(object sender, EventArgs e)
         {
@@ -114,11 +123,65 @@ namespace DNAT
 
         private void btnPreservation_Click(object sender, EventArgs e)
         {
-            var DD = IsValidIp(TbIpAddress.Text);
+            string type, ip, nprot, wprot, url;
+            if (cbbType.Text != "")
+                type = cbbType.Text;
+            else
+                type = "";
+            if (RbIpAddress.Checked)
+                ip = "0.0.0.0";
+            else
+                ip = TbIpAddress.Text;
+            if (tbNProt.Text != "")
+                nprot = tbNProt.Text;
+            else
+                nprot = "";
+            if (tbWProt.Text != "")
+                wprot = tbWProt.Text;
+            else
+                wprot = "";
+            if (RbUrl.Checked)
+                url = Main.DoMain + "." + Main.DoMainInfo;
+            else
+                url = TbUrl.Text;
 
-            var n = IsValidProt("211");
-            var FF = IsValidDomain(TbUrl.Text);
-            var EE = string.Empty;
+            if (type != "" && IsValidIp(ip) && IsValidProt(nprot) && IsValidProt(wprot) && IsValidDomain(url))
+            {
+                DataTable dt = new DataTable();
+                DataColumn dc1 = new DataColumn("UId", Type.GetType("System.String"));
+                DataColumn dc2 = new DataColumn("Info", Type.GetType("System.String"));
+                DataColumn dc3 = new DataColumn("Value", Type.GetType("System.String"));
+                dt.Columns.Add(dc1);
+                dt.Columns.Add(dc2);
+                dt.Columns.Add(dc3);
+                dt.Rows.Add(new object[] { Main.Id, "type", type });
+                dt.Rows.Add(new object[] { Main.Id, "local_ip", ip });
+                dt.Rows.Add(new object[] { Main.Id, "local_port", nprot });
+                dt.Rows.Add(new object[] { Main.Id, "remote_port", wprot });
+                dt.Rows.Add(new object[] { Main.Id, "custom_domains", url });
+                
+                var Json = JsonConvert.SerializeObject(dt);
+                var json = HTTP.Get("http://localhost:46324/Client/InsertFrp", "?Tunnel=" + Json);
+                if (json=="true")
+                {
+                    Main.main.InitializeTunnel();
+                    this.Close();
+                }
+                else
+                {
+                    Message m = new Message();
+                    m.lbTitle.Text = "添加错误提示";
+                    m.lbContent.Text = "请检查外网端口已添加！";
+                    m.ShowDialog();
+                }
+            }
+            else
+            {
+                Message m = new Message();
+                m.lbTitle.Text = "添加错误提示";
+                m.lbContent.Text = "任意一项不能为空";
+                m.ShowDialog();
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

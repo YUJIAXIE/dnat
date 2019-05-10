@@ -115,6 +115,7 @@
             // 
             this.btn_AddTunnel.BackColor = System.Drawing.Color.Transparent;
             this.btn_AddTunnel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_AddTunnel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(130)))), ((int)(((byte)(166)))));
             this.btn_AddTunnel.Location = new System.Drawing.Point(182, 9);
             this.btn_AddTunnel.Name = "btn_AddTunnel";
             this.btn_AddTunnel.Size = new System.Drawing.Size(75, 23);
@@ -189,7 +190,7 @@
             this.lbName.Location = new System.Drawing.Point(91, 67);
             this.lbName.Name = "lbName";
             this.lbName.Size = new System.Drawing.Size(40, 16);
-            this.lbName.TabIndex = 7;
+            this.lbName.TabIndex = 0;
             this.lbName.Text = "Name";
             // 
             // label5
@@ -247,6 +248,7 @@
             // 
             this.btnRelogin.BackColor = System.Drawing.Color.Transparent;
             this.btnRelogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRelogin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(130)))), ((int)(((byte)(166)))));
             this.btnRelogin.Location = new System.Drawing.Point(181, 106);
             this.btnRelogin.Name = "btnRelogin";
             this.btnRelogin.Size = new System.Drawing.Size(75, 23);
@@ -277,6 +279,7 @@
             this.Name = "Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Main";
+            this.Activated += new System.EventHandler(this.Main_Activated);
             this.Load += new System.EventHandler(this.Main_Load);
             this.pBar.ResumeLayout(false);
             this.pBar.PerformLayout();

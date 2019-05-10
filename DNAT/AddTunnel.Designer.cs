@@ -37,12 +37,12 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbbType = new System.Windows.Forms.ComboBox();
             this.RbIpAddress = new System.Windows.Forms.RadioButton();
             this.RbDiyIpAddress = new System.Windows.Forms.RadioButton();
             this.TbIpAddress = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.tbNProt = new System.Windows.Forms.TextBox();
+            this.tbWProt = new System.Windows.Forms.TextBox();
             this.TbUrl = new System.Windows.Forms.TextBox();
             this.RbDiyUrl = new System.Windows.Forms.RadioButton();
             this.RbUrl = new System.Windows.Forms.RadioButton();
@@ -134,17 +134,18 @@
             this.label5.TabIndex = 8;
             this.label5.Text = "访问域名:";
             // 
-            // comboBox1
+            // cbbType
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.cbbType.BackColor = System.Drawing.SystemColors.Control;
+            this.cbbType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbbType.FormattingEnabled = true;
+            this.cbbType.Items.AddRange(new object[] {
             "TCP",
             "HTTP"});
-            this.comboBox1.Location = new System.Drawing.Point(77, 48);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(186, 20);
-            this.comboBox1.TabIndex = 9;
+            this.cbbType.Location = new System.Drawing.Point(77, 48);
+            this.cbbType.Name = "cbbType";
+            this.cbbType.Size = new System.Drawing.Size(186, 20);
+            this.cbbType.TabIndex = 9;
             // 
             // RbIpAddress
             // 
@@ -177,19 +178,19 @@
             this.TbIpAddress.Size = new System.Drawing.Size(186, 21);
             this.TbIpAddress.TabIndex = 12;
             // 
-            // textBox2
+            // tbNProt
             // 
-            this.textBox2.Location = new System.Drawing.Point(76, 121);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(187, 21);
-            this.textBox2.TabIndex = 13;
+            this.tbNProt.Location = new System.Drawing.Point(76, 121);
+            this.tbNProt.Name = "tbNProt";
+            this.tbNProt.Size = new System.Drawing.Size(187, 21);
+            this.tbNProt.TabIndex = 13;
             // 
-            // textBox3
+            // tbWProt
             // 
-            this.textBox3.Location = new System.Drawing.Point(77, 148);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(186, 21);
-            this.textBox3.TabIndex = 14;
+            this.tbWProt.Location = new System.Drawing.Point(77, 148);
+            this.tbWProt.Name = "tbWProt";
+            this.tbWProt.Size = new System.Drawing.Size(186, 21);
+            this.tbWProt.TabIndex = 14;
             // 
             // TbUrl
             // 
@@ -243,6 +244,8 @@
             // 
             // btnPreservation
             // 
+            this.btnPreservation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPreservation.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(130)))), ((int)(((byte)(166)))));
             this.btnPreservation.Location = new System.Drawing.Point(76, 224);
             this.btnPreservation.Name = "btnPreservation";
             this.btnPreservation.Size = new System.Drawing.Size(75, 23);
@@ -253,6 +256,8 @@
             // 
             // btnCancel
             // 
+            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(130)))), ((int)(((byte)(166)))));
             this.btnCancel.Location = new System.Drawing.Point(188, 224);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
@@ -269,10 +274,10 @@
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnPreservation);
             this.Controls.Add(this.TbUrl);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.tbWProt);
+            this.Controls.Add(this.tbNProt);
             this.Controls.Add(this.TbIpAddress);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cbbType);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -306,12 +311,12 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbbType;
         private System.Windows.Forms.RadioButton RbIpAddress;
         private System.Windows.Forms.RadioButton RbDiyIpAddress;
         private System.Windows.Forms.TextBox TbIpAddress;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox tbNProt;
+        private System.Windows.Forms.TextBox tbWProt;
         private System.Windows.Forms.TextBox TbUrl;
         private System.Windows.Forms.RadioButton RbDiyUrl;
         private System.Windows.Forms.RadioButton RbUrl;

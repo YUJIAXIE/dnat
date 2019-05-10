@@ -113,6 +113,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Message";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "提示";
             this.pBar.ResumeLayout(false);
             this.pBar.PerformLayout();
             this.ResumeLayout(false);

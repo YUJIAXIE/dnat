@@ -1,7 +1,9 @@
-﻿using System;
+﻿using DNAT;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -11,12 +13,14 @@ namespace DNAT
 {
     public partial class Main : Form
     {
+        public static Main main;
         IniFiles ini = new IniFiles(Application.StartupPath + "\\Config.ini");
+        IniFiles Frpini = new IniFiles(Application.StartupPath + "\\DnatConfig.ini");
         public static int Id;//用户ID，登录成功后保存
         public static string Version;
         public static string DoMain;//名称，登录成功后保存
         public static string DoMainInfo;
-        public static int sta;
+        public static string Date;
         #region 无边框属性
         private Point mousePoint = new Point();
         private void pClose_MouseClick(object sender, MouseEventArgs e)
@@ -77,37 +81,79 @@ namespace DNAT
         {
             //InitializeComponent();
             InitializeComponent();
-            
+            main = this;
         }
 
-        void dd()
+        public void InitializeTunnel()
         {
+            flowLayoutPanel1.Controls.Clear();
             //var json = HTTP.Get("http://localhost:46324/Client/FRPConfig", "?Uid=" + Id + "&Id=0");
             //DataTable dt = Json.Json2DataTable(json);
-            var json = HTTP.Get("http://localhost:46324/Client/FRPConfig", "?Uid=" + Id + "&Id=1");
+            var json = HTTP.Get("http://localhost:46324/Client/FRPConfig", "?Uid=" + Id + "&Id=1&All=false");
             DataTable dt = Json.Json2DataTable(json);
             foreach (DataRow dr in dt.Rows)
             {
                 Tunnel t = new Tunnel();
-                t.llbUrl.Text = "http://" + dr["custom_domains"]+":"+dr["remote_port"];
+                t.lbMappingName.Text = dr["MappingName"].ToString();
+                t.llbUrl.Text = "http://" + dr["custom_domains"] + ":" + dr["remote_port"];
                 t.lbIp.Text = dr["local_ip"].ToString();
                 t.lbPort.Text = dr["local_port"].ToString();
                 //t.Location = new Point(5, 5 + 60 * i);
                 flowLayoutPanel1.Controls.Add(t);
             }
-            //遍历查询到的所有学科集合，将每一行添加一个用户控件
-            //for (int i = 1; i < 6; i++)
-            //{
-            //    Tunnel t = new Tunnel();
-            //    t.llbUrl.Text = "http://" + i;
-            //    t.lbIp.Text = "192.168.166." + i;
-            //    t.lbPort.Text = "21" + i;
-            //    //t.Location = new Point(5, 5 + 60 * i);
-            //    flowLayoutPanel1.Controls.Add(t);
-
-            //}
         }
 
+
+
+        void Test()
+        {
+            var Com = HTTP.Get("http://localhost:46324/Client/FRPConfig", "?Uid=" + Id + "&Id=0&All=true");
+            DataTable Common = Json.Json2DataTable(Com);
+            foreach (DataRow dr in Common.Rows)
+            {
+                Frpini.IniWriteValue(dr["MappingName"].ToString(),dr["Info"].ToString(), dr["Value"].ToString());
+            }
+            var frp = HTTP.Get("http://localhost:46324/Client/FRPConfig", "?Uid=" + Id + "&Id=1&All=true");
+            DataTable User = Json.Json2DataTable(frp);
+            foreach (DataRow dr in User.Rows)
+            {
+                Frpini.IniWriteValue(dr["MappingName"].ToString(), dr["Info"].ToString(), dr["Value"].ToString());
+            }
+            var dd = Application.StartupPath + "\\frp.exe";
+            RunCmd2(dd, Frpini.inipath);
+
+        }
+        
+        static bool RunCmd2(string cmdExe, string cmdStr)
+        {
+            bool result = false;
+            try
+            {
+                using (Process myPro = new Process())
+                {
+                    myPro.StartInfo.FileName = "cmd.exe";
+                    myPro.StartInfo.UseShellExecute = false;
+                    myPro.StartInfo.RedirectStandardInput = true;
+                    myPro.StartInfo.RedirectStandardOutput = true;
+                    myPro.StartInfo.RedirectStandardError = true;
+                    myPro.StartInfo.CreateNoWindow = true;
+                    myPro.Start();
+                    //如果调用程序路径中有空格时，cmd命令执行失败，可以用双引号括起来 ，在这里两个引号表示一个引号（转义）
+                    string str = cmdExe + " -c " + cmdStr;//+" &exit";
+                    //d:\dyc\frpc_windows_386.exe -c d:\dyc\dyc.ini
+                    myPro.StandardInput.WriteLine(str);
+                    myPro.StandardInput.AutoFlush = true;
+                    myPro.WaitForExit();
+
+                    result = true;
+                }
+            }
+            catch
+            {
+
+            }
+            return result;
+        }
         private void btn_AddTunnel_Click(object sender, EventArgs e)
         {
             AddTunnel at = new AddTunnel();
@@ -147,13 +193,14 @@ namespace DNAT
             }
             lbName.Text = DoMain;
             lbVer.Text = Version;
-            lbDoMainInfo.Text = DoMainInfo;
+            lbDoMainInfo.Text = DoMainInfo + Date;
             if (Version == "永久版")
             {
                 llbRenew.Visible = false;
             }
             ini.IniWriteValue("Account", "ReLogin", "1");
-            dd();
+            InitializeTunnel();
+            Test();
         }
 
         private void btnRelogin_Click(object sender, EventArgs e)
@@ -161,6 +208,11 @@ namespace DNAT
             ini.IniWriteValue("Account", "ReLogin", "0");
             Application.Exit();
             System.Diagnostics.Process.Start(System.Reflection.Assembly.GetExecutingAssembly().Location);
+        }
+
+        private void Main_Activated(object sender, EventArgs e)
+        {
+            lbName.Focus();
         }
     }
 }

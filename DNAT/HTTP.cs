@@ -7,7 +7,7 @@ using System.Text;
 
 namespace DNAT
 {
-    class HTTP
+    class HTTP  
     {
         public static string Get(string Url, string postDataStr)
         {

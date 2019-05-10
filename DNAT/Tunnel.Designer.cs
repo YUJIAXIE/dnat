@@ -34,7 +34,8 @@
             this.lbPort = new System.Windows.Forms.Label();
             this.lbIp = new System.Windows.Forms.Label();
             this.llbUrl = new System.Windows.Forms.LinkLabel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.BtnDelTunnel = new System.Windows.Forms.Button();
+            this.lbMappingName = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -92,22 +93,35 @@
             this.llbUrl.TabStop = true;
             this.llbUrl.Text = "llbUrl";
             // 
-            // button1
+            // BtnDelTunnel
             // 
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(229, 25);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(43, 23);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "删除";
-            this.button1.UseVisualStyleBackColor = true;
+            this.BtnDelTunnel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnDelTunnel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(130)))), ((int)(((byte)(166)))));
+            this.BtnDelTunnel.Location = new System.Drawing.Point(229, 25);
+            this.BtnDelTunnel.Name = "BtnDelTunnel";
+            this.BtnDelTunnel.Size = new System.Drawing.Size(43, 23);
+            this.BtnDelTunnel.TabIndex = 7;
+            this.BtnDelTunnel.Text = "删除";
+            this.BtnDelTunnel.UseVisualStyleBackColor = false;
+            this.BtnDelTunnel.Click += new System.EventHandler(this.BtnDelTunnel_Click);
+            this.BtnDelTunnel.MouseEnter += new System.EventHandler(this.BtnDelTunnel_MouseEnter);
+            // 
+            // lbMappingName
+            // 
+            this.lbMappingName.AutoSize = true;
+            this.lbMappingName.Location = new System.Drawing.Point(126, 43);
+            this.lbMappingName.Name = "lbMappingName";
+            this.lbMappingName.Size = new System.Drawing.Size(0, 12);
+            this.lbMappingName.TabIndex = 8;
+            this.lbMappingName.Visible = false;
             // 
             // Tunnel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.lbMappingName);
+            this.Controls.Add(this.BtnDelTunnel);
             this.Controls.Add(this.llbUrl);
             this.Controls.Add(this.lbIp);
             this.Controls.Add(this.lbPort);
@@ -116,6 +130,7 @@
             this.Controls.Add(this.label1);
             this.Name = "Tunnel";
             this.Size = new System.Drawing.Size(280, 60);
+            this.DoubleClick += new System.EventHandler(this.Tunnel_DoubleClick);
             this.MouseEnter += new System.EventHandler(this.Tunnel_MouseEnter);
             this.MouseLeave += new System.EventHandler(this.Tunnel_MouseLeave);
             this.ResumeLayout(false);
@@ -128,9 +143,10 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button BtnDelTunnel;
         public System.Windows.Forms.Label lbPort;
         public System.Windows.Forms.Label lbIp;
         public System.Windows.Forms.LinkLabel llbUrl;
+        public System.Windows.Forms.Label lbMappingName;
     }
 }

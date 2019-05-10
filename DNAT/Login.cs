@@ -159,7 +159,8 @@ namespace DNAT
                 Main.Id = Convert.ToInt32(dt.Rows[0]["id"]);
                 Main.Version = dt.Rows[0]["Value"].ToString();
                 Main.DoMain = dt.Rows[0]["DoMain"].ToString();
-                Main.DoMainInfo = dt.Rows[0]["DoMainName"].ToString() + " [" + dt.Rows[0]["RegDate"] + "---" + dt.Rows[0]["EndDate"].ToString() + "]";
+                Main.DoMainInfo = dt.Rows[0]["DoMainName"].ToString();
+                Main.Date= " [" + dt.Rows[0]["RegDate"] + "---" + dt.Rows[0]["EndDate"].ToString() + "]";
                 this.Close();
             }
             else
