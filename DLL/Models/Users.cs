@@ -8,6 +8,7 @@ namespace DLL.Models
 {
     public class Users
     {
+        public int Id { get; set; }
         public string DoMain { get; set; }
         public string PassWord { get; set; }
         public string Phone { get; set; }

@@ -35,5 +35,12 @@ join config c1 on c1.info='DomainName' where domain ='{Users.DoMain}'and PassWor
             return SqlHelper.ExecuteDataTable(sql);
 
         }
+
+        public int UpdatePwd(Users Users)
+        {
+            string sql = $"UPDATE Users SET PassWord = {Users.PassWord} WHERE UId = {Users.Id}";
+            return SqlHelper.ExecuteNonQuery(sql);
+
+        }
     }
 }

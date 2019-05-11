@@ -19,7 +19,7 @@ namespace DNAT
 
         private void Tunnel_MouseEnter(object sender, EventArgs e)
         {
-            this.BackColor= Color.FromArgb(240, 240, 240);
+            this.BackColor = Color.FromArgb(240, 240, 240);
         }
 
         private void Tunnel_MouseLeave(object sender, EventArgs e)
@@ -34,7 +34,7 @@ namespace DNAT
 
         private void BtnDelTunnel_MouseEnter(object sender, EventArgs e)
         {
-            Tunnel_MouseEnter(this,e);
+            Tunnel_MouseEnter(this, e);
         }
 
         private void BtnDelTunnel_Click(object sender, EventArgs e)
@@ -45,7 +45,7 @@ namespace DNAT
             m.ShowDialog();
             if (m.DialogResult == DialogResult.Yes)
             {
-                var json = HTTP.Get("http://localhost:46324/Client/DeleteFrp", "?UId=" + Main.Id.ToString() + "&MappingName=" + lbMappingName.Text + "");
+                var json = HTTP.Get(Main.Url + "/Client/DeleteFrp", "?UId=" + Main.Id.ToString() + "&MappingName=" + lbMappingName.Text + "");
             }
             Main.main.InitializeTunnel();
             Main.main.lbStats.Text = "未运行";

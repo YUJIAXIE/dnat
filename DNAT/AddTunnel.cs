@@ -160,10 +160,10 @@ namespace DNAT
                 dt.Rows.Add(new object[] { Main.Id, "local_port", nprot });
                 dt.Rows.Add(new object[] { Main.Id, "remote_port", wprot });
                 dt.Rows.Add(new object[] { Main.Id, "custom_domains", url });
-                
+
                 var Json = JsonConvert.SerializeObject(dt);
-                var json = HTTP.Get("http://localhost:46324/Client/InsertFrp", "?Tunnel=" + Json);
-                if (json=="true")
+                var json = HTTP.Get(Main.Url + "/Client/InsertFrp", "?Tunnel=" + Json);
+                if (json == "true")
                 {
                     Main.main.InitializeTunnel();
                     Main.main.lbStats.Text = "未运行";

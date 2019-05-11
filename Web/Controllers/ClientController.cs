@@ -48,7 +48,7 @@ namespace Web.Controllers
             var Json = JsonConvert.SerializeObject(ub.SelectUsers(Users));
             return Content(Json);
         }
-        public ActionResult FrpConfig(int UId, int Id,bool All)
+        public ActionResult FrpConfig(int UId, int Id, bool All)
         {
             string Json;
             DLL.BLL.FRPConfigBLL fb = new DLL.BLL.FRPConfigBLL();
@@ -59,7 +59,7 @@ namespace Web.Controllers
             }
             else
             {
-                Json = JsonConvert.SerializeObject(fb.SelectUsersFrpConfig(UId,All));
+                Json = JsonConvert.SerializeObject(fb.SelectUsersFrpConfig(UId, All));
 
             }
             return Content(Json);
@@ -92,9 +92,21 @@ namespace Web.Controllers
             }
             else
             {
-                result= "false";
+                result = "false";
             }
             return Content(result);
+        }
+
+        public ActionResult UpdatePwd(int Id, string PassWord)
+        {
+            Users u = new Users();
+            u.Id = Id;
+            u.PassWord = PassWord;
+            DLL.BLL.UsersBLL ub = new DLL.BLL.UsersBLL();
+            if (ub.UpdatePwd(u) == 1)
+                return Content("true");
+            else
+                return Content("false");
         }
     }
 }

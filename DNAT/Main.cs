@@ -15,6 +15,7 @@ namespace DNAT
 {
     public partial class Main : Form
     {
+        public static string Url = "http://localhost:46324";//"www.xyujia.cn";
         public string processName = "frp";
         public static Main main;
         IniFiles ini = new IniFiles(Application.StartupPath + "\\Config.ini");
@@ -24,6 +25,7 @@ namespace DNAT
         public static string DoMain;//名称，登录成功后保存
         public static string DoMainInfo;
         public static string Date;
+        public static string Pwd;
         #region 无边框属性
         private Point mousePoint = new Point();
         private void pClose_MouseClick(object sender, MouseEventArgs e)
@@ -34,6 +36,13 @@ namespace DNAT
             m.ShowDialog();
             if (m.DialogResult == DialogResult.Yes)
             {
+                if (notifyIcon1 != null)
+                {
+                    //e.Cancel = true;
+                    this.Visible = false;
+                }
+
+
                 KillProcess(processName);
                 Application.Exit();
             }
@@ -42,6 +51,12 @@ namespace DNAT
         private void pMin_MouseClick(object sender, MouseEventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
+            if (this.WindowState == FormWindowState.Minimized)
+            {
+                this.Hide();
+                this.notifyIcon1.Visible = true;
+            }
+
         }
 
         private void pBar_MouseDown(object sender, MouseEventArgs e)
@@ -91,9 +106,7 @@ namespace DNAT
         public void InitializeTunnel()
         {
             flowLayoutPanel1.Controls.Clear();
-            //var json = HTTP.Get("http://localhost:46324/Client/FRPConfig", "?Uid=" + Id + "&Id=0");
-            //DataTable dt = Json.Json2DataTable(json);
-            var json = HTTP.Get("http://localhost:46324/Client/FRPConfig", "?Uid=" + Id + "&Id=1&All=false");
+            var json = HTTP.Get(Url + "/Client/FRPConfig", "?Uid=" + Id + "&Id=1&All=false");
             DataTable dt = Json.Json2DataTable(json);
             foreach (DataRow dr in dt.Rows)
             {
@@ -109,13 +122,13 @@ namespace DNAT
 
         void Test()
         {
-            var Com = HTTP.Get("http://localhost:46324/Client/FRPConfig", "?Uid=" + Id + "&Id=0&All=true");
+            var Com = HTTP.Get(Url + "/Client/FRPConfig", "?Uid=" + Id + "&Id=0&All=true");
             DataTable Common = Json.Json2DataTable(Com);
             foreach (DataRow dr in Common.Rows)
             {
                 Frpini.IniWriteValue(dr["MappingName"].ToString(), dr["Info"].ToString(), dr["Value"].ToString());
             }
-            var frp = HTTP.Get("http://localhost:46324/Client/FRPConfig", "?Uid=" + Id + "&Id=1&All=true");
+            var frp = HTTP.Get(Url + "/Client/FRPConfig", "?Uid=" + Id + "&Id=1&All=true");
             DataTable User = Json.Json2DataTable(frp);
             foreach (DataRow dr in User.Rows)
             {
@@ -141,7 +154,6 @@ namespace DNAT
                 m.lbContent.Text = "程序已被篡改，请重新安装程序！";
                 m.ShowDialog();
                 Application.Exit();
-
             }
 
 
@@ -229,7 +241,7 @@ namespace DNAT
             {
                 string Name = ini.IniReadValue("Account", "Name");
                 string PassWord = ini.IniReadValue("Account", "PassWord");
-                var json = HTTP.Get("http://localhost:46324/Client/ClientLogin", "?DoMain=" + Name + "&PassWord=" + PassWord + "");
+                var json = HTTP.Get(Url + "/Client/ClientLogin", "?DoMain=" + Name + "&PassWord=" + PassWord + "");
                 DataTable dt = Json.Json2DataTable(json);
                 if (dt.Rows.Count == 1)
                 {
@@ -268,6 +280,62 @@ namespace DNAT
         private void Main_Activated(object sender, EventArgs e)
         {
             lbName.Focus();
+        }
+
+        private void notifyIcon1_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                notifyIcon1.Visible = true;
+                this.Show();
+                this.WindowState = FormWindowState.Normal;
+            }
+            else
+            {
+                Point pt = new Point();
+                pt = Control.MousePosition;
+                contextMenuStrip1.Show(pt);
+            }
+
+        }
+
+        private void 显示ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Login.isLogin)
+            {
+                this.Show();
+                this.WindowState = FormWindowState.Normal;
+            }
+            else
+            {
+                Application.Exit();
+                System.Diagnostics.Process.Start(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            }
+
+        }
+
+        private void 退出ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            notifyIcon1 = null;
+
+            this.Close();
+
+        }
+
+        private void 修改密码ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Login.isLogin)
+            {
+                UpdatePwd up = new UpdatePwd();
+                up.ShowDialog();
+            }
+            else
+            {
+                Message m = new Message();
+                m.lbTitle.Text = "提示";
+                m.lbContent.Text = "请登录后进行修改密码";
+                m.Show();
+            }
         }
     }
 }

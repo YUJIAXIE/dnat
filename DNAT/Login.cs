@@ -16,6 +16,7 @@ namespace DNAT
 {
     public partial class Login : Form
     {
+        public static bool isLogin = false;
         IniFiles ini = new IniFiles(Application.StartupPath + "\\Config.ini");
         #region 无边框属性
         private Point mousePoint = new Point();
@@ -85,12 +86,13 @@ namespace DNAT
             {
                 TbPassWord.Text = string.Empty;
                 cbAutoLogin.Enabled = false;
-            }else if(SavePwd == "")
+            }
+            else if (SavePwd == "")
             {
                 TbPassWord.Text = string.Empty;
                 cbAutoLogin.Enabled = false;
             }
-            else 
+            else
             {
                 TbPassWord.Text = "12345678910";
                 cbSavePwd.Checked = true;
@@ -129,7 +131,7 @@ namespace DNAT
             {
                 Pwd = ini.IniReadValue("Account", "PassWord");
             }
-            var json = HTTP.Get("http://localhost:46324/Client/ClientLogin", "?DoMain=" + TbAccount.Text + "&PassWord=" + Pwd + "");
+            var json = HTTP.Get(Main.Url + "/Client/ClientLogin", "?DoMain=" + TbAccount.Text + "&PassWord=" + Pwd + "");
             DataTable dt = Json.Json2DataTable(json);
             if (dt.Rows.Count == 1)
             {
@@ -137,6 +139,7 @@ namespace DNAT
             }
             if (IsLogin)
             {
+                isLogin = true;
                 ini.IniWriteValue("Account", "Name", TbAccount.Text);
                 if (cbSavePwd.Checked)
                 {
@@ -157,10 +160,11 @@ namespace DNAT
                     ini.IniWriteValue("Account", "AutoLogin", "0");
                 }
                 Main.Id = Convert.ToInt32(dt.Rows[0]["id"]);
+                Main.Pwd = Pwd;
                 Main.Version = dt.Rows[0]["Value"].ToString();
                 Main.DoMain = dt.Rows[0]["DoMain"].ToString();
                 Main.DoMainInfo = dt.Rows[0]["DoMainName"].ToString();
-                Main.Date= " [" + dt.Rows[0]["RegDate"] + "---" + dt.Rows[0]["EndDate"].ToString() + "]";
+                Main.Date = " [" + dt.Rows[0]["RegDate"] + "---" + dt.Rows[0]["EndDate"].ToString() + "]";
                 this.Close();
             }
             else

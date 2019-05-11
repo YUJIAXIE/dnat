@@ -91,6 +91,12 @@
     <Compile Include="Tunnel.Designer.cs">
       <DependentUpon>Tunnel.cs</DependentUpon>
     </Compile>
+    <Compile Include="UpdatePwd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UpdatePwd.Designer.cs">
+      <DependentUpon>UpdatePwd.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AddTunnel.resx">
       <DependentUpon>AddTunnel.cs</DependentUpon>
     </EmbeddedResource>
@@ -118,6 +124,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Tunnel.resx">
       <DependentUpon>Tunnel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpdatePwd.resx">
+      <DependentUpon>UpdatePwd.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Config.ini" />
     <None Include="packages.config" />

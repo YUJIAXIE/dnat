@@ -24,5 +24,10 @@ namespace DLL.BLL
             return ud.SelectUsers(Users);
 
         }
+
+        public int UpdatePwd(Users Users)
+        {
+            return ud.UpdatePwd(Users);
+        }
     }
 }
