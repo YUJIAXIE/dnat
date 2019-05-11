@@ -140,10 +140,11 @@ namespace DNAT
                 m.lbTitle.Text = "程序故障";
                 m.lbContent.Text = "程序已被篡改，请重新安装程序！";
                 m.ShowDialog();
+                Application.Exit();
 
             }
 
-            
+
 
         }
 
@@ -163,7 +164,7 @@ namespace DNAT
                     myPro.Start();
                     //如果调用程序路径中有空格时，cmd命令执行失败，可以用双引号括起来 ，在这里两个引号表示一个引号（转义）
                     string str = string.Format(@"""{0}"" -c {1} {2}", cmdExe, cmdStr, "&exit");
-                    
+
                     myPro.StandardInput.WriteLine(str);
                     myPro.StandardInput.AutoFlush = true;
                     //string output = myPro.StandardOutput.ReadToEnd();
@@ -180,7 +181,7 @@ namespace DNAT
                             result = true;
                         }
                     }
-                   
+
                 }
             }
             catch
