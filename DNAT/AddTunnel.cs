@@ -155,7 +155,7 @@ namespace DNAT
                 dt.Columns.Add(dc1);
                 dt.Columns.Add(dc2);
                 dt.Columns.Add(dc3);
-                dt.Rows.Add(new object[] { Main.Id, "type", type });
+                dt.Rows.Add(new object[] { Main.Id, "type", type.ToLower() });
                 dt.Rows.Add(new object[] { Main.Id, "local_ip", ip });
                 dt.Rows.Add(new object[] { Main.Id, "local_port", nprot });
                 dt.Rows.Add(new object[] { Main.Id, "remote_port", wprot });

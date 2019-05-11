@@ -11,6 +11,7 @@ namespace DNAT
 {
     public partial class Tunnel : UserControl
     {
+        public string processName = "frp";
         public Tunnel()
         {
             InitializeComponent();
@@ -48,7 +49,7 @@ namespace DNAT
             }
             Main.main.InitializeTunnel();
             Main.main.lbStats.Text = "未运行";
-            Main.main.KillProcess();
+            Main.main.KillProcess(processName);
         }
     }
 }
