@@ -7,12 +7,14 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace DNAT
 {
     public partial class Main : Form
     {
+        public string processName = "frp";
         public static Main main;
         IniFiles ini = new IniFiles(Application.StartupPath + "\\Config.ini");
         IniFiles Frpini = new IniFiles(Application.StartupPath + "\\DnatConfig.ini");
@@ -31,6 +33,7 @@ namespace DNAT
             m.ShowDialog();
             if (m.DialogResult == DialogResult.Yes)
             {
+                KillProcess(processName);
                 Application.Exit();
             }
         }
@@ -103,15 +106,13 @@ namespace DNAT
             }
         }
 
-
-
         void Test()
         {
             var Com = HTTP.Get("http://localhost:46324/Client/FRPConfig", "?Uid=" + Id + "&Id=0&All=true");
             DataTable Common = Json.Json2DataTable(Com);
             foreach (DataRow dr in Common.Rows)
             {
-                Frpini.IniWriteValue(dr["MappingName"].ToString(),dr["Info"].ToString(), dr["Value"].ToString());
+                Frpini.IniWriteValue(dr["MappingName"].ToString(), dr["Info"].ToString(), dr["Value"].ToString());
             }
             var frp = HTTP.Get("http://localhost:46324/Client/FRPConfig", "?Uid=" + Id + "&Id=1&All=true");
             DataTable User = Json.Json2DataTable(frp);
@@ -120,11 +121,14 @@ namespace DNAT
                 Frpini.IniWriteValue(dr["MappingName"].ToString(), dr["Info"].ToString(), dr["Value"].ToString());
             }
             var dd = Application.StartupPath + "\\frp.exe";
-            RunCmd2(dd,Frpini.inipath);
+            if (RunCmd(dd, Frpini.inipath))
+            {
+                lbStats.Text = "运行中";
+            }
 
         }
-        
-        static bool RunCmd2(string cmdExe,string cmdStr)
+
+        bool RunCmd(string cmdExe, string cmdStr)
         {
             bool result = false;
             try
@@ -143,7 +147,11 @@ namespace DNAT
 
                     myPro.StandardInput.WriteLine(str);
                     myPro.StandardInput.AutoFlush = true;
-                    myPro.WaitForExit();
+                    myPro.Close();
+                    myPro.Dispose();//释放资源
+                    Thread.Sleep(2000);
+                    KillProcess("cmd");
+                    //myPro.WaitForExit();
                     result = true;
                 }
             }
@@ -153,6 +161,22 @@ namespace DNAT
             }
             return result;
         }
+
+        /// <summary>
+        /// 关闭进程
+        /// </summary>
+        /// <param name="processName">进程名</param>
+        public void KillProcess(string processName)
+        {
+            Process[] myproc = Process.GetProcesses();
+            foreach (Process item in myproc)
+            {
+                if (item.ProcessName == processName)
+                {
+                    item.Kill();
+                }
+            }
+        }
         private void btn_AddTunnel_Click(object sender, EventArgs e)
         {
             AddTunnel at = new AddTunnel();
@@ -161,6 +185,7 @@ namespace DNAT
 
         private void Main_Load(object sender, EventArgs e)
         {
+            KillProcess(processName);
             string AutoLogin = ini.IniReadValue("Account", "AutoLogin");
             string ReLogin = ini.IniReadValue("Account", "ReLogin");
             if (AutoLogin != "1" || ReLogin != "1")

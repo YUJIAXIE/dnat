@@ -304,7 +304,6 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Button btn_AddTunnel;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label lbStats;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label lbVer;
@@ -313,5 +312,6 @@
         private System.Windows.Forms.LinkLabel llbRenew;
         private System.Windows.Forms.Label lbDoMainInfo;
         private System.Windows.Forms.Button btnRelogin;
+        public System.Windows.Forms.Label lbStats;
     }
 }

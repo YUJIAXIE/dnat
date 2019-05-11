@@ -47,6 +47,8 @@ namespace DNAT
                 var json = HTTP.Get("http://localhost:46324/Client/DeleteFrp", "?UId=" + Main.Id.ToString() + "&MappingName=" + lbMappingName.Text + "");
             }
             Main.main.InitializeTunnel();
+            Main.main.lbStats.Text = "未运行";
+            Main.main.KillProcess();
         }
     }
 }

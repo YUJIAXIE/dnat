@@ -13,6 +13,7 @@ namespace DNAT
 {
     public partial class AddTunnel : Form
     {
+        public string processName = "frp";
         #region 无边框属性
         private Point mousePoint = new Point();
         private void pClose_MouseClick(object sender, MouseEventArgs e)
@@ -165,6 +166,8 @@ namespace DNAT
                 if (json=="true")
                 {
                     Main.main.InitializeTunnel();
+                    Main.main.lbStats.Text = "未运行";
+                    Main.main.KillProcess(processName);
                     this.Close();
                 }
                 else
