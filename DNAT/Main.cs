@@ -226,6 +226,8 @@ namespace DNAT
 
         private void Main_Load(object sender, EventArgs e)
         {
+            string Windows = ini.IniReadValue("Account", "Windows");
+            开机启动ToolStripMenuItem.Checked = Windows == "1" ? true : false;
             string pa = Frpini.inipath;
             File.Delete(pa);
             KillProcess(processName);
@@ -335,6 +337,20 @@ namespace DNAT
                 m.lbTitle.Text = "提示";
                 m.lbContent.Text = "请登录后进行修改密码";
                 m.Show();
+            }
+        }
+
+        private void 开机启动ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (开机启动ToolStripMenuItem.Checked)
+            {
+                开机启动ToolStripMenuItem.Checked = false;
+                ini.IniWriteValue("Account", "Windows", "0");
+            }
+            else
+            {
+                开机启动ToolStripMenuItem.Checked = true;
+                ini.IniWriteValue("Account", "Windows", "1");
             }
         }
     }

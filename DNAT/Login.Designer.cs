@@ -44,6 +44,7 @@
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.pBar.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -239,6 +240,14 @@
             this.label2.TabIndex = 12;
             this.label2.Text = "密码";
             // 
+            // panel3
+            // 
+            this.panel3.BackgroundImage = global::DNAT.Properties.Resources.Banner;
+            this.panel3.Location = new System.Drawing.Point(51, 125);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(270, 100);
+            this.panel3.TabIndex = 13;
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -246,6 +255,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(100)))), ((int)(((byte)(158)))));
             this.BackgroundImage = global::DNAT.Properties.Resources.login1;
             this.ClientSize = new System.Drawing.Size(373, 750);
+            this.Controls.Add(this.panel3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.linkLabel2);
@@ -290,5 +300,6 @@
         private System.Windows.Forms.LinkLabel linkLabel2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Panel panel3;
     }
 }

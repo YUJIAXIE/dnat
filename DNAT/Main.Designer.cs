@@ -54,6 +54,7 @@
             this.显示ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.退出ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.修改密码ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.开机启动ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pBar.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -300,31 +301,39 @@
             this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.显示ToolStripMenuItem,
-            this.退出ToolStripMenuItem,
-            this.修改密码ToolStripMenuItem});
+            this.开机启动ToolStripMenuItem,
+            this.修改密码ToolStripMenuItem,
+            this.退出ToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(139, 76);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(176, 128);
             // 
             // 显示ToolStripMenuItem
             // 
             this.显示ToolStripMenuItem.Name = "显示ToolStripMenuItem";
-            this.显示ToolStripMenuItem.Size = new System.Drawing.Size(138, 24);
-            this.显示ToolStripMenuItem.Text = "显示";
+            this.显示ToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
+            this.显示ToolStripMenuItem.Text = "显示主窗口";
             this.显示ToolStripMenuItem.Click += new System.EventHandler(this.显示ToolStripMenuItem_Click);
             // 
             // 退出ToolStripMenuItem
             // 
             this.退出ToolStripMenuItem.Name = "退出ToolStripMenuItem";
-            this.退出ToolStripMenuItem.Size = new System.Drawing.Size(138, 24);
-            this.退出ToolStripMenuItem.Text = "退出";
+            this.退出ToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
+            this.退出ToolStripMenuItem.Text = "退出程序";
             this.退出ToolStripMenuItem.Click += new System.EventHandler(this.退出ToolStripMenuItem_Click);
             // 
             // 修改密码ToolStripMenuItem
             // 
             this.修改密码ToolStripMenuItem.Name = "修改密码ToolStripMenuItem";
-            this.修改密码ToolStripMenuItem.Size = new System.Drawing.Size(138, 24);
+            this.修改密码ToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
             this.修改密码ToolStripMenuItem.Text = "修改密码";
             this.修改密码ToolStripMenuItem.Click += new System.EventHandler(this.修改密码ToolStripMenuItem_Click);
+            // 
+            // 开机启动ToolStripMenuItem
+            // 
+            this.开机启动ToolStripMenuItem.Name = "开机启动ToolStripMenuItem";
+            this.开机启动ToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
+            this.开机启动ToolStripMenuItem.Text = "开机启动";
+            this.开机启动ToolStripMenuItem.Click += new System.EventHandler(this.开机启动ToolStripMenuItem_Click);
             // 
             // Main
             // 
@@ -389,5 +398,6 @@
         private System.Windows.Forms.ToolStripMenuItem 显示ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 退出ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 修改密码ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 开机启动ToolStripMenuItem;
     }
 }

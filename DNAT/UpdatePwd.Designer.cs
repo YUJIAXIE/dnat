@@ -150,6 +150,7 @@
             this.btnCannel.TabIndex = 10;
             this.btnCannel.Text = "取消";
             this.btnCannel.UseVisualStyleBackColor = true;
+            this.btnCannel.Click += new System.EventHandler(this.btnCannel_Click);
             // 
             // UpdatePwd
             // 
