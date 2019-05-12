@@ -163,9 +163,9 @@ namespace DNAT.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap login1 {
+        internal static System.Drawing.Bitmap login {
             get {
-                object obj = ResourceManager.GetObject("login1", resourceCulture);
+                object obj = ResourceManager.GetObject("login", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
