@@ -1,4 +1,4 @@
-﻿namespace DNAT
+﻿namespace CloudTunnel
 {
     partial class Tunnel
     {

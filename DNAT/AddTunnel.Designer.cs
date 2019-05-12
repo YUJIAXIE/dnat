@@ -1,4 +1,4 @@
-﻿namespace DNAT
+﻿namespace CloudTunnel
 {
     partial class AddTunnel
     {
@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddTunnel));
             this.pBar = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
             this.lbTitle = new System.Windows.Forms.Label();
             this.pClose = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
@@ -58,22 +59,32 @@
             // pBar
             // 
             this.pBar.BackColor = System.Drawing.Color.DodgerBlue;
+            this.pBar.Controls.Add(this.panel5);
             this.pBar.Controls.Add(this.lbTitle);
             this.pBar.Controls.Add(this.pClose);
             this.pBar.Dock = System.Windows.Forms.DockStyle.Top;
             this.pBar.Location = new System.Drawing.Point(0, 0);
-            this.pBar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pBar.Margin = new System.Windows.Forms.Padding(4);
             this.pBar.Name = "pBar";
             this.pBar.Size = new System.Drawing.Size(373, 50);
             this.pBar.TabIndex = 1;
             this.pBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pBar_MouseDown);
             this.pBar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pBar_MouseMove);
             // 
+            // panel5
+            // 
+            this.panel5.BackgroundImage = global::CloudTunnel.Properties.Resources.logo1;
+            this.panel5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.panel5.Location = new System.Drawing.Point(12, 12);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(30, 30);
+            this.panel5.TabIndex = 12;
+            // 
             // lbTitle
             // 
             this.lbTitle.AutoSize = true;
             this.lbTitle.ForeColor = System.Drawing.Color.White;
-            this.lbTitle.Location = new System.Drawing.Point(16, 18);
+            this.lbTitle.Location = new System.Drawing.Point(44, 20);
             this.lbTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbTitle.Name = "lbTitle";
             this.lbTitle.Size = new System.Drawing.Size(67, 15);
@@ -84,7 +95,7 @@
             // 
             this.pClose.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pClose.BackgroundImage")));
             this.pClose.Location = new System.Drawing.Point(329, 9);
-            this.pClose.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pClose.Margin = new System.Windows.Forms.Padding(4);
             this.pClose.Name = "pClose";
             this.pClose.Size = new System.Drawing.Size(32, 30);
             this.pClose.TabIndex = 0;
@@ -151,7 +162,7 @@
             "TCP",
             "HTTP"});
             this.cbbType.Location = new System.Drawing.Point(103, 60);
-            this.cbbType.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbbType.Margin = new System.Windows.Forms.Padding(4);
             this.cbbType.Name = "cbbType";
             this.cbbType.Size = new System.Drawing.Size(247, 23);
             this.cbbType.TabIndex = 9;
@@ -161,7 +172,7 @@
             this.RbIpAddress.AutoSize = true;
             this.RbIpAddress.Checked = true;
             this.RbIpAddress.Location = new System.Drawing.Point(13, 4);
-            this.RbIpAddress.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.RbIpAddress.Margin = new System.Windows.Forms.Padding(4);
             this.RbIpAddress.Name = "RbIpAddress";
             this.RbIpAddress.Size = new System.Drawing.Size(58, 19);
             this.RbIpAddress.TabIndex = 10;
@@ -173,7 +184,7 @@
             // 
             this.RbDiyIpAddress.AutoSize = true;
             this.RbDiyIpAddress.Location = new System.Drawing.Point(72, 4);
-            this.RbDiyIpAddress.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.RbDiyIpAddress.Margin = new System.Windows.Forms.Padding(4);
             this.RbDiyIpAddress.Name = "RbDiyIpAddress";
             this.RbDiyIpAddress.Size = new System.Drawing.Size(58, 19);
             this.RbDiyIpAddress.TabIndex = 11;
@@ -185,7 +196,7 @@
             // 
             this.TbIpAddress.Enabled = false;
             this.TbIpAddress.Location = new System.Drawing.Point(103, 118);
-            this.TbIpAddress.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TbIpAddress.Margin = new System.Windows.Forms.Padding(4);
             this.TbIpAddress.Name = "TbIpAddress";
             this.TbIpAddress.Size = new System.Drawing.Size(247, 25);
             this.TbIpAddress.TabIndex = 12;
@@ -193,7 +204,7 @@
             // tbNProt
             // 
             this.tbNProt.Location = new System.Drawing.Point(101, 151);
-            this.tbNProt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbNProt.Margin = new System.Windows.Forms.Padding(4);
             this.tbNProt.Name = "tbNProt";
             this.tbNProt.Size = new System.Drawing.Size(248, 25);
             this.tbNProt.TabIndex = 13;
@@ -201,7 +212,7 @@
             // tbWProt
             // 
             this.tbWProt.Location = new System.Drawing.Point(103, 185);
-            this.tbWProt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbWProt.Margin = new System.Windows.Forms.Padding(4);
             this.tbWProt.Name = "tbWProt";
             this.tbWProt.Size = new System.Drawing.Size(247, 25);
             this.tbWProt.TabIndex = 14;
@@ -210,7 +221,7 @@
             // 
             this.TbUrl.Enabled = false;
             this.TbUrl.Location = new System.Drawing.Point(103, 246);
-            this.TbUrl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TbUrl.Margin = new System.Windows.Forms.Padding(4);
             this.TbUrl.Name = "TbUrl";
             this.TbUrl.Size = new System.Drawing.Size(247, 25);
             this.TbUrl.TabIndex = 17;
@@ -219,7 +230,7 @@
             // 
             this.RbDiyUrl.AutoSize = true;
             this.RbDiyUrl.Location = new System.Drawing.Point(72, 4);
-            this.RbDiyUrl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.RbDiyUrl.Margin = new System.Windows.Forms.Padding(4);
             this.RbDiyUrl.Name = "RbDiyUrl";
             this.RbDiyUrl.Size = new System.Drawing.Size(73, 19);
             this.RbDiyUrl.TabIndex = 16;
@@ -232,7 +243,7 @@
             this.RbUrl.AutoSize = true;
             this.RbUrl.Checked = true;
             this.RbUrl.Location = new System.Drawing.Point(13, 4);
-            this.RbUrl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.RbUrl.Margin = new System.Windows.Forms.Padding(4);
             this.RbUrl.Name = "RbUrl";
             this.RbUrl.Size = new System.Drawing.Size(58, 19);
             this.RbUrl.TabIndex = 15;
@@ -246,7 +257,7 @@
             this.panel1.Controls.Add(this.RbDiyIpAddress);
             this.panel1.Controls.Add(this.RbIpAddress);
             this.panel1.Location = new System.Drawing.Point(92, 90);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(267, 32);
             this.panel1.TabIndex = 18;
@@ -256,7 +267,7 @@
             this.panel2.Controls.Add(this.RbDiyUrl);
             this.panel2.Controls.Add(this.RbUrl);
             this.panel2.Location = new System.Drawing.Point(92, 219);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(267, 36);
             this.panel2.TabIndex = 19;
@@ -266,7 +277,7 @@
             this.btnPreservation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPreservation.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(130)))), ((int)(((byte)(166)))));
             this.btnPreservation.Location = new System.Drawing.Point(101, 280);
-            this.btnPreservation.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnPreservation.Margin = new System.Windows.Forms.Padding(4);
             this.btnPreservation.Name = "btnPreservation";
             this.btnPreservation.Size = new System.Drawing.Size(100, 29);
             this.btnPreservation.TabIndex = 20;
@@ -279,7 +290,7 @@
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(130)))), ((int)(((byte)(166)))));
             this.btnCancel.Location = new System.Drawing.Point(251, 280);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(100, 29);
             this.btnCancel.TabIndex = 21;
@@ -308,7 +319,8 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "AddTunnel";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "添加隧道";
@@ -346,5 +358,6 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button btnPreservation;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Panel panel5;
     }
 }

@@ -1,4 +1,4 @@
-﻿using DNAT;
+﻿using CloudTunnel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,12 +11,12 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 
-namespace DNAT
+namespace CloudTunnel
 {
     public partial class Main : Form
     {
         public static string Url = "http://localhost:46324";//"www.xyujia.cn";
-        public string processName = "frp";
+        public string processName = "ct";
         public static Main main;
         IniFiles ini = new IniFiles(Application.StartupPath + "\\Config.ini");
         IniFiles Frpini = new IniFiles(Application.StartupPath + "\\DnatConfig.ini");

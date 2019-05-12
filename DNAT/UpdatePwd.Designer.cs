@@ -1,4 +1,4 @@
-﻿namespace DNAT
+﻿namespace CloudTunnel
 {
     partial class UpdatePwd
     {
@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UpdatePwd));
             this.pBar = new System.Windows.Forms.Panel();
             this.lbTitle = new System.Windows.Forms.Label();
-            this.pClose = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -40,12 +39,15 @@
             this.tBRePwd = new System.Windows.Forms.TextBox();
             this.btnOk = new System.Windows.Forms.Button();
             this.btnCannel = new System.Windows.Forms.Button();
+            this.pClose = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
             this.pBar.SuspendLayout();
             this.SuspendLayout();
             // 
             // pBar
             // 
             this.pBar.BackColor = System.Drawing.Color.DodgerBlue;
+            this.pBar.Controls.Add(this.panel5);
             this.pBar.Controls.Add(this.lbTitle);
             this.pBar.Controls.Add(this.pClose);
             this.pBar.Dock = System.Windows.Forms.DockStyle.Top;
@@ -62,24 +64,12 @@
             this.lbTitle.AutoSize = true;
             this.lbTitle.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbTitle.ForeColor = System.Drawing.Color.White;
-            this.lbTitle.Location = new System.Drawing.Point(17, 14);
+            this.lbTitle.Location = new System.Drawing.Point(44, 17);
             this.lbTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbTitle.Name = "lbTitle";
             this.lbTitle.Size = new System.Drawing.Size(69, 20);
             this.lbTitle.TabIndex = 2;
             this.lbTitle.Text = "修改密码";
-            // 
-            // pClose
-            // 
-            this.pClose.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pClose.BackgroundImage")));
-            this.pClose.Location = new System.Drawing.Point(313, 9);
-            this.pClose.Margin = new System.Windows.Forms.Padding(4);
-            this.pClose.Name = "pClose";
-            this.pClose.Size = new System.Drawing.Size(32, 30);
-            this.pClose.TabIndex = 0;
-            this.pClose.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pClose_MouseClick);
-            this.pClose.MouseEnter += new System.EventHandler(this.pClose_MouseEnter);
-            this.pClose.MouseLeave += new System.EventHandler(this.pClose_MouseLeave);
             // 
             // label1
             // 
@@ -152,6 +142,27 @@
             this.btnCannel.UseVisualStyleBackColor = true;
             this.btnCannel.Click += new System.EventHandler(this.btnCannel_Click);
             // 
+            // pClose
+            // 
+            this.pClose.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pClose.BackgroundImage")));
+            this.pClose.Location = new System.Drawing.Point(313, 9);
+            this.pClose.Margin = new System.Windows.Forms.Padding(4);
+            this.pClose.Name = "pClose";
+            this.pClose.Size = new System.Drawing.Size(32, 30);
+            this.pClose.TabIndex = 0;
+            this.pClose.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pClose_MouseClick);
+            this.pClose.MouseEnter += new System.EventHandler(this.pClose_MouseEnter);
+            this.pClose.MouseLeave += new System.EventHandler(this.pClose_MouseLeave);
+            // 
+            // panel5
+            // 
+            this.panel5.BackgroundImage = global::CloudTunnel.Properties.Resources.logo1;
+            this.panel5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.panel5.Location = new System.Drawing.Point(12, 12);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(30, 30);
+            this.panel5.TabIndex = 12;
+            // 
             // UpdatePwd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -167,6 +178,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pBar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "UpdatePwd";
             this.Text = "修改密码";
             this.pBar.ResumeLayout(false);
@@ -189,5 +201,6 @@
         private System.Windows.Forms.TextBox tBRePwd;
         private System.Windows.Forms.Button btnOk;
         private System.Windows.Forms.Button btnCannel;
+        private System.Windows.Forms.Panel panel5;
     }
 }

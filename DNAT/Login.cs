@@ -12,7 +12,7 @@ using System.Web.Script.Serialization;
 using System.Web.Security;
 using System.Windows.Forms;
 
-namespace DNAT
+namespace CloudTunnel
 {
     public partial class Login : Form
     {
