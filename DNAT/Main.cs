@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -153,7 +154,7 @@ namespace Client
                 m.ShowDialog();
                 Application.Exit();
             }
-            
+
         }
 
         bool RunCmd(string cmdExe, string cmdStr)
@@ -278,24 +279,7 @@ namespace Client
         {
             lbName.Focus();
         }
-
-        private void notifyIcon1_MouseClick(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
-            {
-                notifyIcon1.Visible = true;
-                this.Show();
-                this.WindowState = FormWindowState.Normal;
-            }
-            else
-            {
-                Point pt = new Point();
-                pt = Control.MousePosition;
-                contextMenuStrip1.Show(pt);
-            }
-
-        }
-
+        
         private void 显示ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (Login.isLogin)
@@ -337,15 +321,48 @@ namespace Client
 
         private void 开机启动ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (开机启动ToolStripMenuItem.Checked)
+            try
             {
-                开机启动ToolStripMenuItem.Checked = false;
-                ini.IniWriteValue("Account", "Windows", "0");
+                string path = Application.ExecutablePath; //将当前程序起动路径
+                string name = Path.GetFileName(path);  //获得应用程序名称
+                RegistryKey rk = Registry.LocalMachine;
+                RegistryKey Run = rk.CreateSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run");
+                if (开机启动ToolStripMenuItem.Checked)
+                {
+                    开机启动ToolStripMenuItem.Checked = false;
+                    Run.DeleteValue(name);
+                    rk.Close();
+                    ini.IniWriteValue("Account", "Windows", "0");
+                }
+                else
+                {
+                    开机启动ToolStripMenuItem.Checked = true;
+                    Run.SetValue(name, path);
+                    rk.Close();
+                    ini.IniWriteValue("Account", "Windows", "1");
+                }
+            }
+            catch (Exception)
+            {
+                Message m = new Message();
+                m.lbTitle.Text = "权限提示";
+                m.lbContent.Text = "请用管理员运行云隧道！";
+                m.ShowDialog();
+            }
+
+        }
+
+        private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (Login.isLogin)
+            {
+                this.Show();
+                this.WindowState = FormWindowState.Normal;
             }
             else
             {
-                开机启动ToolStripMenuItem.Checked = true;
-                ini.IniWriteValue("Account", "Windows", "1");
+                Application.Exit();
+                System.Diagnostics.Process.Start(System.Reflection.Assembly.GetExecutingAssembly().Location);
             }
         }
     }

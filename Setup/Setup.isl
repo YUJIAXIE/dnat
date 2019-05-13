@@ -1141,17 +1141,23 @@
 		<row><td>ALLUSERSPROFILE</td><td>TARGETDIR</td><td>.:ALLUSE~1|All Users</td><td/><td>0</td><td/></row>
 		<row><td>AdminToolsFolder</td><td>TARGETDIR</td><td>.:Admint~1|AdminTools</td><td/><td>0</td><td/></row>
 		<row><td>AppDataFolder</td><td>TARGETDIR</td><td>.:APPLIC~1|Application Data</td><td/><td>0</td><td/></row>
+		<row><td>CLOUDTUNNEL</td><td>DIRPROPERTY2</td><td>CLOUDT~1|CloudTunnel</td><td/><td>0</td><td/></row>
+		<row><td>CLOUDTUNNEL1</td><td>DIRPROPERTY3</td><td>CLOUDT~1|CloudTunnel</td><td/><td>0</td><td/></row>
 		<row><td>CommonAppDataFolder</td><td>TARGETDIR</td><td>.:Common~1|CommonAppData</td><td/><td>0</td><td/></row>
 		<row><td>CommonFiles64Folder</td><td>TARGETDIR</td><td>.:Common64</td><td/><td>0</td><td/></row>
 		<row><td>CommonFilesFolder</td><td>TARGETDIR</td><td>.:Common</td><td/><td>0</td><td/></row>
 		<row><td>DATABASEDIR</td><td>ISYourDataBaseDir</td><td>.</td><td/><td>0</td><td/></row>
 		<row><td>DIRECTORY</td><td>ISMyCompanyDir</td><td>云隧道</td><td/><td>0</td><td/></row>
 		<row><td>DIRECTORY1</td><td>ProgramFilesFolder</td><td>云隧道</td><td/><td>0</td><td/></row>
+		<row><td>DIRECTORY2</td><td>DIRPROPERTY1</td><td>云隧道</td><td/><td>0</td><td/></row>
+		<row><td>DIRPROPERTY1</td><td>TARGETDIR</td><td>.</td><td/><td>0</td><td/></row>
+		<row><td>DIRPROPERTY2</td><td>TARGETDIR</td><td>.</td><td/><td>0</td><td/></row>
+		<row><td>DIRPROPERTY3</td><td>TARGETDIR</td><td>.</td><td/><td>0</td><td/></row>
 		<row><td>DesktopFolder</td><td>TARGETDIR</td><td>.:Desktop</td><td/><td>3</td><td/></row>
 		<row><td>FavoritesFolder</td><td>TARGETDIR</td><td>.:FAVORI~1|Favorites</td><td/><td>0</td><td/></row>
 		<row><td>FontsFolder</td><td>TARGETDIR</td><td>.:Fonts</td><td/><td>0</td><td/></row>
 		<row><td>GlobalAssemblyCache</td><td>TARGETDIR</td><td>.:Global~1|GlobalAssemblyCache</td><td/><td>0</td><td/></row>
-		<row><td>INSTALLDIR</td><td>NEW_DIRECTORY1</td><td>.</td><td/><td>0</td><td/></row>
+		<row><td>INSTALLDIR</td><td>CLOUDTUNNEL1</td><td>.</td><td/><td>0</td><td/></row>
 		<row><td>ISCommonFilesFolder</td><td>CommonFilesFolder</td><td>Instal~1|InstallShield</td><td/><td>0</td><td/></row>
 		<row><td>ISMyCompanyDir</td><td>ProgramFilesFolder</td><td>MYCOMP~1|My Company Name</td><td/><td>0</td><td/></row>
 		<row><td>ISMyProductDir</td><td>ISMyCompanyDir</td><td>MYPROD~1|My Product Name</td><td/><td>0</td><td/></row>
@@ -1911,6 +1917,7 @@
 		<col key="yes" def="s72">Tag</col>
 		<col def="S255">Data</col>
 		<row><td>PROJECT_ASSISTANT_DEFAULT_FEATURE</td><td>AlwaysInstall</td></row>
+		<row><td>Shortcut</td><td/></row>
 	</table>
 
 	<table name="ISBillBoard">
@@ -2631,7 +2638,7 @@
 		<col def="I2">Encoded</col>
 		<col def="S0">Comment</col>
 		<col def="I4">TimeStamp</col>
-		<row><td>COMPANY_NAME</td><td>2052</td><td>公司名称</td><td>0</td><td/><td>1789359306</td></row>
+		<row><td>COMPANY_NAME</td><td>2052</td><td>公司名称</td><td>0</td><td/><td>1789384144</td></row>
 		<row><td>DN_AlwaysInstall</td><td>2052</td><td>始终安装</td><td>0</td><td/><td>1655114387</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_COLOR</td><td>2052</td><td>系统颜色设置不足以运行 [ProductName]。</td><td>0</td><td/><td>1655114387</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_OS</td><td>2052</td><td>操作系统不足以运行 [ProductName]。</td><td>0</td><td/><td>1655114387</td></row>
@@ -3746,8 +3753,8 @@
 		<row><td>IDS__TargetReq_DESC_RAM</td><td>2052</td><td>对于运行 [ProductName] 内存量不足。</td><td>0</td><td/><td>1655114387</td></row>
 		<row><td>IDS__TargetReq_DESC_RESOLUTION</td><td>2052</td><td>对于运行 [ProductName] 屏幕分辨率不足。</td><td>0</td><td/><td>1655114387</td></row>
 		<row><td>ID_STRING1</td><td>2052</td><td/><td>0</td><td/><td>1655114387</td></row>
-		<row><td>ID_STRING2</td><td>2052</td><td>http://www.公司名称.com</td><td>0</td><td/><td>1789359306</td></row>
-		<row><td>ID_STRING3</td><td>2052</td><td>公司名称</td><td>0</td><td/><td>1789359306</td></row>
+		<row><td>ID_STRING2</td><td>2052</td><td>http://www.公司名称.com</td><td>0</td><td/><td>1789384144</td></row>
+		<row><td>ID_STRING3</td><td>2052</td><td>公司名称</td><td>0</td><td/><td>1789384144</td></row>
 		<row><td>ID_STRING4</td><td>1033</td><td>云隧道</td><td>0</td><td/><td>1655159763</td></row>
 		<row><td>ID_STRING4</td><td>2052</td><td>云隧道</td><td>0</td><td/><td>1655159763</td></row>
 		<row><td>ID_STRING5</td><td>1033</td><td>云隧道</td><td>0</td><td/><td>1789338538</td></row>
@@ -3874,7 +3881,7 @@
 		<row><td>CloudTunnel.exe_43FD9687FBA745ABA773B3D9FE6A9C65.exe</td><td/><td>D:\dnat\DNAT\DNAT\bin\Release\CloudTunnel.exe</td><td>0</td></row>
 		<row><td>CloudTunnel.exe_64D45953E54E442088A96A204B3DC864.exe</td><td/><td>D:\dnat\DNAT\DNAT\bin\Release\CloudTunnel.exe</td><td>0</td></row>
 		<row><td>NewShortcut1_ADE1D5AA3A0640BAB7C4F9BDB07420F4.exe</td><td/><td>F:\开发\DNAT\DNAT\DNAT\bin\Release\Client.exe</td><td>0</td></row>
-		<row><td>Shortcut_6F18376453BB4457954A5DAA11D5704B.exe</td><td/><td>C:\Program Files (x86)\InstallShield\2015LE\Redist\Language Independent\OS Independent\uninstall.ico</td><td>0</td></row>
+		<row><td>Shortcut_99F4E3FE9FB046E98D3B9CE559C75CB8.exe</td><td/><td>&lt;VSSolutionFolder&gt;\DNAT\Delete.ico</td><td>0</td></row>
 		<row><td>ctc.exe_F67E2F236ACB426983DD53AAFD08A41E.exe</td><td/><td>&lt;ISProductFolder&gt;\redist\Language Independent\OS Independent\GenericExe.ico</td><td>0</td></row>
 	</table>
 
@@ -4008,7 +4015,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>ISTheme</td><td>InstallShield Blue.theme</td></row>
 		<row><td>ISUSLock</td><td>{C2AA3A01-E3E2-45D3-AE40-1F522A99B999}</td></row>
 		<row><td>ISUSSignature</td><td>{590C142B-EA5D-4A54-BC2F-79683D174837}</td></row>
-		<row><td>ISVisitedViews</td><td>viewAssistant,viewProject,viewAppFiles,viewShortcuts,viewUI,viewRelease</td></row>
+		<row><td>ISVisitedViews</td><td>viewAssistant,viewProject,viewAppFiles,viewShortcuts,viewUI,viewRelease,viewUpdateService,viewLearnMore,viewISToday,viewUpgradePaths,viewObjects</td></row>
 		<row><td>Limited</td><td>1</td></row>
 		<row><td>LockPermissionMode</td><td>1</td></row>
 		<row><td>MsiExecCmdLineOptions</td><td/></row>
@@ -4319,6 +4326,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>ARPURLINFOABOUT</td><td>##ID_STRING2##</td><td/></row>
 		<row><td>AgreeToLicense</td><td>No</td><td/></row>
 		<row><td>ApplicationUsers</td><td>AllUsers</td><td/></row>
+		<row><td>DIRPROPERTY3</td><td>C:\</td><td/></row>
 		<row><td>DWUSINTERVAL</td><td>30</td><td/></row>
 		<row><td>DWUSLINK</td><td>CECB2798EE8CC0AFF9AC97A8C9CB978F89BBE78FFECCF7E8CECC60BF6EBCC70F2ECB872F2EAC</td><td/></row>
 		<row><td>DefaultUIFont</td><td>ExpressDefault</td><td/></row>
@@ -4549,7 +4557,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>Client.exe</td><td>product_name</td><td>##IDS_SHORTCUT_DISPLAY_NAME7##</td><td>Client.exe</td><td>AlwaysInstall</td><td/><td/><td/><td>Client.exe_D60B865E49F84B8B8A98796756412752.exe</td><td>1</td><td>1</td><td>INSTALLDIR</td><td/><td/><td/><td/><td/><td/><td/></row>
 		<row><td>Client.exe1</td><td>DesktopFolder</td><td>##IDS_SHORTCUT_DISPLAY_NAME7##</td><td>Client.exe</td><td>AlwaysInstall</td><td/><td/><td/><td>Client.exe1_EC10039A62824F65BE96A70F4891526A.exe</td><td>1</td><td>1</td><td>INSTALLDIR</td><td/><td/><td/><td/><td/><td/><td/></row>
 		<row><td>NewShortcut1</td><td>DesktopFolder</td><td>##ID_STRING6##</td><td>Client.exe</td><td>[INSTALLDIR]Client.exe</td><td/><td/><td/><td>NewShortcut1_ADE1D5AA3A0640BAB7C4F9BDB07420F4.exe</td><td>1</td><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
-		<row><td>Shortcut</td><td>product_name</td><td>##IDS_SHORTCUT_DISPLAY_NAME5##</td><td>IS_ININSTALL_SHORTCUT</td><td>[SystemFolder]msiexec.exe</td><td>/x {D0403930-AD50-4ABA-B365-BCA5B587453D}</td><td/><td/><td>Shortcut_6F18376453BB4457954A5DAA11D5704B.exe</td><td>0</td><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
+		<row><td>Shortcut</td><td>product_name</td><td>##IDS_SHORTCUT_DISPLAY_NAME5##</td><td>IS_ININSTALL_SHORTCUT</td><td>[SystemFolder]msiexec.exe</td><td>/x {D0403930-AD50-4ABA-B365-BCA5B587453D}</td><td/><td/><td>Shortcut_99F4E3FE9FB046E98D3B9CE559C75CB8.exe</td><td>0</td><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
 	</table>
 
 	<table name="Signature">

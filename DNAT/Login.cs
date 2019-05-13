@@ -74,8 +74,6 @@ namespace Client
 
         private void Login_Load(object sender, EventArgs e)
         {
-            TbAccount.AutoSize = TbPassWord.AutoSize = false;
-            TbAccount.Height = TbPassWord.Height = 35;
             string Name = ini.IniReadValue("Account", "Name");
             if (Name != "")
             {
@@ -196,6 +194,16 @@ namespace Client
         private void llbResetPassWord_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start("http://www.xyujia.cn/Client/ResetPassWord");
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+            ControlPaint.DrawBorder(e.Graphics, panel1.ClientRectangle, Color.WhiteSmoke, ButtonBorderStyle.Solid);
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+            ControlPaint.DrawBorder(e.Graphics, panel2.ClientRectangle, Color.WhiteSmoke, ButtonBorderStyle.Solid);
         }
     }
 }
