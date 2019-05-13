@@ -29,7 +29,7 @@ namespace Client
                     Message ma = new Message();
                     ma.lbTitle.Text = "云隧道";
                     ma.lbContent.Text = "云隧道已启动！\t\n请不要启动多个程序！";
-                    ma.Show();
+                    ma.ShowDialog();
                 }
             }
         }
