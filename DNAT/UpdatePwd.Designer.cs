@@ -1,4 +1,4 @@
-﻿namespace CloudTunnel
+﻿namespace Client
 {
     partial class UpdatePwd
     {
@@ -156,7 +156,7 @@
             // 
             // panel5
             // 
-            this.panel5.BackgroundImage = global::CloudTunnel.Properties.Resources.logo1;
+            this.panel5.BackgroundImage = global::Client.Properties.Resources.logo1;
             this.panel5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.panel5.Location = new System.Drawing.Point(12, 12);
             this.panel5.Name = "panel5";

@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace CloudTunnel
+namespace Client
 {
     public partial class Tunnel : UserControl
     {

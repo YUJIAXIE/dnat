@@ -76,7 +76,7 @@ namespace Web.Controllers
             string result = "true";
             DLL.BLL.FRPConfigBLL fb = new DLL.BLL.FRPConfigBLL();
             DataTable dt = Models.Json.Json2DataTable(Tunnel);
-            string MappingName = fb.SelectMax(dt.Rows[1][0].ToString());
+            var MappingName = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000) / 10000000;
             var IsProt = fb.SelectProt(dt.Rows[0][0].ToString(), dt.Rows[3][2].ToString());
             if (IsProt)
             {
@@ -84,7 +84,7 @@ namespace Web.Controllers
                 {
                     FrpConfig fc = new FrpConfig();
                     fc.UId = dr["UId"].ToString();
-                    fc.MappingName = MappingName;
+                    fc.MappingName = "[" + fc.UId + "-" + MappingName + "]";
                     fc.Info = dr["Info"].ToString();
                     fc.Value = dr["Value"].ToString();
                     fb.InsertUsersFrpConfig(fc);
@@ -107,6 +107,10 @@ namespace Web.Controllers
                 return Content("true");
             else
                 return Content("false");
+        }
+        public ActionResult ResetPassWord()
+        {
+            return Content("暂未开放！");
         }
     }
 }

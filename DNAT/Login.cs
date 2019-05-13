@@ -12,7 +12,7 @@ using System.Web.Script.Serialization;
 using System.Web.Security;
 using System.Windows.Forms;
 
-namespace CloudTunnel
+namespace Client
 {
     public partial class Login : Form
     {
@@ -49,22 +49,22 @@ namespace CloudTunnel
 
         private void pClose_MouseLeave(object sender, EventArgs e)
         {
-            pClose.BackgroundImage = Properties.Resources.btn_close_nor;
+            pClose.BackgroundImage = Client.Properties.Resources.btn_close_nor;
         }
 
         private void pClose_MouseEnter(object sender, EventArgs e)
         {
-            pClose.BackgroundImage = Properties.Resources.btn_close_down;
+            pClose.BackgroundImage = Client.Properties.Resources.btn_close_down;
         }
 
         private void pMin_MouseEnter(object sender, EventArgs e)
         {
-            pMin.BackgroundImage = Properties.Resources.btn_min_down;
+            pMin.BackgroundImage = Client.Properties.Resources.btn_min_down;
         }
 
         private void pMin_MouseLeave(object sender, EventArgs e)
         {
-            pMin.BackgroundImage = Properties.Resources.btn_min_nor;
+            pMin.BackgroundImage = Client.Properties.Resources.btn_min_nor;
         }
         #endregion
         public Login()
@@ -190,7 +190,12 @@ namespace CloudTunnel
 
         private void llbReg_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("https://www.baidu.com");
+            System.Diagnostics.Process.Start("http://www.xyujia.cn");
+        }
+
+        private void llbResetPassWord_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://www.xyujia.cn/Client/ResetPassWord");
         }
     }
 }

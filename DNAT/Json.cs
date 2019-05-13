@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Web.Script.Serialization;
 
-namespace CloudTunnel
+namespace Client
 {
     public class Json
     {

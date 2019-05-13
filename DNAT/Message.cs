@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace CloudTunnel
+namespace Client
 {
     public partial class Message : Form
     {
@@ -42,12 +42,12 @@ namespace CloudTunnel
 
         private void pClose_MouseLeave(object sender, EventArgs e)
         {
-            pClose.BackgroundImage = Properties.Resources.btn_close_nor;
+            pClose.BackgroundImage = Client.Properties.Resources.btn_close_nor;
         }
 
         private void pClose_MouseEnter(object sender, EventArgs e)
         {
-            pClose.BackgroundImage = Properties.Resources.btn_close_down;
+            pClose.BackgroundImage = Client.Properties.Resources.btn_close_down;
         }
 
         #endregion

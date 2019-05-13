@@ -1,4 +1,4 @@
-﻿namespace CloudTunnel
+﻿namespace Client
 {
     partial class Tunnel
     {

@@ -1,5 +1,4 @@
-﻿using CloudTunnel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,15 +10,15 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 
-namespace CloudTunnel
+namespace Client
 {
     public partial class Main : Form
     {
-        public static string Url = "http://localhost:46324";//"www.xyujia.cn";
+        public static string Url = "http://www.xyujia.cn";//"http://localhost:46324"
         public string processName = "ctc";
         public static Main main;
         IniFiles ini = new IniFiles(Application.StartupPath + "\\Config.ini");
-        IniFiles Frpini = new IniFiles(Application.StartupPath + "\\DnatConfig.ini");
+        IniFiles Frpini = new IniFiles(Application.StartupPath + "\\CtcConfig.ini");
         public static int Id;//用户ID，登录成功后保存
         public static string Version;
         public static string DoMain;//名称，登录成功后保存
@@ -41,8 +40,6 @@ namespace CloudTunnel
                     //e.Cancel = true;
                     this.Visible = false;
                 }
-
-
                 KillProcess(processName);
                 Application.Exit();
             }
@@ -78,22 +75,22 @@ namespace CloudTunnel
 
         private void pClose_MouseLeave(object sender, EventArgs e)
         {
-            pClose.BackgroundImage = Properties.Resources.btn_close_nor;
+            pClose.BackgroundImage = Client.Properties.Resources.btn_close_nor;
         }
 
         private void pClose_MouseEnter(object sender, EventArgs e)
         {
-            pClose.BackgroundImage = Properties.Resources.btn_close_down;
+            pClose.BackgroundImage = Client.Properties.Resources.btn_close_down;
         }
 
         private void pMin_MouseEnter(object sender, EventArgs e)
         {
-            pMin.BackgroundImage = Properties.Resources.btn_min_down;
+            pMin.BackgroundImage = Client.Properties.Resources.btn_min_down;
         }
 
         private void pMin_MouseLeave(object sender, EventArgs e)
         {
-            pMin.BackgroundImage = Properties.Resources.btn_min_nor;
+            pMin.BackgroundImage = Client.Properties.Resources.btn_min_nor;
         }
         #endregion
         public Main()
@@ -141,6 +138,7 @@ namespace CloudTunnel
                 if (RunCmd(dd, Frpini.inipath))
                 {
                     lbStats.Text = "运行中";
+                    File.Delete(Frpini.inipath);
                 }
                 else
                 {
@@ -155,9 +153,7 @@ namespace CloudTunnel
                 m.ShowDialog();
                 Application.Exit();
             }
-
-
-
+            
         }
 
         bool RunCmd(string cmdExe, string cmdStr)
@@ -228,8 +224,7 @@ namespace CloudTunnel
         {
             string Windows = ini.IniReadValue("Account", "Windows");
             开机启动ToolStripMenuItem.Checked = Windows == "1" ? true : false;
-            string pa = Frpini.inipath;
-            File.Delete(pa);
+            File.Delete(Frpini.inipath);
             KillProcess(processName);
             string AutoLogin = ini.IniReadValue("Account", "AutoLogin");
             string ReLogin = ini.IniReadValue("Account", "ReLogin");

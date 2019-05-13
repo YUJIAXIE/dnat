@@ -339,12 +339,12 @@
 		<col def="S0">ISDotNetInstallerArgsCommit</col>
 		<col def="S0">ISDotNetInstallerArgsUninstall</col>
 		<col def="S0">ISDotNetInstallerArgsRollback</col>
-		<row><td>CloudTunnel.exe</td><td>{CE98B5E3-58CF-4944-BFCF-557345CDFB20}</td><td>INSTALLDIR</td><td>2</td><td/><td>cloudtunnel.exe</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>Client.exe</td><td>{C0C96EDB-F607-498A-B629-98FB9BF74CDB}</td><td>INSTALLDIR</td><td>2</td><td/><td>client.exe</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ISX_DEFAULTCOMPONENT</td><td>{CE685ACD-3BD5-4575-B196-07D14C2324D6}</td><td>INSTALLDIR</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ISX_DEFAULTCOMPONENT1</td><td>{14AADB14-A4D7-45EE-ADBA-861C0D214905}</td><td>INSTALLDIR</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>IS_ININSTALL_SHORTCUT</td><td>{E3309ECA-472D-4E86-97A7-1388043D95C4}</td><td>INSTALLDIR</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>Newtonsoft.Json.dll</td><td>{25FC46C0-37F9-46A7-B1D3-49E5CFD7D291}</td><td>INSTALLDIR</td><td>2</td><td/><td>newtonsoft.json.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>ctc.exe</td><td>{F920529F-53B0-4D78-9129-BF63FE42184D}</td><td>INSTALLDIR</td><td>2</td><td/><td>ctc.exe</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>Newtonsoft.Json.dll</td><td>{25D76280-62F0-4FE4-A391-32C30EB815B6}</td><td>INSTALLDIR</td><td>2</td><td/><td>newtonsoft.json.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>ctc.exe</td><td>{346B9EEC-A98F-451F-9B03-C306D9A1FF05}</td><td>INSTALLDIR</td><td>2</td><td/><td>ctc.exe</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 	</table>
 
 	<table name="Condition">
@@ -1054,7 +1054,7 @@
 	<table name="CreateFolder">
 		<col key="yes" def="s72">Directory_</col>
 		<col key="yes" def="s72">Component_</col>
-		<row><td>INSTALLDIR</td><td>CloudTunnel.exe</td></row>
+		<row><td>INSTALLDIR</td><td>Client.exe</td></row>
 		<row><td>INSTALLDIR</td><td>ISX_DEFAULTCOMPONENT</td></row>
 		<row><td>INSTALLDIR</td><td>ISX_DEFAULTCOMPONENT1</td></row>
 		<row><td>INSTALLDIR</td><td>IS_ININSTALL_SHORTCUT</td></row>
@@ -1151,13 +1151,14 @@
 		<row><td>FavoritesFolder</td><td>TARGETDIR</td><td>.:FAVORI~1|Favorites</td><td/><td>0</td><td/></row>
 		<row><td>FontsFolder</td><td>TARGETDIR</td><td>.:Fonts</td><td/><td>0</td><td/></row>
 		<row><td>GlobalAssemblyCache</td><td>TARGETDIR</td><td>.:Global~1|GlobalAssemblyCache</td><td/><td>0</td><td/></row>
-		<row><td>INSTALLDIR</td><td>DIRECTORY1</td><td>.</td><td/><td>0</td><td/></row>
+		<row><td>INSTALLDIR</td><td>NEW_DIRECTORY1</td><td>.</td><td/><td>0</td><td/></row>
 		<row><td>ISCommonFilesFolder</td><td>CommonFilesFolder</td><td>Instal~1|InstallShield</td><td/><td>0</td><td/></row>
 		<row><td>ISMyCompanyDir</td><td>ProgramFilesFolder</td><td>MYCOMP~1|My Company Name</td><td/><td>0</td><td/></row>
 		<row><td>ISMyProductDir</td><td>ISMyCompanyDir</td><td>MYPROD~1|My Product Name</td><td/><td>0</td><td/></row>
 		<row><td>ISYourDataBaseDir</td><td>INSTALLDIR</td><td>Database</td><td/><td>0</td><td/></row>
 		<row><td>LocalAppDataFolder</td><td>TARGETDIR</td><td>.:LocalA~1|LocalAppData</td><td/><td>0</td><td/></row>
 		<row><td>MyPicturesFolder</td><td>TARGETDIR</td><td>.:MyPict~1|MyPictures</td><td/><td>0</td><td/></row>
+		<row><td>NEW_DIRECTORY1</td><td>TARGETDIR</td><td>云隧道</td><td/><td>0</td><td/></row>
 		<row><td>NetHoodFolder</td><td>TARGETDIR</td><td>.:NetHood</td><td/><td>0</td><td/></row>
 		<row><td>PersonalFolder</td><td>TARGETDIR</td><td>.:Personal</td><td/><td>0</td><td/></row>
 		<row><td>PrimaryVolumePath</td><td>TARGETDIR</td><td>.:Primar~1|PrimaryVolumePath</td><td/><td>0</td><td/></row>
@@ -1870,7 +1871,7 @@
 	<table name="FeatureComponents">
 		<col key="yes" def="s38">Feature_</col>
 		<col key="yes" def="s72">Component_</col>
-		<row><td>AlwaysInstall</td><td>CloudTunnel.exe</td></row>
+		<row><td>AlwaysInstall</td><td>Client.exe</td></row>
 		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT</td></row>
 		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT1</td></row>
 		<row><td>AlwaysInstall</td><td>IS_ININSTALL_SHORTCUT</td></row>
@@ -1890,11 +1891,10 @@
 		<col def="S255">ISBuildSourcePath</col>
 		<col def="I4">ISAttributes</col>
 		<col def="S72">ISComponentSubFolder_</col>
-		<row><td>cloudtunnel.exe</td><td>CloudTunnel.exe</td><td>CLOUDT~1.EXE|CloudTunnel.exe</td><td>0</td><td/><td/><td/><td>1</td><td>D:\dnat\DNAT\DNAT\bin\Release\CloudTunnel.exe</td><td>1</td><td/></row>
-		<row><td>config.ini</td><td>ISX_DEFAULTCOMPONENT</td><td>Config.ini</td><td>0</td><td/><td/><td/><td>1</td><td>D:\dnat\DNAT\DNAT\bin\Release\Config.ini</td><td>1</td><td/></row>
-		<row><td>ctc.exe</td><td>ctc.exe</td><td>ctc.exe</td><td>0</td><td/><td/><td/><td>1</td><td>D:\dnat\DNAT\DNAT\bin\Release\ctc.exe</td><td>1</td><td/></row>
-		<row><td>dnatconfig.ini</td><td>ISX_DEFAULTCOMPONENT</td><td>DNATCO~1.INI|DnatConfig.ini</td><td>0</td><td/><td/><td/><td>1</td><td>D:\dnat\DNAT\DNAT\bin\Release\DnatConfig.ini</td><td>1</td><td/></row>
-		<row><td>newtonsoft.json.dll</td><td>Newtonsoft.Json.dll</td><td>NEWTON~1.DLL|Newtonsoft.Json.dll</td><td>0</td><td/><td/><td/><td>1</td><td>D:\dnat\DNAT\DNAT\bin\Release\Newtonsoft.Json.dll</td><td>1</td><td/></row>
+		<row><td>client.exe</td><td>Client.exe</td><td>Client.exe</td><td>0</td><td/><td/><td/><td>1</td><td>F:\开发\DNAT\DNAT\DNAT\bin\Release\Client.exe</td><td>1</td><td/></row>
+		<row><td>config.ini</td><td>ISX_DEFAULTCOMPONENT</td><td>Config.ini</td><td>0</td><td/><td/><td/><td>1</td><td>F:\开发\DNAT\DNAT\DNAT\Config.ini</td><td>1</td><td/></row>
+		<row><td>ctc.exe</td><td>ctc.exe</td><td>ctc.exe</td><td>0</td><td/><td/><td/><td>1</td><td>F:\开发\DNAT\DNAT\DNAT\ctc.exe</td><td>1</td><td/></row>
+		<row><td>newtonsoft.json.dll</td><td>Newtonsoft.Json.dll</td><td>NEWTON~1.DLL|Newtonsoft.Json.dll</td><td>0</td><td/><td/><td/><td>1</td><td>F:\开发\DNAT\DNAT\DNAT\bin\Release\Newtonsoft.Json.dll</td><td>1</td><td/></row>
 	</table>
 
 	<table name="FileSFPCatalog">
@@ -2037,12 +2037,12 @@
 		<col def="S0">FTPLocation</col>
 		<col def="S0">HTTPLocation</col>
 		<col def="S0">Miscellaneous</col>
-		<row><td>CloudTunnel.exe</td><td/><td/><td>_6DAF5E89_38FF_41D9_8359_2F1ED1F8E878_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>Client.exe</td><td/><td/><td>_98A5A6DB_2FFA_421A_A964_522AAEEF098C_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ISX_DEFAULTCOMPONENT</td><td/><td/><td>_7379B148_0D47_45F9_B8D7_BD842891B0A4_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ISX_DEFAULTCOMPONENT1</td><td/><td/><td>_BA40196E_2AFB_4B03_9644_44A732DC5CAB_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>IS_ININSTALL_SHORTCUT</td><td/><td/><td>_8A5DEBBF_053F_4DB1_A6D8_28398ABF4573_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>Newtonsoft.Json.dll</td><td/><td/><td>_20680133_C438_4B6F_B565_0BFE761E17D5_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>ctc.exe</td><td/><td/><td>_D1F52B82_B6AC_47A0_9C81_4DC4ECFCC69C_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>Newtonsoft.Json.dll</td><td/><td/><td>_3B209ACD_AFE1_4DFA_AFB9_2D800CCEF68E_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>ctc.exe</td><td/><td/><td>_246B2EED_02E4_4C82_9C80_24C27C41DA30_FILTER</td><td/><td/><td/><td/></row>
 	</table>
 
 	<table name="ISCustomActionReference">
@@ -2388,7 +2388,7 @@
 		<row><td>DVD-18</td><td>Express</td><td>&lt;ISProjectDataFolder&gt;</td><td>Default</td><td>3</td><td>1033</td><td>0</td><td>2</td><td>Intel</td><td/><td>1033</td><td>0</td><td>15.83</td><td>1</td><td>2048</td><td/><td>0</td><td/><td>MediaLocation</td><td/><td>http://</td><td/><td/><td/><td/><td>75805</td><td/><td/><td/><td>3</td></row>
 		<row><td>DVD-5</td><td>Express</td><td>&lt;ISProjectDataFolder&gt;</td><td>Default</td><td>3</td><td>2052</td><td>0</td><td>2</td><td>Intel</td><td/><td>2052</td><td>0</td><td>4.38</td><td>1</td><td>2048</td><td/><td>0</td><td/><td>MediaLocation</td><td/><td>http://</td><td/><td/><td/><td/><td>75805</td><td/><td/><td/><td>3</td></row>
 		<row><td>DVD-9</td><td>Express</td><td>&lt;ISProjectDataFolder&gt;</td><td>Default</td><td>3</td><td>1033</td><td>0</td><td>2</td><td>Intel</td><td/><td>1033</td><td>0</td><td>7.95</td><td>1</td><td>2048</td><td/><td>0</td><td/><td>MediaLocation</td><td/><td>http://</td><td/><td/><td/><td/><td>75805</td><td/><td/><td/><td>3</td></row>
-		<row><td>SingleImage</td><td>Express</td><td>&lt;ISProjectDataFolder&gt;</td><td>PackageName</td><td>1</td><td>2052</td><td>0</td><td>1</td><td>Intel</td><td/><td>2052</td><td>0</td><td>0</td><td>0</td><td>0</td><td/><td>0</td><td/><td>MediaLocation</td><td/><td>http://</td><td/><td/><td/><td/><td>108573</td><td/><td/><td/><td>3</td></row>
+		<row><td>SingleImage</td><td>Express</td><td>&lt;ISProjectDataFolder&gt;</td><td>PackageName</td><td>1</td><td>2052</td><td>0</td><td>1</td><td>Intel</td><td/><td>2052</td><td>0</td><td>0</td><td>0</td><td>0</td><td/><td>0</td><td/><td>MediaLocation</td><td/><td>http://</td><td/><td/><td/><td/><td>108573</td><td/><td/><td/><td>1</td></row>
 		<row><td>WebDeployment</td><td>Express</td><td>&lt;ISProjectDataFolder&gt;</td><td>PackageName</td><td>4</td><td>1033</td><td>2</td><td>1</td><td>Intel</td><td/><td>1033</td><td>0</td><td>0</td><td>0</td><td>0</td><td/><td>0</td><td/><td>MediaLocation</td><td/><td>http://</td><td/><td/><td/><td/><td>124941</td><td/><td/><td/><td>3</td></row>
 	</table>
 
@@ -2631,7 +2631,7 @@
 		<col def="I2">Encoded</col>
 		<col def="S0">Comment</col>
 		<col def="I4">TimeStamp</col>
-		<row><td>COMPANY_NAME</td><td>2052</td><td>公司名称</td><td>0</td><td/><td>1655114387</td></row>
+		<row><td>COMPANY_NAME</td><td>2052</td><td>公司名称</td><td>0</td><td/><td>1789359306</td></row>
 		<row><td>DN_AlwaysInstall</td><td>2052</td><td>始终安装</td><td>0</td><td/><td>1655114387</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_COLOR</td><td>2052</td><td>系统颜色设置不足以运行 [ProductName]。</td><td>0</td><td/><td>1655114387</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_OS</td><td>2052</td><td>操作系统不足以运行 [ProductName]。</td><td>0</td><td/><td>1655114387</td></row>
@@ -3453,6 +3453,10 @@
 		<row><td>IDS_SHORTCUT_DISPLAY_NAME4</td><td>2052</td><td>LAUNCH~1.EXE|Launch ctc.exe</td><td>0</td><td/><td>1655167923</td></row>
 		<row><td>IDS_SHORTCUT_DISPLAY_NAME5</td><td>1033</td><td>卸载云隧道</td><td>0</td><td/><td>1655131091</td></row>
 		<row><td>IDS_SHORTCUT_DISPLAY_NAME5</td><td>2052</td><td>卸载云隧道</td><td>0</td><td/><td>1655131091</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME6</td><td>1033</td><td/><td>0</td><td/><td>1789342602</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME6</td><td>2052</td><td>LAUNCH~1.EXE|Launch ctc.exe</td><td>0</td><td/><td>1789342602</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME7</td><td>1033</td><td/><td>0</td><td/><td>1789358986</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME7</td><td>2052</td><td>云隧道</td><td>0</td><td/><td>1789334442</td></row>
 		<row><td>IDS_SQLBROWSE_INTRO</td><td>2052</td><td>从以下服务器列表中选择要连接的数据库服务器。</td><td>0</td><td/><td>1655114387</td></row>
 		<row><td>IDS_SQLBROWSE_INTRO_DB</td><td>2052</td><td>从以下的编录名称列表中，选择您希望将其作为目标的数据库编录。</td><td>0</td><td/><td>1655114387</td></row>
 		<row><td>IDS_SQLBROWSE_INTRO_TEMPLATE</td><td>2052</td><td>[IS_SQLBROWSE_INTRO]</td><td>0</td><td/><td>1655114387</td></row>
@@ -3742,10 +3746,14 @@
 		<row><td>IDS__TargetReq_DESC_RAM</td><td>2052</td><td>对于运行 [ProductName] 内存量不足。</td><td>0</td><td/><td>1655114387</td></row>
 		<row><td>IDS__TargetReq_DESC_RESOLUTION</td><td>2052</td><td>对于运行 [ProductName] 屏幕分辨率不足。</td><td>0</td><td/><td>1655114387</td></row>
 		<row><td>ID_STRING1</td><td>2052</td><td/><td>0</td><td/><td>1655114387</td></row>
-		<row><td>ID_STRING2</td><td>2052</td><td>http://www.A.com</td><td>0</td><td/><td>1655114387</td></row>
-		<row><td>ID_STRING3</td><td>2052</td><td>A</td><td>0</td><td/><td>1655114387</td></row>
+		<row><td>ID_STRING2</td><td>2052</td><td>http://www.公司名称.com</td><td>0</td><td/><td>1789359306</td></row>
+		<row><td>ID_STRING3</td><td>2052</td><td>公司名称</td><td>0</td><td/><td>1789359306</td></row>
 		<row><td>ID_STRING4</td><td>1033</td><td>云隧道</td><td>0</td><td/><td>1655159763</td></row>
 		<row><td>ID_STRING4</td><td>2052</td><td>云隧道</td><td>0</td><td/><td>1655159763</td></row>
+		<row><td>ID_STRING5</td><td>1033</td><td>云隧道</td><td>0</td><td/><td>1789338538</td></row>
+		<row><td>ID_STRING5</td><td>2052</td><td>云隧道</td><td>0</td><td/><td>1789338538</td></row>
+		<row><td>ID_STRING6</td><td>1033</td><td>NEWSHO~1|NewShortcut1</td><td>0</td><td/><td>1789369354</td></row>
+		<row><td>ID_STRING6</td><td>2052</td><td>云隧道</td><td>0</td><td/><td>1789375498</td></row>
 		<row><td>IIDS_UITEXT_FeatureUninstalled</td><td>2052</td><td>系统将不安装此功能。</td><td>0</td><td/><td>1655114387</td></row>
 	</table>
 
@@ -3859,10 +3867,13 @@
 		<col def="V0">Data</col>
 		<col def="S255">ISBuildSourcePath</col>
 		<col def="I2">ISIconIndex</col>
-		<row><td>ARPPRODUCTICON.exe</td><td/><td>C:\Users\谢豫佳\Desktop\logo.ico</td><td>0</td></row>
+		<row><td>ARPPRODUCTICON.exe</td><td/><td>&lt;VSSolutionFolder&gt;\DNAT\logo.ico</td><td>0</td></row>
+		<row><td>Client.exe1_EC10039A62824F65BE96A70F4891526A.exe</td><td/><td>F:\开发\DNAT\DNAT\DNAT\bin\Release\Client.exe</td><td>0</td></row>
+		<row><td>Client.exe_D60B865E49F84B8B8A98796756412752.exe</td><td/><td>F:\开发\DNAT\DNAT\DNAT\bin\Release\Client.exe</td><td>0</td></row>
 		<row><td>CloudTunnel.exe1_1571193B142341A4BBD20A218F9E631A.exe</td><td/><td>D:\dnat\DNAT\DNAT\bin\Release\CloudTunnel.exe</td><td>0</td></row>
 		<row><td>CloudTunnel.exe_43FD9687FBA745ABA773B3D9FE6A9C65.exe</td><td/><td>D:\dnat\DNAT\DNAT\bin\Release\CloudTunnel.exe</td><td>0</td></row>
 		<row><td>CloudTunnel.exe_64D45953E54E442088A96A204B3DC864.exe</td><td/><td>D:\dnat\DNAT\DNAT\bin\Release\CloudTunnel.exe</td><td>0</td></row>
+		<row><td>NewShortcut1_ADE1D5AA3A0640BAB7C4F9BDB07420F4.exe</td><td/><td>F:\开发\DNAT\DNAT\DNAT\bin\Release\Client.exe</td><td>0</td></row>
 		<row><td>Shortcut_6F18376453BB4457954A5DAA11D5704B.exe</td><td/><td>C:\Program Files (x86)\InstallShield\2015LE\Redist\Language Independent\OS Independent\uninstall.ico</td><td>0</td></row>
 		<row><td>ctc.exe_F67E2F236ACB426983DD53AAFD08A41E.exe</td><td/><td>&lt;ISProductFolder&gt;\redist\Language Independent\OS Independent\GenericExe.ico</td><td>0</td></row>
 	</table>
@@ -4446,7 +4457,9 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<col def="L255">FileName</col>
 		<col def="s72">DirProperty</col>
 		<col def="i2">InstallMode</col>
-		<row><td>CloudTunnel.exe</td><td>CloudTunnel.exe</td><td/><td>product_name</td><td>2</td></row>
+		<row><td>Client.exe</td><td>Client.exe</td><td/><td>product_name</td><td>2</td></row>
+		<row><td>FileKey1</td><td>ctc.exe</td><td/><td>company_name</td><td>2</td></row>
+		<row><td>FileKey2</td><td>ctc.exe</td><td/><td>product_name1</td><td>2</td></row>
 		<row><td>Shortcut</td><td>IS_ININSTALL_SHORTCUT</td><td/><td>product_name</td><td>2</td></row>
 	</table>
 
@@ -4533,8 +4546,9 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<col def="S255">ISComments</col>
 		<col def="S255">ISShortcutName</col>
 		<col def="I4">ISAttributes</col>
-		<row><td>CloudTunnel.exe</td><td>product_name</td><td>##IDS_SHORTCUT_DISPLAY_NAME3##</td><td>CloudTunnel.exe</td><td>AlwaysInstall</td><td/><td/><td/><td>CloudTunnel.exe_43FD9687FBA745ABA773B3D9FE6A9C65.exe</td><td>1</td><td>1</td><td>INSTALLDIR</td><td/><td/><td/><td/><td/><td/><td/></row>
-		<row><td>CloudTunnel.exe1</td><td>DesktopFolder</td><td>##IDS_SHORTCUT_DISPLAY_NAME3##</td><td>CloudTunnel.exe</td><td>AlwaysInstall</td><td/><td/><td/><td>CloudTunnel.exe1_1571193B142341A4BBD20A218F9E631A.exe</td><td>1</td><td>1</td><td>INSTALLDIR</td><td/><td/><td/><td/><td/><td/><td/></row>
+		<row><td>Client.exe</td><td>product_name</td><td>##IDS_SHORTCUT_DISPLAY_NAME7##</td><td>Client.exe</td><td>AlwaysInstall</td><td/><td/><td/><td>Client.exe_D60B865E49F84B8B8A98796756412752.exe</td><td>1</td><td>1</td><td>INSTALLDIR</td><td/><td/><td/><td/><td/><td/><td/></row>
+		<row><td>Client.exe1</td><td>DesktopFolder</td><td>##IDS_SHORTCUT_DISPLAY_NAME7##</td><td>Client.exe</td><td>AlwaysInstall</td><td/><td/><td/><td>Client.exe1_EC10039A62824F65BE96A70F4891526A.exe</td><td>1</td><td>1</td><td>INSTALLDIR</td><td/><td/><td/><td/><td/><td/><td/></row>
+		<row><td>NewShortcut1</td><td>DesktopFolder</td><td>##ID_STRING6##</td><td>Client.exe</td><td>[INSTALLDIR]Client.exe</td><td/><td/><td/><td>NewShortcut1_ADE1D5AA3A0640BAB7C4F9BDB07420F4.exe</td><td>1</td><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
 		<row><td>Shortcut</td><td>product_name</td><td>##IDS_SHORTCUT_DISPLAY_NAME5##</td><td>IS_ININSTALL_SHORTCUT</td><td>[SystemFolder]msiexec.exe</td><td>/x {D0403930-AD50-4ABA-B365-BCA5B587453D}</td><td/><td/><td>Shortcut_6F18376453BB4457954A5DAA11D5704B.exe</td><td>0</td><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
 	</table>
 
