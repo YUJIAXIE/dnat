@@ -28,7 +28,11 @@ namespace DLL.DAL
    MappingName,
     MAX(CASE WHEN Info = 'server_addr' THEN Value ELSE '' END) AS server_addr,
     MAX(CASE WHEN Info = 'server_port ' THEN Value ELSE '' END) AS server_port,
-    MAX(CASE WHEN Info = 'token' THEN Value ELSE '' END) AS token
+    MAX(CASE WHEN Info = 'token' THEN Value ELSE '' END) AS token,
+MAX(CASE WHEN Info = 'admin_addr' THEN Value ELSE '' END) AS admin_addr,
+MAX(CASE WHEN Info = 'admin_port' THEN Value ELSE '' END) AS admin_port,
+MAX(CASE WHEN Info = 'admin_user' THEN Value ELSE '' END) AS admin_user,
+MAX(CASE WHEN Info = 'admin_pwd' THEN Value ELSE '' END) AS admin_pwd
 FROM dbo.FRPConfig WHERE UId=0
 GROUP BY MappingName";
             }

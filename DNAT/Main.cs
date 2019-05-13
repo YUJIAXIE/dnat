@@ -120,13 +120,13 @@ namespace Client
 
         void Test()
         {
-            var Com = HTTP.Get(Url + "/Client/FRPConfig", "?Uid=" + Id + "&Id=0&All=false");
+            var Com = HTTP.Get(Url + "/Client/FRPConfig", "?Uid=" + Id + "&Id=0&All=true");
             DataTable Common = Json.Json2DataTable(Com);
             foreach (DataRow dr in Common.Rows)
             {
                 Frpini.IniWriteValue(dr["MappingName"].ToString(), dr["Info"].ToString(), dr["Value"].ToString());
             }
-            var frp = HTTP.Get(Url + "/Client/FRPConfig", "?Uid=" + Id + "&Id=1&All=false");
+            var frp = HTTP.Get(Url + "/Client/FRPConfig", "?Uid=" + Id + "&Id=1&All=true");
             DataTable User = Json.Json2DataTable(frp);
             foreach (DataRow dr in User.Rows)
             {
