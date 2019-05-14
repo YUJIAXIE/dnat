@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
@@ -26,6 +27,22 @@ namespace Client
         public static string DoMainInfo;
         public static string Date;
         public static string Pwd;
+        #region 内存回收
+        [DllImport("kernel32.dll", EntryPoint = "SetProcessWorkingSetSize")]
+        public static extern int SetProcessWorkingSetSize(IntPtr process, int minSize, int maxSize);
+        /// <summary>
+        /// 释放内存
+        /// </summary>
+        public static void ClearMemory()
+        {
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+            if (Environment.OSVersion.Platform == PlatformID.Win32NT)
+            {
+                SetProcessWorkingSetSize(System.Diagnostics.Process.GetCurrentProcess().Handle, -1, -1);
+            }
+        }
+        #endregion
         #region 无边框属性
         private Point mousePoint = new Point();
         private void pClose_MouseClick(object sender, MouseEventArgs e)
@@ -154,7 +171,15 @@ namespace Client
                 m.ShowDialog();
                 Application.Exit();
             }
-
+        }
+        /// <summary>
+        /// 定时清理内存
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void pTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            ClearMemory();
         }
 
         bool RunCmd(string cmdExe, string cmdStr)
@@ -213,6 +238,10 @@ namespace Client
                 {
                     item.Kill();
                 }
+                else if (item.ProcessName == "conhost")
+                {
+                    item.Kill();
+                }
             }
         }
         private void btn_AddTunnel_Click(object sender, EventArgs e)
@@ -266,6 +295,12 @@ namespace Client
             ini.IniWriteValue("Account", "ReLogin", "1");
             InitializeTunnel();
             Test();
+
+            System.Timers.Timer pTimer = new System.Timers.Timer(5000);//每隔5秒执行一次，没用winfrom自带的
+            pTimer.Elapsed += pTimer_Elapsed;//委托，要执行的方法
+            pTimer.AutoReset = true;//获取该定时器自动执行
+            pTimer.Enabled = true;//这个一定要写，要不然定时器不会执行的
+            Control.CheckForIllegalCrossThreadCalls = false;//这个不太懂，有待研究
         }
 
         private void btnRelogin_Click(object sender, EventArgs e)
@@ -279,7 +314,7 @@ namespace Client
         {
             lbName.Focus();
         }
-        
+
         private void 显示ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (Login.isLogin)
