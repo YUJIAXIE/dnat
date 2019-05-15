@@ -44,6 +44,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="aliyun-net-sdk-Core">
+      <HintPath>C:\Users\谢豫佳\Downloads\aliyun-net-sdk-core-1.1.9\aliyun-net-sdk-Core.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -115,6 +118,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\DoMain.cs" />
     <Compile Include="Models\Json.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -123,6 +127,7 @@
     <Content Include="packages.config" />
     <Content Include="Views\Client\Register.cshtml" />
     <None Include="Properties\PublishProfiles\web.pubxml" />
+    <Content Include="Views\Client\Success.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -137,6 +142,10 @@
     <ProjectReference Include="..\DLL\DLL.csproj">
       <Project>{8cbebc3e-8f36-4363-99c9-f7d17d5f2dba}</Project>
       <Name>DLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\谢豫佳\Desktop\aliyun-openapi-net-sdk-master\aliyun-openapi-net-sdk-master\aliyun-net-sdk-alidns\aliyun-net-sdk-alidns.vs2010.csproj">
+      <Project>{36b59cbf-ddc5-4fa8-a1e4-0cef50f5e295}</Project>
+      <Name>aliyun-net-sdk-alidns.vs2010</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

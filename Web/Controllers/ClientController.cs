@@ -32,19 +32,21 @@ namespace Web.Controllers
         {
             DLL.BLL.ConfigBLL cb = new DLL.BLL.ConfigBLL();
             DLL.BLL.UsersBLL ub = new DLL.BLL.UsersBLL();
+            Models.DoMain dm = new Models.DoMain();
+            dm.Add(Users.DoMain);
             Users.RegDate = DateTime.Now.Date.ToShortDateString();
             Users.EndDate = DateTime.Now.Date.AddDays(cb.ProbationPeriod()).ToShortDateString();
             Users.Version = 9;
             Users.PassWord = FormsAuthentication.HashPasswordForStoringInConfigFile(Users.PassWord, "MD5");
             Users.Login = 1;
             ub.InsertUsers(Users);
-
-
-
-            return View("Register");
+            return View("Success");
 
         }
-
+        public ActionResult Success()
+        {
+            return View();
+        }
         public ActionResult ClientLogin(Users Users)
         {
             DLL.BLL.UsersBLL ub = new DLL.BLL.UsersBLL();

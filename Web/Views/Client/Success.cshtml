@@ -1,0 +1,52 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>注册成功</title>
+    <script type="text/javascript">
+        //防止页面后退
+        history.pushState(null, null, document.URL);
+        window.addEventListener('popstate', function () {
+            history.pushState(null, null, document.URL);
+        });
+    </script>
+    <style>
+        #div1 {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div style="text-align:center">
+        <h2>注册成功，请在客户端登录</h2>
+        <p>将会在<span id='div1'></span>后跳转<a href="http://www.baidu.com">百度</a></p>
+    </div>
+
+</body>
+</html>
+<script type="text/javascript">
+    //设定倒数秒数
+    var t = 10;
+    //显示倒数秒数
+    function showTime() {
+        t -= 1;
+        document.getElementById('div1').innerHTML = t;
+        if (t == 0) {
+            location.href = 'http://www.baidu.com';
+        }
+        //每秒执行一次,showTime()
+        setTimeout("showTime()", 1000);
+    }
+    //执行showTime()
+    showTime();
+
+</script>
+
+
+

@@ -14,5 +14,10 @@ namespace DLL.DAL
             string sql = $"select Value from Config where Info='ProbationPeriod'";
             return Convert.ToInt32(SqlHelper.ExecuteScalar(sql));
         }
+        public DataTable SelectConfig()
+        {
+            string sql = "select * from Config";
+            return SqlHelper.ExecuteDataTable(sql);
+        }
     }
 }
