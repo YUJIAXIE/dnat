@@ -38,6 +38,9 @@ namespace Web.Controllers
             Users.PassWord = FormsAuthentication.HashPasswordForStoringInConfigFile(Users.PassWord, "MD5");
             Users.Login = 1;
             ub.InsertUsers(Users);
+
+
+
             return View("Register");
 
         }
