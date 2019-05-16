@@ -139,13 +139,13 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\aliyun-net-sdk-alidns\aliyun-net-sdk-alidns.vs2010.csproj">
+      <Project>{36b59cbf-ddc5-4fa8-a1e4-0cef50f5e295}</Project>
+      <Name>aliyun-net-sdk-alidns.vs2010</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DLL\DLL.csproj">
       <Project>{8cbebc3e-8f36-4363-99c9-f7d17d5f2dba}</Project>
       <Name>DLL</Name>
-    </ProjectReference>
-    <ProjectReference Include="C:\Users\谢豫佳\Desktop\aliyun-openapi-net-sdk-master\aliyun-openapi-net-sdk-master\aliyun-net-sdk-alidns\aliyun-net-sdk-alidns.vs2010.csproj">
-      <Project>{36b59cbf-ddc5-4fa8-a1e4-0cef50f5e295}</Project>
-      <Name>aliyun-net-sdk-alidns.vs2010</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

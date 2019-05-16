@@ -23,13 +23,13 @@ namespace DLL.DAL
 
         public int InsertUsers(Users users)
         {
-            string sql = $"INSERT INTO Users VALUES ('{users.DoMain}','{users.PassWord}','{users.Phone}','{users.Email}','{users.RegDate}','{users.EndDate}','{users.Version}',{users.Login})";
+            string sql = $"INSERT INTO Users VALUES ('{users.DoMain}','{users.PassWord}','{users.Phone}','{users.Email}','{users.RegDate}','{users.EndDate}','{users.Version}',{users.ECSId})";
             return SqlHelper.ExecuteNonQuery(sql);
         }
 
         public DataTable SelectUsers(Users Users)
         {
-            string sql = $@"select u.id,u.DoMain,u.RegDate,u.EndDate,u.Login,c.Value,c1.Value as DoMainName from Users u
+            string sql = $@"select u.id,u.DoMain,u.RegDate,u.EndDate,c.Value,c1.Value as DoMainName from Users u
 join config c on u.version=c.id
 join config c1 on c1.info='DomainName' where domain ='{Users.DoMain}'and PassWord='{Users.PassWord}'";
             return SqlHelper.ExecuteDataTable(sql);

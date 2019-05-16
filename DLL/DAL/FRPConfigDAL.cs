@@ -10,40 +10,13 @@ namespace DLL.DAL
 {
     public class FRPConfigDAL
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="All">true默认，false行转列</param>
-        /// <returns></returns>
-        public DataTable SelectCommonFrpConfig(bool All)
+        
+        public DataTable SelectUsersFrpConfig(int UId, bool All)
         {
             string sql;
             if (All)
             {
-                sql = $"select MappingName,Info,Value from FRPConfig WHERE UId=0";
-            }
-            else
-            {
-                sql = $@"SELECT 
-   MappingName,
-    MAX(CASE WHEN Info = 'server_addr' THEN Value ELSE '' END) AS server_addr,
-    MAX(CASE WHEN Info = 'server_port ' THEN Value ELSE '' END) AS server_port,
-    MAX(CASE WHEN Info = 'token' THEN Value ELSE '' END) AS token,
-MAX(CASE WHEN Info = 'admin_addr' THEN Value ELSE '' END) AS admin_addr,
-MAX(CASE WHEN Info = 'admin_port' THEN Value ELSE '' END) AS admin_port,
-MAX(CASE WHEN Info = 'admin_user' THEN Value ELSE '' END) AS admin_user,
-MAX(CASE WHEN Info = 'admin_pwd' THEN Value ELSE '' END) AS admin_pwd
-FROM dbo.FRPConfig WHERE UId=0
-GROUP BY MappingName";
-            }
-            return SqlHelper.ExecuteDataTable(sql);
-        }
-        public DataTable SelectUsersFrpConfig(int Id, bool All)
-        {
-            string sql;
-            if (All)
-            {
-                sql = $"select MappingName,Info,Value from FRPConfig WHERE UId='{Id}'";
+                sql = $"select MappingName,Info,Value from FRPConfig WHERE UId='{UId}'";
             }
             else
             {
@@ -54,7 +27,7 @@ GROUP BY MappingName";
     MAX(CASE WHEN Info = 'local_port' THEN Value ELSE '' END) AS local_port,
 	MAX(CASE WHEN Info = 'remote_port' THEN Value ELSE '' END) AS remote_port,
     MAX(CASE WHEN Info = 'custom_domains' THEN Value ELSE '' END) AS custom_domains
-FROM dbo.FRPConfig WHERE UId={Id} 
+FROM dbo.FRPConfig WHERE UId={UId} 
 GROUP BY MappingName";
             }
             return SqlHelper.ExecuteDataTable(sql);
@@ -83,19 +56,6 @@ GROUP BY MappingName";
             else
             {
                 return Max.ToString();
-            }
-        }
-        public bool SelectProt(string UId, string Prot)
-        {
-            string sql = $"select MappingName from FRPConfig where UId='{UId}' AND Value='{Prot}' AND Info='remote_port'";
-            var Max = SqlHelper.ExecuteScalar(sql);
-            if (Max == "" || Max == null)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
             }
         }
     }

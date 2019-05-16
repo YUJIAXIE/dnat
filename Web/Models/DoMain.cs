@@ -17,8 +17,6 @@ namespace Web.Models
         {
             DLL.BLL.ConfigBLL cb = new DLL.BLL.ConfigBLL();
             var config = cb.SelectConfig();
-
-            //var accessKeyId;"Info = 'AccessKeyID'"
             DataRow[] dr = config.Select();
             var result = string.Empty;
             IClientProfile profile = DefaultProfile.GetProfile("cn-hangzhou", dr[0]["Value"].ToString(), dr[1]["Value"].ToString());

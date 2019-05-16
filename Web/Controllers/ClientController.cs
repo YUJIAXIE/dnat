@@ -35,10 +35,10 @@ namespace Web.Controllers
             Models.DoMain dm = new Models.DoMain();
             dm.Add(Users.DoMain);
             Users.RegDate = DateTime.Now.Date.ToShortDateString();
-            Users.EndDate = DateTime.Now.Date.AddDays(cb.ProbationPeriod()).ToShortDateString();
-            Users.Version = 9;
+            Users.EndDate = DateTime.Now.Date.AddDays(Convert.ToInt32(cb.SelectValue("ProbationPeriod"))).ToShortDateString();
+            Users.Version = Convert.ToInt32(cb.SelectValue("DefaultVersion"));
             Users.PassWord = FormsAuthentication.HashPasswordForStoringInConfigFile(Users.PassWord, "MD5");
-            Users.Login = 1;
+            Users.ECSId = Convert.ToInt32(cb.SelectValue("DefaultECSId"));
             ub.InsertUsers(Users);
             return View("Success");
 
@@ -57,9 +57,10 @@ namespace Web.Controllers
         {
             string Json;
             DLL.BLL.FRPConfigBLL fb = new DLL.BLL.FRPConfigBLL();
+            DLL.BLL.ECSConfigBLL eb = new DLL.BLL.ECSConfigBLL();
             if (Id == 0)
             {
-                Json = JsonConvert.SerializeObject(fb.SelectCommonFrpConfig(All));
+                Json = JsonConvert.SerializeObject(eb.SelectCommonFrpConfig(UId, All));
 
             }
             else
@@ -82,22 +83,14 @@ namespace Web.Controllers
             DLL.BLL.FRPConfigBLL fb = new DLL.BLL.FRPConfigBLL();
             DataTable dt = Models.Json.Json2DataTable(Tunnel);
             var MappingName = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000) / 10000000;
-            var IsProt = fb.SelectProt(dt.Rows[0][0].ToString(), dt.Rows[3][2].ToString());
-            if (IsProt)
+            foreach (DataRow dr in dt.Rows)
             {
-                foreach (DataRow dr in dt.Rows)
-                {
-                    FrpConfig fc = new FrpConfig();
-                    fc.UId = dr["UId"].ToString();
-                    fc.MappingName = "[" + fc.UId + "-" + MappingName + "]";
-                    fc.Info = dr["Info"].ToString();
-                    fc.Value = dr["Value"].ToString();
-                    fb.InsertUsersFrpConfig(fc);
-                }
-            }
-            else
-            {
-                result = "false";
+                FrpConfig fc = new FrpConfig();
+                fc.UId = dr["UId"].ToString();
+                fc.MappingName = fc.UId + "-" + MappingName;
+                fc.Info = dr["Info"].ToString();
+                fc.Value = dr["Value"].ToString();
+                fb.InsertUsersFrpConfig(fc);
             }
             return Content(result);
         }

@@ -16,7 +16,8 @@ namespace Client
 {
     public partial class Main : Form
     {
-        public static string Url = "http://www.xyujia.cn";//"http://localhost:46324"
+        public static string Url = "http://www.xyujia.cn";
+        //public static string Url = "http://localhost:81";
         public string processName = "ctc";
         public static Main main;
         IniFiles ini = new IniFiles(Application.StartupPath + "\\Config.ini");
@@ -130,6 +131,7 @@ namespace Client
                 t.llbUrl.Text = "http://" + dr["custom_domains"] + ":" + dr["remote_port"];
                 t.lbIp.Text = dr["local_ip"].ToString();
                 t.lbPort.Text = dr["local_port"].ToString();
+                t.lbtype.Text = dr["type"].ToString();
                 //t.Location = new Point(5, 5 + 60 * i);
                 flowLayoutPanel1.Controls.Add(t);
             }
@@ -155,12 +157,11 @@ namespace Client
             {
                 if (RunCmd(dd, Frpini.inipath))
                 {
-                    lbStats.Text = "运行中";
-                    File.Delete(Frpini.inipath);
+                    picSus.Image = Properties.Resources.ball_green;
                 }
                 else
                 {
-                    lbStats.Text = "未运行";
+                    picSus.Image = Properties.Resources.ball_grey;
                 }
             }
             else
@@ -171,6 +172,9 @@ namespace Client
                 m.ShowDialog();
                 Application.Exit();
             }
+
+            File.Delete(Frpini.inipath);//删除ini文件
+
         }
         /// <summary>
         /// 定时清理内存
@@ -288,10 +292,6 @@ namespace Client
             lbName.Text = DoMain;
             lbVer.Text = Version;
             lbDoMainInfo.Text = DoMainInfo + Date;
-            if (Version == "永久版")
-            {
-                llbRenew.Visible = false;
-            }
             ini.IniWriteValue("Account", "ReLogin", "1");
             InitializeTunnel();
             Test();
@@ -399,6 +399,11 @@ namespace Client
                 Application.Exit();
                 System.Diagnostics.Process.Start(System.Reflection.Assembly.GetExecutingAssembly().Location);
             }
+        }
+
+        private void lbVer_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

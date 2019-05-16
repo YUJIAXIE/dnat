@@ -36,6 +36,8 @@
             this.llbUrl = new System.Windows.Forms.LinkLabel();
             this.BtnDelTunnel = new System.Windows.Forms.Button();
             this.lbMappingName = new System.Windows.Forms.Label();
+            this.lbtype = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -115,11 +117,31 @@
             this.lbMappingName.TabIndex = 8;
             this.lbMappingName.Visible = false;
             // 
+            // lbtype
+            // 
+            this.lbtype.AutoSize = true;
+            this.lbtype.Location = new System.Drawing.Point(166, 43);
+            this.lbtype.Name = "lbtype";
+            this.lbtype.Size = new System.Drawing.Size(29, 12);
+            this.lbtype.TabIndex = 10;
+            this.lbtype.Text = "type";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(131, 43);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(35, 12);
+            this.label5.TabIndex = 9;
+            this.label5.Text = "类型:";
+            // 
             // Tunnel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
+            this.Controls.Add(this.lbtype);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.lbMappingName);
             this.Controls.Add(this.BtnDelTunnel);
             this.Controls.Add(this.llbUrl);
@@ -148,5 +170,7 @@
         public System.Windows.Forms.Label lbIp;
         public System.Windows.Forms.LinkLabel llbUrl;
         public System.Windows.Forms.Label lbMappingName;
+        public System.Windows.Forms.Label lbtype;
+        private System.Windows.Forms.Label label5;
     }
 }

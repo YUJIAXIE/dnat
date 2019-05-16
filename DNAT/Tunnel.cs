@@ -11,7 +11,7 @@ namespace Client
 {
     public partial class Tunnel : UserControl
     {
-        public string processName = "frp";
+        public string processName = "ctc";
         public Tunnel()
         {
             InitializeComponent();
@@ -48,7 +48,7 @@ namespace Client
                 var json = HTTP.Get(Main.Url + "/Client/DeleteFrp", "?UId=" + Main.Id.ToString() + "&MappingName=" + lbMappingName.Text + "");
             }
             Main.main.InitializeTunnel();
-            Main.main.lbStats.Text = "未运行";
+            Main.main.picSus.Image = Properties.Resources.ball_grey;
             Main.main.KillProcess(processName);
         }
     }

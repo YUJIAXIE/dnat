@@ -10,9 +10,9 @@ namespace DLL.BLL
     public class ConfigBLL
     {
         DAL.ConfigDAL cd = new DAL.ConfigDAL();
-        public int ProbationPeriod()
+        public string SelectValue(string Info)
         {
-            return cd.ProbationPeriod();
+            return cd.SelectValue(Info);
         }
         public DataTable SelectConfig()
         {

@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLL", "DLL\DLL.csproj", "{8
 EndProject
 Project("{6141683F-8A12-4E36-9623-2EB02B2C2303}") = "Setup", "Setup\Setup.isproj", "{AD111D33-3185-4261-A090-44800ACFFC8C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "aliyun-net-sdk-alidns.vs2010", "C:\Users\谢豫佳\Desktop\aliyun-openapi-net-sdk-master\aliyun-openapi-net-sdk-master\aliyun-net-sdk-alidns\aliyun-net-sdk-alidns.vs2010.csproj", "{36B59CBF-DDC5-4FA8-A1E4-0CEF50F5E295}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "aliyun-net-sdk-alidns.vs2010", "aliyun-net-sdk-alidns\aliyun-net-sdk-alidns.vs2010.csproj", "{36B59CBF-DDC5-4FA8-A1E4-0CEF50F5E295}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

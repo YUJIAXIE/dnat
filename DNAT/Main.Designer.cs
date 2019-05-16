@@ -40,11 +40,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.lbStats = new System.Windows.Forms.Label();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.lbName = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.lbVer = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.llbRenew = new System.Windows.Forms.LinkLabel();
@@ -56,10 +52,15 @@
             this.开机启动ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.修改密码ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.退出ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label5 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.picSus = new System.Windows.Forms.PictureBox();
             this.pBar.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picSus)).BeginInit();
             this.SuspendLayout();
             // 
             // pBar
@@ -171,71 +172,29 @@
             this.flowLayoutPanel1.Size = new System.Drawing.Size(305, 332);
             this.flowLayoutPanel1.TabIndex = 3;
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.label2.Location = new System.Drawing.Point(188, 561);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(41, 12);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "状态：";
-            // 
-            // lbStats
-            // 
-            this.lbStats.AutoSize = true;
-            this.lbStats.BackColor = System.Drawing.Color.Transparent;
-            this.lbStats.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lbStats.Location = new System.Drawing.Point(225, 561);
-            this.lbStats.Name = "lbStats";
-            this.lbStats.Size = new System.Drawing.Size(41, 12);
-            this.lbStats.TabIndex = 5;
-            this.lbStats.Text = "未运行";
-            // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.Transparent;
-            this.panel3.BackgroundImage = global::Client.Properties.Resources.user;
-            this.panel3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.panel3.Location = new System.Drawing.Point(34, 59);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(52, 46);
-            this.panel3.TabIndex = 6;
-            // 
             // lbName
             // 
             this.lbName.AutoSize = true;
             this.lbName.BackColor = System.Drawing.Color.Transparent;
             this.lbName.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbName.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lbName.Location = new System.Drawing.Point(91, 67);
+            this.lbName.Location = new System.Drawing.Point(83, 65);
             this.lbName.Name = "lbName";
             this.lbName.Size = new System.Drawing.Size(40, 16);
             this.lbName.TabIndex = 0;
             this.lbName.Text = "Name";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.label5.Location = new System.Drawing.Point(188, 579);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(41, 12);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "版本：";
             // 
             // lbVer
             // 
             this.lbVer.AutoSize = true;
             this.lbVer.BackColor = System.Drawing.Color.Transparent;
             this.lbVer.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lbVer.Location = new System.Drawing.Point(225, 579);
+            this.lbVer.Location = new System.Drawing.Point(228, 566);
             this.lbVer.Name = "lbVer";
             this.lbVer.Size = new System.Drawing.Size(23, 12);
             this.lbVer.TabIndex = 9;
             this.lbVer.Text = "Ver";
+            this.lbVer.Click += new System.EventHandler(this.lbVer_Click);
             // 
             // panel4
             // 
@@ -273,9 +232,9 @@
             this.btnRelogin.BackColor = System.Drawing.Color.Transparent;
             this.btnRelogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRelogin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(130)))), ((int)(((byte)(166)))));
-            this.btnRelogin.Location = new System.Drawing.Point(181, 106);
+            this.btnRelogin.Location = new System.Drawing.Point(203, 117);
             this.btnRelogin.Name = "btnRelogin";
-            this.btnRelogin.Size = new System.Drawing.Size(75, 23);
+            this.btnRelogin.Size = new System.Drawing.Size(63, 22);
             this.btnRelogin.TabIndex = 3;
             this.btnRelogin.Text = "重新登录";
             this.btnRelogin.UseVisualStyleBackColor = false;
@@ -328,6 +287,40 @@
             this.退出ToolStripMenuItem.Text = "退出程序";
             this.退出ToolStripMenuItem.Click += new System.EventHandler(this.退出ToolStripMenuItem_Click);
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.Transparent;
+            this.label5.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.label5.Location = new System.Drawing.Point(191, 566);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(41, 12);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "版本：";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.ErrorImage = global::Client.Properties.Resources.user;
+            this.pictureBox1.Image = global::Client.Properties.Resources.user;
+            this.pictureBox1.Location = new System.Drawing.Point(23, 56);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(54, 50);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 11;
+            this.pictureBox1.TabStop = false;
+            // 
+            // picSus
+            // 
+            this.picSus.BackColor = System.Drawing.Color.Transparent;
+            this.picSus.Image = global::Client.Properties.Resources.ball_grey;
+            this.picSus.Location = new System.Drawing.Point(57, 89);
+            this.picSus.Name = "picSus";
+            this.picSus.Size = new System.Drawing.Size(20, 17);
+            this.picSus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picSus.TabIndex = 12;
+            this.picSus.TabStop = false;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -335,15 +328,14 @@
             this.BackColor = System.Drawing.Color.SkyBlue;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(280, 600);
+            this.Controls.Add(this.picSus);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pBar);
             this.Controls.Add(this.btnRelogin);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.lbVer);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.lbName);
-            this.Controls.Add(this.panel3);
-            this.Controls.Add(this.lbStats);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -360,6 +352,8 @@
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.contextMenuStrip1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picSus)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -376,16 +370,12 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Button btn_AddTunnel;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label lbVer;
         private System.Windows.Forms.Label lbName;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.LinkLabel llbRenew;
         private System.Windows.Forms.Label lbDoMainInfo;
         private System.Windows.Forms.Button btnRelogin;
-        public System.Windows.Forms.Label lbStats;
         private System.Windows.Forms.NotifyIcon notifyIcon1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem 显示ToolStripMenuItem;
@@ -393,5 +383,8 @@
         private System.Windows.Forms.ToolStripMenuItem 修改密码ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 开机启动ToolStripMenuItem;
         private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        public System.Windows.Forms.PictureBox picSus;
     }
 }

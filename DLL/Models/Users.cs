@@ -16,6 +16,6 @@ namespace DLL.Models
         public string RegDate { get; set; }
         public string EndDate { get; set; }
         public int Version { get; set; }
-        public int Login { get; set; }
+        public int ECSId { get; set; }
     }
 }

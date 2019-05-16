@@ -9,10 +9,10 @@ namespace DLL.DAL
 {
     public class ConfigDAL
     {
-        public int ProbationPeriod()
+        public string SelectValue(string Info)
         {
-            string sql = $"select Value from Config where Info='ProbationPeriod'";
-            return Convert.ToInt32(SqlHelper.ExecuteScalar(sql));
+            string sql = $"select Value from Config where Info='{Info}'";
+            return SqlHelper.ExecuteScalar(sql).ToString();
         }
         public DataTable SelectConfig()
         {

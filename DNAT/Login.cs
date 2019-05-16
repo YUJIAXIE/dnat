@@ -121,57 +121,63 @@ namespace Client
 
         private void btnOk_Click(object sender, EventArgs e)
         {
-            bool IsLogin = false;
-            string Pwd = FormsAuthentication.HashPasswordForStoringInConfigFile(TbPassWord.Text, "MD5");
-            string SavePwd = ini.IniReadValue("Account", "SavePassWord");
-            string Name = ini.IniReadValue("Account", "Name");
-            if (SavePwd == "1" && TbAccount.Text == Name)
+            try
             {
-                Pwd = ini.IniReadValue("Account", "PassWord");
-            }
-            var json = HTTP.Get(Main.Url + "/Client/ClientLogin", "?DoMain=" + TbAccount.Text + "&PassWord=" + Pwd + "");
-            DataTable dt = Json.Json2DataTable(json);
-            if (dt.Rows.Count == 1)
-            {
-                IsLogin = Convert.ToBoolean(dt.Rows[0]["Login"].ToString());
-            }
-            if (IsLogin)
-            {
-                isLogin = true;
-                ini.IniWriteValue("Account", "Name", TbAccount.Text);
-                if (cbSavePwd.Checked)
+                string Pwd = FormsAuthentication.HashPasswordForStoringInConfigFile(TbPassWord.Text, "MD5");
+                string SavePwd = ini.IniReadValue("Account", "SavePassWord");
+                string Name = ini.IniReadValue("Account", "Name");
+                if (SavePwd == "1" && TbAccount.Text == Name)
                 {
-                    ini.IniWriteValue("Account", "SavePassWord", "1");
-                    ini.IniWriteValue("Account", "PassWord", Pwd);
+                    Pwd = ini.IniReadValue("Account", "PassWord");
+                }
+                var json = HTTP.Get(Main.Url + "/Client/ClientLogin", "?DoMain=" + TbAccount.Text + "&PassWord=" + Pwd);
+                DataTable dt = Json.Json2DataTable(json);
+                if (dt.Rows.Count == 1)
+                {
+                    isLogin = true;
+                    ini.IniWriteValue("Account", "Name", TbAccount.Text);
+                    if (cbSavePwd.Checked)
+                    {
+                        ini.IniWriteValue("Account", "SavePassWord", "1");
+                        ini.IniWriteValue("Account", "PassWord", Pwd);
+                    }
+                    else
+                    {
+                        ini.IniWriteValue("Account", "SavePassWord", "0");
+                        ini.IniWriteValue("Account", "PassWord", "");
+                    }
+                    if (cbAutoLogin.Checked)
+                    {
+                        ini.IniWriteValue("Account", "AutoLogin", "1");
+                    }
+                    else
+                    {
+                        ini.IniWriteValue("Account", "AutoLogin", "0");
+                    }
+                    Main.Id = Convert.ToInt32(dt.Rows[0]["id"]);
+                    Main.Pwd = Pwd;
+                    Main.Version = dt.Rows[0]["Value"].ToString();
+                    Main.DoMain = dt.Rows[0]["DoMain"].ToString();
+                    Main.DoMainInfo = dt.Rows[0]["DoMainName"].ToString();
+                    Main.Date = " [" + dt.Rows[0]["RegDate"] + "---" + dt.Rows[0]["EndDate"].ToString() + "]";
+                    this.Close();
                 }
                 else
                 {
-                    ini.IniWriteValue("Account", "SavePassWord", "0");
-                    ini.IniWriteValue("Account", "PassWord", "");
+                    Message m = new Message();
+                    m.lbTitle.Text = "错误提示";
+                    m.lbContent.Text = "账号或密码错误，请重新输入登录！";
+                    m.ShowDialog();
                 }
-                if (cbAutoLogin.Checked)
-                {
-                    ini.IniWriteValue("Account", "AutoLogin", "1");
-                }
-                else
-                {
-                    ini.IniWriteValue("Account", "AutoLogin", "0");
-                }
-                Main.Id = Convert.ToInt32(dt.Rows[0]["id"]);
-                Main.Pwd = Pwd;
-                Main.Version = dt.Rows[0]["Value"].ToString();
-                Main.DoMain = dt.Rows[0]["DoMain"].ToString();
-                Main.DoMainInfo = dt.Rows[0]["DoMainName"].ToString();
-                Main.Date = " [" + dt.Rows[0]["RegDate"] + "---" + dt.Rows[0]["EndDate"].ToString() + "]";
-                this.Close();
             }
-            else
+            catch (Exception)
             {
                 Message m = new Message();
                 m.lbTitle.Text = "错误提示";
-                m.lbContent.Text = "账号或密码错误，请重新输入登录！";
+                m.lbContent.Text = "错误：400";
                 m.ShowDialog();
             }
+            
         }
 
         private void cbSavePwd_CheckedChanged(object sender, EventArgs e)

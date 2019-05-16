@@ -13,7 +13,7 @@ namespace Client
 {
     public partial class AddTunnel : Form
     {
-        public string processName = "frp";
+        public string processName = "ctc";
         #region 无边框属性
         private Point mousePoint = new Point();
         private void pClose_MouseClick(object sender, MouseEventArgs e)
@@ -166,16 +166,9 @@ namespace Client
                 if (json == "true")
                 {
                     Main.main.InitializeTunnel();
-                    Main.main.lbStats.Text = "未运行";
+                    Main.main.picSus.Image = Properties.Resources.ball_grey;
                     Main.main.KillProcess(processName);
                     this.Close();
-                }
-                else
-                {
-                    Message m = new Message();
-                    m.lbTitle.Text = "添加错误提示";
-                    m.lbContent.Text = "请检查外网端口已添加！";
-                    m.ShowDialog();
                 }
             }
             else
