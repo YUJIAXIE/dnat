@@ -15,6 +15,10 @@ namespace DLL.BLL
         {
             return ud.IsValidDoMain(DoMain);
         }
+        public bool IsValidPhone(string Phone)
+        {
+            return ud.IsValidPhone(Phone);
+        }
         public int InsertUsers(Users users)
         {
             return ud.InsertUsers(users);

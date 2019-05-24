@@ -12,37 +12,6 @@ namespace Web.Controllers
 {
     public class ClientController : Controller
     {
-        // GET: 用于客户端
-        public ActionResult Register()
-        {
-            return View();
-        }
-
-        public ActionResult IsValidName(string UserName)
-        {
-            DLL.BLL.UsersBLL ub = new DLL.BLL.UsersBLL();
-            var d = ub.IsValidDoMain(UserName);
-            if (d)
-                return Content("200");
-            else
-                return Content("404");
-        }
-        [HttpPost]
-        public ActionResult AddClient(Users Users)
-        {
-            DLL.BLL.ConfigBLL cb = new DLL.BLL.ConfigBLL();
-            DLL.BLL.UsersBLL ub = new DLL.BLL.UsersBLL();
-            Models.DoMain dm = new Models.DoMain();
-            dm.Add(Users.DoMain);
-            Users.RegDate = DateTime.Now.Date.ToShortDateString();
-            Users.EndDate = DateTime.Now.Date.AddDays(Convert.ToInt32(cb.SelectValue("ProbationPeriod"))).ToShortDateString();
-            Users.Version = Convert.ToInt32(cb.SelectValue("DefaultVersion"));
-            Users.PassWord = FormsAuthentication.HashPasswordForStoringInConfigFile(Users.PassWord, "MD5");
-            Users.ECSId = Convert.ToInt32(cb.SelectValue("DefaultECSId"));
-            ub.InsertUsers(Users);
-            return View("Success");
-
-        }
         public ActionResult Success()
         {
             return View();

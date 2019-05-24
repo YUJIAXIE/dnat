@@ -1,0 +1,119 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>注册会员</title>
+    <link href="~/Content/layui/css/layui.css" rel="stylesheet" />
+    <script src="~/Content/layui/layui.js"></script>
+
+</head>
+<body>
+    <div class="form-div" style="width:300px;text-align:center;margin:30px auto;">
+        <h3>欢迎注册 云隧道</h3>
+        <p>创建一个新账户</p>
+        <form class="layui-form">
+            <div class="layui-form-item">
+                <input type="text" name="DoMain" id="DoMain" lay-verify="required|domain" autocomplete="off" placeholder="请输入用户名" class="layui-input" value="kf" />
+            </div>
+            <div class="layui-form-item">
+                <input type="password" name="PassWord" id="pass" lay-verify="required|pass" placeholder="请输入密码" autocomplete="off" class="layui-input" value="123456" />
+            </div>
+            <div class="layui-form-item">
+                <input type="password" name="PassWord" lay-verify="required|repass" placeholder="请再次输入密码" autocomplete="off" class="layui-input" value="123456" />
+            </div>
+            @*<div class="layui-form-item">
+                    <input type="text" name="Email" placeholder="请输入电子邮箱" lay-verify="required|email" autocomplete="off" class="layui-input" value="907842226@qq.com" />
+                </div>*@
+            <div class="layui-form-item">
+                <input type="tel" name="Phone" id="Phone" placeholder="请输入手机" lay-verify="required|phone" autocomplete="off" class="layui-input" value="13323941769" />
+            </div>
+            <div class="layui-form-item">
+                <img id="flushLoginValiCode2" style="cursor: pointer;" alt="看不清？点击更换" src="@Url.Action("Code","login")">
+            </div>
+            <div class="layui-form-item">
+                <button class="layui-btn" lay-submit="" lay-filter="Save">立即提交</button>
+                <p class="text-muted text-center"><small>已经有账户了？</small><a href="/login">点此登录</a></p>
+            </div>
+        </form>
+    </div>
+    <script>
+        layui.use(['form'], function () {
+            var $ = layui.jquery
+                , form = layui.form
+            , layer = layui.layer;
+            $('#DoMain').blur(function () {
+                $.ajax({
+                    url: "@Url.Action("IsValidName", "Api")",
+                    //type: "POST",
+                    async: false,
+                    data: { DoMain: $('#DoMain').val() },
+                    success: function (data) {
+                        if (data == "200") {
+                            $('#DoMain').css("border", "1px solid red");
+                            layer.msg('用户名已存在注册', {
+                                icon: 5,
+                                shift: 6
+                            });
+                        } else { $('#DoMain').css("border", "1px solid #e6e6e6"); }
+                    }
+                });
+            });
+            $('#Phone').blur(function () {
+                $.ajax({
+                    url: "@Url.Action("IsValidPhone", "Api")",
+                    //type: "POST",
+                    async: false,
+                    data: { DoMain: $('#Phone').val() },
+                    success: function (data) {
+                        if (data == "200") {
+                            $('#Phone').css("border", "1px solid red");
+                            layer.msg('手机号码已存在注册', {
+                                icon: 5,
+                                shift: 6
+                            });
+                        } else { $('#Phone').css("border", "1px solid #e6e6e6"); }
+                    }
+                });
+            });
+            //自定义验证规则
+            form.verify({
+                domain: [
+                    /^[a-zA-Z][\w]{1,9}$/
+                    , '用户名必须为2-10位字母数字，第一位是字母，且不能出现空格'
+                ]
+              , pass: [
+                /^[\S]{6,12}$/
+                , '密码必须6到12位，且不能出现空格'
+              ]
+              , repass: function (value) {
+                  var pass = $('#pass').val();
+                  if (pass !== value) {
+                      return '密码不一致，请重新输入';
+                  }
+              }
+            });
+            //监听提交
+            form.on('submit(Save)', function (data) {
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("AddClient", "Api")",
+                    data: data.field,
+                    success: function (msg) {
+                        if (msg == "200")
+                            window.location = '@Url.Action("Success", "Client")';
+                        else
+                            layer.msg("注册失败");
+                    }
+                });
+                return false;
+            });
+        });
+    </script>
+</body>
+</html>

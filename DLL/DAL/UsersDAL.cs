@@ -20,7 +20,15 @@ namespace DLL.DAL
             else
                 return true;
         }
-
+        public bool IsValidPhone(string Phone)
+        {
+            string sql = $"select Phone from Users where Phone='{Phone}'";
+            var doMain = SqlHelper.ExecuteScalar(sql);
+            if (doMain == null)
+                return false;
+            else
+                return true;
+        }
         public int InsertUsers(Users users)
         {
             string sql = $"INSERT INTO Users VALUES ('{users.DoMain}','{users.PassWord}','{users.Phone}','{users.Email}','{users.RegDate}','{users.EndDate}','{users.Version}',{users.ECSId})";
