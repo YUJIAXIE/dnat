@@ -1,9 +1,11 @@
 ﻿using OrderNetWork.Common;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Xml.Linq;
 
 namespace Web.Controllers
 {
@@ -21,9 +23,14 @@ namespace Web.Controllers
         public ActionResult Code()
         {
             ValidateCode vCode = new ValidateCode();
-            string code = vCode.CreateValidateCode(4);
-            Session["ValidateCode"] = code;
-            byte[] bytes = vCode.CreateValidateGraphic(code);
+            string code;
+            //Session["ValidateCode"] = code;
+            //byte[] bytes = vCode.CreateValidateGraphic(code);
+            //return File(bytes, @"image/jpeg");
+            byte[] bytes = vCode.CreateVerifyCodeBmp(out code);
+            //Bitmap newbmp = new Bitmap(bmp, 108, 36);
+            Session["VerifyCode"] = code;
+            //byte[] bytes = vCode.CreateValidateGraphic(code);
             return File(bytes, @"image/jpeg");
         }
     }

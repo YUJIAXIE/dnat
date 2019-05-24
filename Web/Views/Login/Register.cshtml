@@ -34,7 +34,10 @@
                 <input type="tel" name="Phone" id="Phone" placeholder="请输入手机" lay-verify="required|phone" autocomplete="off" class="layui-input" value="13323941769" />
             </div>
             <div class="layui-form-item">
-                <img id="flushLoginValiCode2" style="cursor: pointer;" alt="看不清？点击更换" src="@Url.Action("Code","login")">
+                <input type="text" name="Code"placeholder="请输入验证码" lay-verify="required" autocomplete="off" class="layui-input"/>
+            </div>
+            <div class="layui-form-item">
+                <img src="@Url.Action("Code","login")" onclick="this.src='@Url.Action("Code","login")?r='+Math.random();" title="点击更换验证码" />
             </div>
             <div class="layui-form-item">
                 <button class="layui-btn" lay-submit="" lay-filter="Save">立即提交</button>

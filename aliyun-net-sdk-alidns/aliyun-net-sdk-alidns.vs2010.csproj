@@ -35,7 +35,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="aliyun-net-sdk-Core">
-      <HintPath>E:\QQ浏览器下载\aliyun-net-sdk-core-1.1.9\aliyun-net-sdk-Core.dll</HintPath>
+      <HintPath>C:\Users\谢豫佳\Downloads\aliyun-net-sdk-core-1.1.9\aliyun-net-sdk-Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

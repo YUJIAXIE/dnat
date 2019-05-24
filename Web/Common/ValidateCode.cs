@@ -7,136 +7,196 @@ using System.Drawing;
 using System.IO;
 using System.Drawing.Imaging;
 using System.Drawing.Drawing2D;
+using System.Text;
 
 namespace OrderNetWork.Common
 {
     public class ValidateCode
     {
+        
+        #region 变量
+        /// <summary>
+        /// 颜色表
+        /// </summary>
+        private static Color[] colors = new Color[]{
+            Color.FromArgb(220,20,60),
+            Color.FromArgb(128,0,128),
+            Color.FromArgb(65,105,225),
+            Color.FromArgb(70,130,180),
+            Color.FromArgb(46,139,87),
+            Color.FromArgb(184,134,11),
+            Color.FromArgb(255,140,0),
+            Color.FromArgb(139,69,19),
+            Color.FromArgb(0,191,255),
+            Color.FromArgb(95,158,160),
+            Color.FromArgb(255,20,147),
+            Color.FromArgb(255,165,0)};
 
-        public ValidateCode()
-        {
-        }
         /// <summary>
-        /// 验证码的最大长度
+        /// 字体表
         /// </summary>
-        public int MaxLength
-        {
-            get { return 4; }
-        }
+        private static string[] fonts = new string[] {
+            "Arial",
+            "Verdana",
+            "Georgia",
+            "黑体" };
+
         /// <summary>
-        /// 验证码的最小长度
+        /// 字体大小
         /// </summary>
-        public int MinLength
-        {
-            get { return 4; }
-        }
+        private static int fontSize = 22;
+        #endregion
+
+        #region 生成验证码图片
         /// <summary>
-        /// 生成验证码
+        /// 生成验证码图片
         /// </summary>
-        /// <param name="length">指定验证码的长度</param>
-        /// <returns></returns>
-        public string CreateValidateCode(int length)
+        public byte[] CreateVerifyCodeBmp(out string code)
         {
-            int[] randMembers = new int[length];
-            int[] validateNums = new int[length];
-            string validateNumberStr = "";
-            //生成起始序列值
-            int seekSeek = unchecked((int)DateTime.Now.Ticks);
-            Random seekRand = new Random(seekSeek);
-            int beginSeek = (int)seekRand.Next(0, Int32.MaxValue - length * 10000);
-            int[] seeks = new int[length];
-            for (int i = 0; i < length; i++)
+            int width = 290;
+            int height = 50;
+            Bitmap bmp = new Bitmap(width, height);
+            Graphics g = Graphics.FromImage(bmp);
+            Random rnd = new Random();
+
+            //背景色
+            g.FillRectangle(new SolidBrush(Color.White), new Rectangle(0, 0, width, height));
+
+            //文字
+            StringBuilder sbCode = new StringBuilder();
+            for (int i = 0; i < 5; i++)
             {
-                beginSeek += 10000;
-                seeks[i] = beginSeek;
+                string str = GetChar(rnd);
+                Font font = GetFont(rnd);
+                Color color = GetColor(rnd);
+                g.DrawString(str, font, new SolidBrush(color), new PointF((float)(i * width / 4.5), 0));
+                sbCode.Append(str);
             }
-            //生成随机数字
-            for (int i = 0; i < length; i++)
+            code = sbCode.ToString();
+
+            //噪音线
+            for (int i = 0; i < 10; i++)
             {
-                Random rand = new Random(seeks[i]);
-                int pownum = 1 * (int)Math.Pow(10, length);
-                randMembers[i] = rand.Next(pownum, Int32.MaxValue);
+                int x1 = rnd.Next(bmp.Width);
+                int x2 = rnd.Next(bmp.Width);
+                int y1 = rnd.Next(bmp.Height);
+                int y2 = rnd.Next(bmp.Height);
+
+                Pen p = new Pen(GetColor(rnd), 1);
+                g.DrawLine(p, x1, y1, x2, y2);
             }
-            //抽取随机数字
-            for (int i = 0; i < length; i++)
+
+            //扭曲
+            bmp = TwistImage(bmp, true, 3, rnd.NextDouble() * Math.PI * 2);
+            g = Graphics.FromImage(bmp);
+
+            //噪点
+            for (int i = 0; i < 100; i++)
             {
-                string numStr = randMembers[i].ToString();
-                int numLength = numStr.Length;
-                Random rand = new Random();
-                int numPosition = rand.Next(0, numLength - 1);
-                validateNums[i] = Int32.Parse(numStr.Substring(numPosition, 1));
+                int x1 = rnd.Next(bmp.Width);
+                int y1 = rnd.Next(bmp.Height);
+
+                Pen p = new Pen(GetColor(rnd), 1);
+                g.DrawRectangle(p, x1, y1, 1, 1);
             }
-            //生成验证码
-            for (int i = 0; i < length; i++)
-            {
-                validateNumberStr += validateNums[i].ToString();
-            }
-            return validateNumberStr;
+
+            //边框
+            //g.DrawRectangle(new Pen(new SolidBrush(Color.FromArgb(153, 153, 153))), new Rectangle(0, 0, width - 1, height - 1));
+
+
+            //保存图片数据
+            MemoryStream stream = new MemoryStream();
+            bmp.Save(stream, ImageFormat.Jpeg);
+            //输出图片流
+            return stream.ToArray();
+
+            g.Dispose();
+            bmp.Dispose();
         }
-        /// 创建验证码的图片
+        #endregion
+
+        #region 获取随机字符
+        /// <summary>
+        /// 获取随机字符
         /// </summary>
-        /// <param name="containsPage">要输出到的page对象</param>
-        /// <param name="validateNum">验证码</param>
-        public byte[] CreateValidateGraphic(string validateCode)
+        private static string GetChar(Random rd)
         {
-            Bitmap image = new Bitmap((int)Math.Ceiling(validateCode.Length * 74.0), 50);
-            Graphics g = Graphics.FromImage(image);
-            try
+            string str = "23456789ABCDEFGHIJKMNPQRSTUVWXYZ";
+            string validatecode = "";
+            
+                validatecode = str.Substring(rd.Next(0, str.Length), 1);
+
+            return validatecode;
+            
+        }
+        #endregion
+
+        #region 获取随机字体
+        /// <summary>
+        /// 获取随机字体
+        /// </summary>
+        private static Font GetFont(Random rnd)
+        {
+            return new Font(fonts[rnd.Next(0, fonts.Length)], fontSize, FontStyle.Bold);
+        }
+        #endregion
+
+        #region 获取随机颜色
+        /// <summary>
+        /// 获取随机颜色
+        /// </summary>
+        private static Color GetColor(Random rnd)
+        {
+            return colors[rnd.Next(0, colors.Length)];
+        }
+        #endregion
+
+        #region 正弦曲线Wave扭曲图片
+        /// <summary>   
+        /// 正弦曲线Wave扭曲图片（Edit By 51aspx.com）   
+        /// </summary>   
+        /// <param name="srcBmp">图片路径</param>   
+        /// <param name="bXDir">如果扭曲则选择为True</param>   
+        /// <param name="nMultValue">波形的幅度倍数，越大扭曲的程度越高，一般为3</param>   
+        /// <param name="dPhase">波形的起始相位，取值区间[0-2*PI)</param>   
+        private static System.Drawing.Bitmap TwistImage(Bitmap srcBmp, bool bXDir, double dMultValue, double dPhase)
+        {
+            System.Drawing.Bitmap destBmp = new Bitmap(srcBmp.Width, srcBmp.Height);
+
+            // 将位图背景填充为白色   
+            System.Drawing.Graphics graph = System.Drawing.Graphics.FromImage(destBmp);
+            graph.FillRectangle(new SolidBrush(System.Drawing.Color.White), 0, 0, destBmp.Width, destBmp.Height);
+            graph.Dispose();
+
+            double dBaseAxisLen = bXDir ? (double)destBmp.Height : (double)destBmp.Width;
+
+            for (int i = 0; i < destBmp.Width; i++)
             {
-                //生成随机生成器
-                Random random = new Random();
-                //清空图片背景色
-                g.Clear(Color.White);
-                //画图片的干扰线
-                for (int i = 0; i < 50; i++)
+                for (int j = 0; j < destBmp.Height; j++)
                 {
-                    int x1 = random.Next(image.Width);
-                    int x2 = random.Next(image.Width);
-                    int y1 = random.Next(image.Height);
-                    int y2 = random.Next(image.Height);
-                    g.DrawLine(new Pen(Color.Silver), x1, y1, x2, y2);
+                    double dx = 0;
+                    dx = bXDir ? (Math.PI * 2 * (double)j) / dBaseAxisLen : (Math.PI * 2 * (double)i) / dBaseAxisLen;
+                    dx += dPhase;
+                    double dy = Math.Sin(dx);
+
+                    // 取得当前点的颜色   
+                    int nOldX = 0, nOldY = 0;
+                    nOldX = bXDir ? i + (int)(dy * dMultValue) : i;
+                    nOldY = bXDir ? j : j + (int)(dy * dMultValue);
+
+                    System.Drawing.Color color = srcBmp.GetPixel(i, j);
+                    if (nOldX >= 0 && nOldX < destBmp.Width
+                     && nOldY >= 0 && nOldY < destBmp.Height)
+                    {
+                        destBmp.SetPixel(nOldX, nOldY, color);
+                    }
                 }
-                Font font = new Font("Arial", 20, (FontStyle.Bold | FontStyle.Italic));
-                LinearGradientBrush brush = new LinearGradientBrush(new Rectangle(0, 0, image.Width, image.Height),Color.Blue, Color.DarkRed, 5f, true);
-                g.DrawString(validateCode, font, brush, 20, 20);
-                //画图片的前景干扰点
-                for (int i = 0; i < 150; i++)
-                {
-                    int x = random.Next(image.Width);
-                    int y = random.Next(image.Height);
-                    image.SetPixel(x, y, Color.FromArgb(random.Next()));
-                }
-                //画图片的边框线
-                //g.DrawRectangle(new Pen(Color.Silver), 0, 0, image.Width - 1, image.Height - 1);
-                //保存图片数据
-                MemoryStream stream = new MemoryStream();
-                image.Save(stream, ImageFormat.Jpeg);
-                //输出图片流
-                return stream.ToArray();
             }
-            finally
-            {
-                g.Dispose();
-                image.Dispose();
-            }
+
+            return destBmp;
         }
-        /// <summary>
-        /// 得到验证码图片的长度
-        /// </summary>
-        /// <param name="validateNumLength">验证码的长度</param>
-        /// <returns></returns>
-        public static int GetImageWidth(int validateNumLength)
-        {
-            return (int)(validateNumLength * 75.0);
-        }
-        /// <summary>
-        /// 得到验证码的高度
-        /// </summary>
-        /// <returns></returns>
-        public static double GetImageHeight()
-        {
-            return 50;
-        }
+        #endregion
+
     }
 
 }
