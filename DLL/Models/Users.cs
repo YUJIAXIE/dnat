@@ -17,5 +17,13 @@ namespace DLL.Models
         public string EndDate { get; set; }
         public int Version { get; set; }
         public int ECSId { get; set; }
+        /// <summary>
+        /// 验证码
+        /// </summary>
+        public string Code { get; set; }
+        /// <summary>
+        /// 是否为C/S登录
+        /// </summary>
+        public bool Client { get; set; }
     }
 }

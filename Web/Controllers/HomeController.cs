@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Web.Common;
 
 namespace Web.Controllers
 {
+    [CheckLoginFilter(nums = CheckLoginType.pro)]
     public class HomeController : Controller
     {
         // GET: Home

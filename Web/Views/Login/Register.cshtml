@@ -40,7 +40,7 @@
                 <img src="@Url.Action("Code","login")" onclick="this.src='@Url.Action("Code","login")?r='+Math.random();" title="点击更换验证码" />
             </div>
             <div class="layui-form-item">
-                <button class="layui-btn" lay-submit="" lay-filter="Save">立即提交</button>
+                <button class="layui-btn" lay-submit="" lay-filter="Save" style="width:100%!important">立即提交</button>
                 <p class="text-muted text-center"><small>已经有账户了？</small><a href="/login">点此登录</a></p>
             </div>
         </form>
@@ -91,8 +91,8 @@
                     , '用户名必须为2-10位字母数字，第一位是字母，且不能出现空格'
                 ]
               , pass: [
-                /^[\S]{6,12}$/
-                , '密码必须6到12位，且不能出现空格'
+                /^[\S]{6,20}$/
+                , '密码必须6到20位之间，且不能出现空格'
               ]
               , repass: function (value) {
                   var pass = $('#pass').val();
@@ -105,13 +105,13 @@
             form.on('submit(Save)', function (data) {
                 $.ajax({
                     type: "POST",
-                    url: "@Url.Action("AddClient", "Api")",
+                    url: "@Url.Action("Register", "Api")",
                     data: data.field,
                     success: function (msg) {
                         if (msg == "200")
                             window.location = '@Url.Action("Success", "Client")';
                         else
-                            layer.msg("注册失败");
+                            layer.msg(msg);
                     }
                 });
                 return false;

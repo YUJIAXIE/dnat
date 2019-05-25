@@ -28,7 +28,7 @@
         <div class="layui-header">
             <div class="layui-logo" style="padding-left:25px ;width:300px; float:left">
                 <a target="_blank" href="http://www.cikoosoft.com">
-                    <img src="~/Content/Images/Logo.png" style="float:left;height:60px" />
+                    <img src="http://t.cn/RCzsdCq" style="float:left;height:60px" />
                 </a>
             </div>
             <!-- 头部区域（可配合layui已有的水平导航） -->
@@ -69,17 +69,21 @@
             <div class="layui-side-scroll">
                 <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
                 <ul class="layui-nav layui-nav-tree" lay-filter="test">
+                    <li class="layui-nav-item"><a href="javascript:;" class="site-url" data-id="1-1" data-title="主页" data-url="">主页</a></li>
+
                     <li class="layui-nav-item">
-                        <a class="" href="javascript:;">订单管理</a>
+                        <a class="" href="javascript:;">我的信息</a>
                         <dl class="layui-nav-child">
-                            <dd><a href="javascript:;" class="site-url" data-id="2-1" data-title="我要订货" data-url="@Url.Action("Index","ShoppingCart")">我要订货</a></dd>
-                            <dd><a href="javascript:;" class="site-url" data-id="2-2" data-title="订单查询" data-url="@Url.Action("SelectOrderBill","Purchase")">订单查询</a></dd>
+                            <dd><a href="javascript:;" class="site-url" data-id="2-1" data-title="我的信息" data-url="@Url.Action("Index","ShoppingCart")">我的信息</a></dd>
+                            <dd><a href="javascript:;" class="site-url" data-id="2-2" data-title="修改密码" data-url="@Url.Action("SelectOrderBill","Purchase")">修改密码</a></dd>
                         </dl>
                     </li>
+                    <li class="layui-nav-item"><a href="javascript:;" class="site-url" data-id="1-2" data-title="订单管理" data-url="">订单管理</a></li>
                     <li class="layui-nav-item">
-                        <a href="javascript:;" class="site-url">往来管理</a>
+                        <a href="javascript:;" class="site-url">隧道管理</a>
                         <dl class="layui-nav-child">
-                            <dd><a href="javascript:;" class="site-url" data-id="2-3" data-title="往来对账" data-url="@Url.Action("Reconciliations","Intercourse")">往来对账</a></dd>
+                            <dd><a href="javascript:;" class="site-url" data-id="2-3" data-title="我的隧道" data-url="@Url.Action("Reconciliations","Intercourse")">我的隧道</a></dd>
+                            <dd><a href="javascript:;" class="site-url" data-id="2-4" data-title="开通隧道" data-url="@Url.Action("Reconciliations","Intercourse")">开通隧道</a></dd>
                         </dl>
                     </li>
                 </ul>
@@ -87,10 +91,9 @@
         </div>
         <div class="layui-body">
             <div style="padding: 3px;">
-
                 <div class="layui-tab layui-tab-card" lay-filter="contentnav" lay-allowclose="true">
                     <ul class="layui-tab-title">
-                        <li class="layui-this">网站首页</li>
+                        <li class="layui-this">首页</li>
                     </ul>
                     <div class="layui-tab-content" id="mr">
                         <div class="layui-tab-item layui-show iframeHeight">
@@ -102,7 +105,7 @@
         </div>
         <div class="layui-footer">
             <p style="text-align:center; line-height:30px; color:#575757">
-                &copy;2018 上海萃谷信息科技有限公司 版权所有
+                &copy;2019 上海萃谷信息科技有限公司 版权所有
             </p>
         </div>
     </div>
@@ -116,7 +119,6 @@
             var $ = layui.jquery
             , element = layui.element//Tab的切换功能，切换事件监听等，需要依赖element模块
             , layer = layui.layer;
-
             var active = {
                 tabAdd: function (url, id, name) {
                     element.tabAdd('contentnav', {

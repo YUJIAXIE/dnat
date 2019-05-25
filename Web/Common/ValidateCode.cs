@@ -9,7 +9,7 @@ using System.Drawing.Imaging;
 using System.Drawing.Drawing2D;
 using System.Text;
 
-namespace OrderNetWork.Common
+namespace Web.Common
 {
     public class ValidateCode
     {
