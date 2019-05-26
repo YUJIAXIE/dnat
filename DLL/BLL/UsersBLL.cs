@@ -28,10 +28,18 @@ namespace DLL.BLL
             return ud.SelectUsers(Users);
 
         }
-
         public int UpdatePwd(Users Users)
         {
             return ud.UpdatePwd(Users);
+        }
+        /// <summary>
+        /// 根据ID查询信息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public DataTable Select(string id)
+        {
+            return ud.Select(id);
         }
     }
 }

@@ -9,92 +9,126 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Index</title>
+    <link href="~/Content/layui/css/layui.css" rel="stylesheet" />
+    <script src="~/Content/layui/layui.js"></script>
+    <style>
+        .type {
+            font-size: 22px;
+        }
+
+        .price {
+            font-size: 20px;
+            color:orange;
+        }
+
+        .hh {
+            clear: both;
+            line-height: 32px;
+        }
+
+        .dd {
+            width: 260px;
+            height: 310px;
+            border: 1px dashed red;
+            padding: 10px 25px 25px 25px;
+            text-align: center;
+            float: left;
+            margin: 10px;
+        }
+    </style>
 </head>
 <body>
-    <div style="width:250px; height:250px;border:1px dashed red;padding:20px;text-align:center;float:left;margin:10px;">
-        <div style="text-align:center">我是图片站位</div>
-        <h3 style="text-align:center">VIP-1隧道</h3>
-        <h3>原价￥5.00 折扣价￥5.00</h3>
-        <div style="clear:both">
+    @for (int i = 0; i < 5; i++)
+    {<div class="dd" >
+        <div class="hh"><img src="http://www.ngrok.cc/Public/img/hk-introduction_hover.jpg" /></div>
+        <div class="type hh">VIP1</div>
+        <div class="price hh">原价￥5.00 折扣价￥5.00</div>
+        <div class="hh">
             <span style="float:left">地区</span><span style="float:right">上海</span>
         </div>
-        <div style="clear:both">
+        <div class="hh">
             <span style="float:left">带宽</span><span style="float:right">1M</span>
         </div>
-        <div style="clear:both">
+        <div class="hh">
             <span style="float:left">隧道</span><span style="float:right">3T</span>
         </div>
-        <div style="clear:both;text-align:center;">
-            <a>立即购买</a>
+        <div class="hh">
+            <span style="float:left">速率</span><span style="float:right">理论最高速度 640KB</span>
+        </div>
+        <div class="hh">
+            <button class="layui-btn layui-btn-normal">立即购买</button>
         </div>
     </div>
-    <div style="width:250px; height:250px;border:1px dashed red;padding:20px;text-align:center;float:left;margin:10px;">
-        <div style="text-align:center">我是图片站位</div>
-        <h3 style="text-align:center">VIP-2隧道</h3>
-        <h3>原价￥10.00 折扣价￥10.00</h3>
-        <div style="clear:both">
-            <span style="float:left">地区</span><span style="float:right">上海</span>
+
+    }
+
+    @*<div style="width:250px; height:250px;border:1px dashed red;padding:20px;text-align:center;float:left;margin:10px;">
+            <div style="text-align:center">我是图片站位</div>
+            <h3 style="text-align:center">VIP-2隧道</h3>
+            <h3>原价￥10.00 折扣价￥10.00</h3>
+            <div style="clear:both">
+                <span style="float:left">地区</span><span style="float:right">上海</span>
+            </div>
+            <div style="clear:both">
+                <span style="float:left">带宽</span><span style="float:right">2M</span>
+            </div>
+            <div style="clear:both">
+                <span style="float:left">隧道</span><span style="float:right">5T</span>
+            </div>
+            <div style="clear:both;text-align:center;">
+                <button class="layui-btn layui-btn-normal">立即购买</button>
+            </div>
         </div>
-        <div style="clear:both">
-            <span style="float:left">带宽</span><span style="float:right">2M</span>
+        <div style="width:250px; height:250px;border:1px dashed red;padding:20px;text-align:center;float:left;margin:10px;">
+            <div style="text-align:center">我是图片站位</div>
+            <h3 style="text-align:center">VIP-3隧道</h3>
+            <h3>原价￥15.00 折扣价￥15.00</h3>
+            <div style="clear:both">
+                <span style="float:left">地区</span><span style="float:right">上海</span>
+            </div>
+            <div style="clear:both">
+                <span style="float:left">带宽</span><span style="float:right">2M</span>
+            </div>
+            <div style="clear:both">
+                <span style="float:left">隧道</span><span style="float:right">999T</span>
+            </div>
+            <div style="clear:both;text-align:center;">
+                <button class="layui-btn layui-btn-normal">立即购买</button>
+            </div>
         </div>
-        <div style="clear:both">
-            <span style="float:left">隧道</span><span style="float:right">5T</span>
+        <div style="width:250px; height:250px;border:1px dashed red;padding:20px;text-align:center;float:left;margin:10px;">
+            <div style="text-align:center">我是图片站位</div>
+            <h3 style="text-align:center">VIP-4隧道</h3>
+            <h3>原价￥20.00 折扣价￥20.00</h3>
+            <div style="clear:both">
+                <span style="float:left">地区</span><span style="float:right">上海</span>
+            </div>
+            <div style="clear:both">
+                <span style="float:left">带宽</span><span style="float:right">5M</span>
+            </div>
+            <div style="clear:both">
+                <span style="float:left">隧道</span><span style="float:right">999T</span>
+            </div>
+            <div style="clear:both;text-align:center;">
+                <button class="layui-btn layui-btn-normal">立即购买</button>
+            </div>
         </div>
-        <div style="clear:both;text-align:center;">
-            <a>立即购买</a>
-        </div>
-    </div>
-    <div style="width:250px; height:250px;border:1px dashed red;padding:20px;text-align:center;float:left;margin:10px;">
-        <div style="text-align:center">我是图片站位</div>
-        <h3 style="text-align:center">VIP-3隧道</h3>
-        <h3>原价￥15.00 折扣价￥15.00</h3>
-        <div style="clear:both">
-            <span style="float:left">地区</span><span style="float:right">上海</span>
-        </div>
-        <div style="clear:both">
-            <span style="float:left">带宽</span><span style="float:right">2M</span>
-        </div>
-        <div style="clear:both">
-            <span style="float:left">隧道</span><span style="float:right">999T</span>
-        </div>
-        <div style="clear:both;text-align:center;">
-            <a>立即购买</a>
-        </div>
-    </div>
-    <div style="width:250px; height:250px;border:1px dashed red;padding:20px;text-align:center;float:left;margin:10px;">
-        <div style="text-align:center">我是图片站位</div>
-        <h3 style="text-align:center">VIP-4隧道</h3>
-        <h3>原价￥20.00 折扣价￥20.00</h3>
-        <div style="clear:both">
-            <span style="float:left">地区</span><span style="float:right">上海</span>
-        </div>
-        <div style="clear:both">
-            <span style="float:left">带宽</span><span style="float:right">5M</span>
-        </div>
-        <div style="clear:both">
-            <span style="float:left">隧道</span><span style="float:right">999T</span>
-        </div>
-        <div style="clear:both;text-align:center;">
-            <a>立即购买</a>
-        </div>
-    </div>
-    <div style="width:250px; height:250px;border:1px dashed red;padding:20px;text-align:center;float:left;margin:10px;">
-        <div>我是图片站位</div>
-        <h3>免费隧道</h3>
-        <h3>原价￥0.00 折扣价￥0.00</h3>
-        <div style="clear:both">
-            <span style="float:left">地区</span><span style="float:right">上海</span>
-        </div>
-        <div style="clear:both">
-            <span style="float:left">带宽</span><span style="float:right">1M</span>
-        </div>
-        <div style="clear:both">
-            <span style="float:left">隧道</span><span style="float:right">1T</span>
-        </div>
-        <div style="clear:both;text-align:center;">
-            <a>立即购买</a>
-        </div>
-    </div>
+        <div style="width:250px; height:250px;border:1px dashed red;padding:20px;text-align:center;float:left;margin:10px;">
+            <div>我是图片站位</div>
+            <h3>免费隧道</h3>
+            <h3>原价￥0.00 折扣价￥0.00</h3>
+            <div style="clear:both">
+                <span style="float:left">地区</span><span style="float:right">上海</span>
+            </div>
+            <div style="clear:both">
+                <span style="float:left">带宽</span><span style="float:right">1M</span>
+            </div>
+            <div style="clear:both">
+                <span style="float:left">隧道</span><span style="float:right">1T</span>
+            </div>
+            <div style="clear:both;text-align:center;">
+                <button class="layui-btn layui-btn-normal">立即购买</button>
+            </div>
+        </div>*@
 </body>
 </html>

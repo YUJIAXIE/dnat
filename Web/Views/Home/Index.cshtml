@@ -69,21 +69,21 @@
             <div class="layui-side-scroll">
                 <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
                 <ul class="layui-nav layui-nav-tree" lay-filter="test">
-                    <li class="layui-nav-item"><a href="javascript:;" class="site-url" data-id="1-1" data-title="主页" data-url="">主页</a></li>
+                    <li class="layui-nav-item"><a href="javascript:;" class="site-url" data-id="1-1" data-title="主页" data-url="@Url.Action("Main","User")">主页</a></li>
 
                     <li class="layui-nav-item">
                         <a class="" href="javascript:;">我的信息</a>
                         <dl class="layui-nav-child">
-                            <dd><a href="javascript:;" class="site-url" data-id="2-1" data-title="我的信息" data-url="@Url.Action("Index","ShoppingCart")">我的信息</a></dd>
+                            <dd><a href="javascript:;" class="site-url" data-id="2-1" data-title="我的信息" data-url="@Url.Action("Detail","User")">我的信息</a></dd>
                             <dd><a href="javascript:;" class="site-url" data-id="2-2" data-title="修改密码" data-url="@Url.Action("SelectOrderBill","Purchase")">修改密码</a></dd>
                         </dl>
                     </li>
-                    <li class="layui-nav-item"><a href="javascript:;" class="site-url" data-id="1-2" data-title="订单管理" data-url="">订单管理</a></li>
+                    <li class="layui-nav-item"><a href="javascript:;" class="site-url" data-id="1-2" data-title="订单管理" data-url="@Url.Action("Index","Order")">订单管理</a></li>
                     <li class="layui-nav-item">
                         <a href="javascript:;" class="site-url">隧道管理</a>
                         <dl class="layui-nav-child">
-                            <dd><a href="javascript:;" class="site-url" data-id="2-3" data-title="我的隧道" data-url="@Url.Action("Reconciliations","Intercourse")">我的隧道</a></dd>
-                            <dd><a href="javascript:;" class="site-url" data-id="2-4" data-title="开通隧道" data-url="@Url.Action("Reconciliations","Intercourse")">开通隧道</a></dd>
+                            <dd><a href="javascript:;" class="site-url" data-id="2-3" data-title="我的隧道" data-url="@Url.Action("Index","Tunnel")">我的隧道</a></dd>
+                            <dd><a href="javascript:;" class="site-url" data-id="2-4" data-title="开通隧道" data-url="@Url.Action("Lists","Tunnel")">开通隧道</a></dd>
                         </dl>
                     </li>
                 </ul>
@@ -97,7 +97,7 @@
                     </ul>
                     <div class="layui-tab-content" id="mr">
                         <div class="layui-tab-item layui-show iframeHeight">
-                            默认
+                            <iframe src="@Url.Action("Main","User")" style="width:100%;height:100%" onscroll="no" frameborder="0"></iframe>
                         </div>
                     </div>
                 </div>

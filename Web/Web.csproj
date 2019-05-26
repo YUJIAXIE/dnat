@@ -232,7 +232,9 @@
     <Compile Include="Common\CheckLoginFilter.cs" />
     <Compile Include="Common\ValidateCode.cs" />
     <Compile Include="Controllers\ApiController.cs" />
-    <Compile Include="Controllers\ClientController.cs" />
+    <Compile Include="Controllers\HtmlController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\TunnelController.cs" />
@@ -246,19 +248,22 @@
   <ItemGroup>
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
-    <Content Include="Views\Client\Register.cshtml" />
     <Content Include="Content\layui\DemoJson\demo1.json" />
     <Content Include="Content\layui\font\iconfont.eot" />
     <Content Include="Content\layui\font\iconfont.ttf" />
     <Content Include="Content\layui\font\iconfont.woff" />
     <None Include="Properties\PublishProfiles\web.pubxml" />
-    <Content Include="Views\Client\Success.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Tunnel\Lists.cshtml" />
     <Content Include="Views\Tunnel\Add.cshtml" />
     <Content Include="Views\Login\Register.cshtml" />
     <Content Include="Views\Tunnel\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Html\Success.cshtml" />
+    <Content Include="Views\User\Main.cshtml" />
+    <Content Include="Views\User\Detail.cshtml" />
+    <Content Include="Views\Order\Index.cshtml" />
+    <Content Include="Views\Order\user.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

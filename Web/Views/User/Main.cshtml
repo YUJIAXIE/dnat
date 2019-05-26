@@ -1,0 +1,39 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>主页</title>
+    <link href="~/Content/layui/css/layui.css" rel="stylesheet" />
+    <script src="~/Content/layui/layui.js"></script>
+</head>
+<body>
+    <div class="layui-col-md12">
+        <div class="layui-card">
+            <div class="layui-card-header">隧道数量</div>
+            <div class="layui-card-body">
+                <div class="layui-form layui-form-pane">
+                    <div class="layui-form-item" pane>
+                        <label class="layui-form-label">HTTP</label>
+                        <div class="layui-input-block">
+                            <input type="text"  autocomplete="off" class="layui-input" disabled="" value="@ViewBag.http">
+                        </div>
+                    </div>
+                    <div class="layui-form-item" pane>
+                        <label class="layui-form-label">TCP</label>
+                        <div class="layui-input-block">
+                            <input type="text" autocomplete="off" class="layui-input" disabled="" value="@ViewBag.tcp">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

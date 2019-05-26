@@ -1,0 +1,59 @@
+﻿@model DLL.Models.Users
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>我的信息</title>
+    <link href="~/Content/layui/css/layui.css" rel="stylesheet" />
+    <script src="~/Content/layui/layui.js"></script>
+</head>
+<body>
+    <div class="layui-col-md12">
+        <div class="layui-card">
+            <div class="layui-card-header">我的信息</div>
+            <div class="layui-card-body">
+                @foreach (var item in Model)
+                {
+                    <div class="layui-form layui-form-pane">
+                        <div class="layui-form-item" pane>
+                            <label class="layui-form-label">域名前缀</label>
+                            <div class="layui-input-block">
+                                <input type="text" autocomplete="off" class="layui-input" disabled="" value="@item.DoMain">
+                            </div>
+                        </div>
+                        <div class="layui-form-item" pane>
+                            <label class="layui-form-label">注册时间</label>
+                            <div class="layui-input-block">
+                                <input type="text" autocomplete="off" class="layui-input" disabled="" value="@item.RegDate">
+                            </div>
+                        </div>
+                        <div class="layui-form-item" pane>
+                            <label class="layui-form-label">注册邮箱</label>
+                            <div class="layui-input-block">
+                                <input type="text" autocomplete="off" class="layui-input" disabled="" value="@item.Email">
+                            </div>
+                        </div>
+                        <div class="layui-form-item" pane>
+                            <label class="layui-form-label">注册手机</label>
+                            <div class="layui-input-block">
+                                <input type="text" autocomplete="off" class="layui-input" disabled="" value="@item.Phone.">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <button class="layui-btn">完善信息</button>
+                        </div>
+
+                    </div>
+                }
+                
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

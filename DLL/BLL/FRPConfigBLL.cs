@@ -30,5 +30,15 @@ namespace DLL.BLL
         {
             return fd.SelectMax(UId);
         }
+        /// <summary>
+        /// 根据类型、UID查询数量
+        /// </summary>
+        /// <param name="Type">类型</param>
+        /// <param name="Uid">客户id</param>
+        /// <returns>数量</returns>
+        public int SelectCount(string Type,string Uid)
+        {
+            return fd.SelectCount(Type,Uid);
+        }
     }
 }

@@ -50,5 +50,15 @@ join config c1 on c1.info='DomainName' where domain ='{Users.DoMain}'and PassWor
             return SqlHelper.ExecuteNonQuery(sql);
 
         }
+        /// <summary>
+        /// 根据ID查询信息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public DataTable Select(string id)
+        {
+            string sql = $@"select * from Users where id ='{id}'";
+            return SqlHelper.ExecuteDataTable(sql);
+        }
     }
 }

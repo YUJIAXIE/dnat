@@ -9,6 +9,7 @@ using System.Xml.Linq;
 
 namespace Web.Controllers
 {
+
     public class LoginController : Controller
     {
         // GET: Login
@@ -27,6 +28,10 @@ namespace Web.Controllers
             byte[] bytes = vCode.CreateVerifyCodeBmp(out code);
             Session["VerifyCode"] = code;
             return File(bytes, @"image/jpeg");
+        }
+        public ActionResult ResetPassWord()
+        {
+            return Content("暂未开放！");
         }
     }
 }

@@ -10,7 +10,7 @@ namespace DLL.DAL
 {
     public class FRPConfigDAL
     {
-        
+
         public DataTable SelectUsersFrpConfig(int UId, bool All)
         {
             string sql;
@@ -57,6 +57,17 @@ GROUP BY MappingName";
             {
                 return Max.ToString();
             }
+        }
+        /// <summary>
+        /// 根据类型查询数量
+        /// </summary>
+        /// <param name="Type">类型</param>
+        /// <param name="Uid">客户id</param>
+        /// <returns>数量</returns>
+        public int SelectCount(string Type,string UId)
+        {
+            string sql = $"select count(*) from FRPConfig where value='{Type}' and UId='{UId}'";
+            return (int)SqlHelper.ExecuteScalar(sql);
         }
     }
 }
