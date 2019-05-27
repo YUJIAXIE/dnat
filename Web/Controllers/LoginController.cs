@@ -9,7 +9,7 @@ using System.Xml.Linq;
 
 namespace Web.Controllers
 {
-
+    //[CheckLoginFilter(nums = CheckLoginType.pro)]
     public class LoginController : Controller
     {
         // GET: Login

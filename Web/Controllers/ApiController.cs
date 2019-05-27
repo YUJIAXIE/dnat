@@ -97,7 +97,7 @@ namespace Web.Controllers
 
         }
 
-        public ActionResult FrpConfig(int UId, int Id, bool All)
+        public ActionResult FrpConfig(string UId, int Id, bool All)
         {
             string Json;
             DLL.BLL.FRPConfigBLL fb = new DLL.BLL.FRPConfigBLL();

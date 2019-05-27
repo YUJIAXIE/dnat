@@ -20,7 +20,7 @@ namespace Web.Controllers
         {
             var id = Session["Id"].ToString();
             FRPConfigBLL fb = new FRPConfigBLL();
-            ViewBag.http = fb.SelectCount("http",id);
+            ViewBag.http = fb.SelectCount("http", id);
             ViewBag.tcp = fb.SelectCount("tcp", id);
             return View();
         }

@@ -254,7 +254,7 @@
     <Content Include="Content\layui\font\iconfont.woff" />
     <None Include="Properties\PublishProfiles\web.pubxml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Tunnel\Lists.cshtml" />
+    <Content Include="Views\Tunnel\List.cshtml" />
     <Content Include="Views\Tunnel\Add.cshtml" />
     <Content Include="Views\Login\Register.cshtml" />
     <Content Include="Views\Tunnel\Index.cshtml" />
@@ -277,6 +277,10 @@
     <Folder Include="Views\Api\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\alipay-sdk-NET-3.2.1\AopSdk.csproj">
+      <Project>{9C11CAE5-5188-4E71-825B-68FC3135728A}</Project>
+      <Name>AopSdk</Name>
+    </ProjectReference>
     <ProjectReference Include="..\aliyun-net-sdk-alidns\aliyun-net-sdk-alidns.vs2010.csproj">
       <Project>{36b59cbf-ddc5-4fa8-a1e4-0cef50f5e295}</Project>
       <Name>aliyun-net-sdk-alidns.vs2010</Name>

@@ -1,26 +1,79 @@
-﻿
+﻿@using System.Data;
 @{
     Layout = null;
+    string price = "0.00";
 }
 
 <!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Add</title>
+    <title>购买云隧道</title>
+    <link href="~/Content/layui/css/layui.css" rel="stylesheet" />
+    <script src="~/Content/layui/layui.js"></script>
 </head>
 <body>
-    <div><label>个人信息</label>
-        <label>购买信息</label>
-        <br />
-        <label>购买时长：</label>
-        <input type="radio" name="sex" value="10" title="男">
-        <input type="radio" name="sex" value="nv" title="女">
-        <input type="radio" name="sex" value="10" title="男">
-        <input type="radio" name="sex" value="nv" title="女">
-        <br />
-        <label>价格：</label>
-        20元
-    </div>
+    <form class="layui-form" action="">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-header">购买信息</div>
+                <div class="layui-card-body">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">购买时长</label>
+                        <div class="layui-input-block">
+                            @foreach (DataRow item in Model.Rows)
+                            {
+                                if (@item["Days"].ToString() == "30")
+                                {
+                                    price = item["Price"].ToString();
+                                    <input type="radio" name="price" price="@item["Price"]" lay-filter="price" value="@item["id"]" title="@item["Type"] (@item["Price"])" checked="">
+                                }
+                                else
+                                {
+                                    <input type="radio" name="price" price="@item["Price"]" lay-filter="price" value="@item["id"]" title="@item["Type"] (@item["Price"])">
+                                }
+                            }
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">支付金额</label>
+                        <div class="layui-input-block">
+                            <div style="line-height:36px"><span style="color:red;font-size:16px" id="price">@price</span>元</div>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <button class="layui-btn" lay-submit="" lay-filter="demo1">确定购买</button>
+                            <a class="layui-btn layui-btn-normal" href="@Url.Action("List","Tunnel")">返回服务器列表</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <script>
+        layui.use(['form', 'layedit', 'laydate'], function () {
+            var $ = layui.jquery
+               , form = layui.form;
+            form.on('radio(price)', function (data) {
+                $('#price').html($(this).attr('price'));
+            });
+
+            form.on('submit(demo1)', function (data) {
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("SaveOrder", "Order")",
+                    data: data.field,
+                    success: function (msg) {
+                        if (msg == "404")
+                            window.location = '@Url.Action("Index", "Tunnel")';
+                        else
+                            layer.msg(msg);
+                    }
+                });
+            });
+
+        });
+    </script>
 </body>
 </html>

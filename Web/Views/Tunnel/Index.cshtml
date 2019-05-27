@@ -1,17 +1,4 @@
 ﻿
-@{
-    Layout = null;
-}
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-
     @{
         Layout = null;
     }
@@ -21,18 +8,15 @@
     <html>
     <head>
         <meta name="viewport" content="width=device-width" />
-        <title>我的订单</title>
+        <title>我的隧道</title>
         <link href="~/Content/layui/css/layui.css" rel="stylesheet" />
         <script src="~/Content/layui/layui.js"></script>
     </head>
     <body>
         <div class="layui-col-md12">
             <div class="layui-card">
-                <div class="layui-card-header">我的订单</div>
+                <div class="layui-card-header">我的隧道</div>
                 <div class="layui-card-body">
-                    <p>
-                        注意：未付款隧道将在下单一小时后释放。
-                    </p>
                     <table class="layui-hide" id="test"></table>
                 </div>
             </div>
@@ -40,10 +24,9 @@
         <script>
 layui.use('table', function(){
   var table = layui.table;
-
   table.render({
     elem: '#test'
-    , url: '/Order/user.json'
+    , url: '/Tunnel/ListJson'
     ,page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
       layout: ['limit', 'count', 'prev', 'page', 'next', 'skip'] //自定义分页布局
       //,curr: 5 //设定初始在第 5 页
@@ -52,10 +35,12 @@ layui.use('table', function(){
       ,last: false //不显示尾页
     }
     ,cols: [[
-      {field:'id', title: '隧道Id', sort: true}
-      , { field: 'username',title: '隧道协议', sort: true }
-      ,{field:'sex',title: '本地端口', sort: true}
-      , { field: 'city',title: '域名', sort: true }
+      { field: 'MappingName', title: '隧道Id', sort: true }
+      , { field: 'type', title: '隧道协议', sort: true }
+      , { field: 'local_ip', title: '本地IP', sort: true }
+      , { field: 'local_port', title: '本地端口', sort: true }
+      , { field: 'custom_domains', title: '访问域名', sort: true }
+      , { field: 'remote_port', title: '访问端口', sort: true }
     ]]
 
   });
@@ -65,5 +50,3 @@ layui.use('table', function(){
     </body>
 </html>
 
-</body>
-</html>

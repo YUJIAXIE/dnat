@@ -14,7 +14,7 @@ namespace DLL.DAL
         /// </summary>
         /// <param name="All">true默认，false行转列</param>
         /// <returns></returns>
-        public DataTable SelectCommonFrpConfig(int UId, bool All)
+        public DataTable SelectCommonFrpConfig(string UId, bool All)
         {
             string sql;
             if (All)

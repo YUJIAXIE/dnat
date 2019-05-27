@@ -44,13 +44,20 @@
     <Compile Include="BLL\ConfigBLL.cs" />
     <Compile Include="BLL\ECSConfigBLL.cs" />
     <Compile Include="BLL\FRPConfigBLL.cs" />
+    <Compile Include="BLL\OrderBLL.cs" />
+    <Compile Include="BLL\PriceBLL.cs" />
+    <Compile Include="BLL\TunnelTypeBLL.cs" />
     <Compile Include="BLL\UsersBLL.cs" />
     <Compile Include="Common\SqlHelper.cs" />
     <Compile Include="DAL\ConfigDAL.cs" />
     <Compile Include="DAL\ECSConfigDAL.cs" />
     <Compile Include="DAL\FRPConfigDAL.cs" />
+    <Compile Include="DAL\OrderDLL.cs" />
+    <Compile Include="DAL\PriceDAL.cs" />
+    <Compile Include="DAL\TunnelTypeDAL.cs" />
     <Compile Include="DAL\UsersDAL.cs" />
     <Compile Include="Models\FrpConfig.cs" />
+    <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Users.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

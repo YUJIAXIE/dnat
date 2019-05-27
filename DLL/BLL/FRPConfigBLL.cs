@@ -12,7 +12,7 @@ namespace DLL.BLL
     {
         DLL.DAL.FRPConfigDAL fd = new DAL.FRPConfigDAL();
        
-        public DataTable SelectUsersFrpConfig(int UId,bool All)
+        public DataTable SelectUsersFrpConfig(string UId,bool All)
         {
             return fd.SelectUsersFrpConfig(UId, All);
         }

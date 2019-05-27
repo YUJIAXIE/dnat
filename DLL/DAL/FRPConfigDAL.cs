@@ -10,8 +10,13 @@ namespace DLL.DAL
 {
     public class FRPConfigDAL
     {
-
-        public DataTable SelectUsersFrpConfig(int UId, bool All)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="UId"></param>
+        /// <param name="All"></param>
+        /// <returns></returns>
+        public DataTable SelectUsersFrpConfig(string UId, bool All)
         {
             string sql;
             if (All)

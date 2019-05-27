@@ -24,13 +24,18 @@
             </div>
         </div>
     </div>
+    <script type="text/html" id="barDemo">
+        {{# if(d.TradingStatus=="待付款"){ }}
+        <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="operation">付款</a>
+        {{# } }}
+    </script>
     <script>
 layui.use('table', function(){
   var table = layui.table;
 
   table.render({
     elem: '#test'
-    , url: '/Order/user.json'
+    , url: '/Order/OrderJson'
     ,page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
       layout: ['limit', 'count', 'prev', 'page', 'next', 'skip'] //自定义分页布局
       //,curr: 5 //设定初始在第 5 页
@@ -39,11 +44,14 @@ layui.use('table', function(){
       ,last: false //不显示尾页
     }
     ,cols: [[
-      {field:'id', title: '订单编号', sort: true}
-      , { field: 'username',title: '付款金额', sort: true }
-      ,{field:'sex',title: '订单类型', sort: true}
-      , { field: 'city',title: '购买天数', sort: true }
-      , { field: 'sign', title: '下单时间', sort: true }
+      { field: 'OrderId', title: '订单编号', sort: true }
+      , { field: 'ECSType', title: '订单类型', sort: true }
+      , { field: 'Days', title: '购买天数', sort: true }
+      , { field: 'Price',title: '付款金额', sort: true }
+      , { field: 'CreateTime', title: '下单时间', sort: true }
+      , { field: 'PayTime', title: '付款时间', sort: true }
+      , { field: 'TradingStatus', title: '订单状态', sort: true }
+      , { fixed: 'right', title: '操作', width: 150, align: 'center', toolbar: '#barDemo' } //这里的toolbar值是模板元素的选择器
     ]]
 
   });
