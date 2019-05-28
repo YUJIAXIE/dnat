@@ -13,6 +13,7 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using Web.Common;
+using QRCoder;
 
 namespace Web.Controllers
 {
@@ -71,22 +72,7 @@ namespace Web.Controllers
                 case "10000":
                     DoWaitProcess(response.QrCode);
                     break;
-                case ResultEnum.FAILED:
-                    result = precreateResult.response.Body;
-                    Response.Redirect("result.aspx?Text=" + result);
-                    break;
 
-                case ResultEnum.UNKNOWN:
-                    if (precreateResult.response == null)
-                    {
-                        result = "配置或网络异常，请检查后重试";
-                    }
-                    else
-                    {
-                        result = "系统异常，请更新外部订单后重新发起请求";
-                    }
-                    Response.Redirect("result.aspx?Text=" + result);
-                    break;
             }
 
 
@@ -107,12 +93,18 @@ namespace Web.Controllers
             //打印出 preResponse.QrCode 对应的条码
             Bitmap bt;
             string enCodeString = precreateResult;
-            QRCodeEncoder qrCodeEncoder = new QRCodeEncoder();
-            qrCodeEncoder.QRCodeEncodeMode = QRCodeEncoder.ENCODE_MODE.BYTE;
-            qrCodeEncoder.QRCodeErrorCorrect = QRCodeEncoder.ERROR_CORRECTION.H;
-            qrCodeEncoder.QRCodeScale = 3;
-            qrCodeEncoder.QRCodeVersion = 8;
-            bt = qrCodeEncoder.Encode(enCodeString, Encoding.UTF8);
+            QRCodeGenerator qq = new QRCodeGenerator();
+            QRCodeData data = qq.CreateQrCode(enCodeString, QRCodeGenerator.ECCLevel.Q);
+            QRCode code = new QRCode(data);
+            bt = code.GetGraphic(5, Color.Black, Color.White, null, 15, 6, false);
+            
+            //memo
+            //QRCodeEncoder qrCodeEncoder = new QRCodeEncoder();
+            //qrCodeEncoder.QRCodeEncodeMode = QRCodeEncoder.ENCODE_MODE.BYTE;
+            //qrCodeEncoder.QRCodeErrorCorrect = QRCodeEncoder.ERROR_CORRECTION.H;
+            //qrCodeEncoder.QRCodeScale = 3;
+            //qrCodeEncoder.QRCodeVersion = 8;
+            //bt = qrCodeEncoder.Encode(enCodeString, Encoding.UTF8);
             string filename = System.DateTime.Now.ToString("yyyyMMddHHmmss") + "0000" + (new Random()).Next(1, 10000).ToString()
              + ".jpg";
             bt.Save(Server.MapPath("~/images/") + filename);
