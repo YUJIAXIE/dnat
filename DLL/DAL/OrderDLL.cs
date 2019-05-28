@@ -30,7 +30,7 @@ WHERE o.UserId = '{UId}'";
         /// <returns></returns>
         public int InsertOrder(Order order)
         {
-            string Sql = $"INSERT INTO Order VALUES ('{order.OrderId}','{order.UserId}','{order.PriceId}','{order.OrderExplain}','{order.CreateTime}','{order.PayTime}','{order.TradingStatus}')";
+            string Sql = $"INSERT INTO [Order] VALUES ('{order.OrderId}','{order.UserId}','{order.PriceId}','{order.OrderExplain}','{order.CreateTime}','{order.PayTime}','{order.TradingStatus}')";
             return SqlHelper.ExecuteNonQuery(Sql);
         }
     }
