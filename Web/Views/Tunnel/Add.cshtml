@@ -11,6 +11,9 @@
     <title>购买云隧道</title>
     <link href="~/Content/layui/css/layui.css" rel="stylesheet" />
     <script src="~/Content/layui/layui.js"></script>
+    <script>
+        
+    </script>
 </head>
 <body>
     <form class="layui-form" action="">
@@ -52,28 +55,49 @@
         </div>
     </form>
     <script>
+        var price = 0;
         layui.use(['form', 'layedit', 'laydate'], function () {
             var $ = layui.jquery
-               , form = layui.form;
+               , form = layui.form
+            , layer = layui.layer;
             form.on('radio(price)', function (data) {
                 $('#price').html($(this).attr('price'));
             });
-
             form.on('submit(demo1)', function (data) {
+                price = $("input[name=price]").val()
+                alert(price);
                 $.ajax({
                     type: "POST",
                     url: "@Url.Action("SaveOrder", "Order")",
                     data: data.field,
                     success: function (msg) {
-                        if (msg == "404")
-                            window.location = '@Url.Action("Index", "Tunnel")';
-                        else
-                            layer.msg(msg);
+                        if (price > 0) {
+                            if (msg == "404")
+                                layer.msg(msg);
+                            else {
+                                layui.use('layer', function () {
+                                    parent.layer.open({
+                                        type: 2,
+                                        title: '单据详情',
+                                        shadeClose: true,
+                                        shade: false,
+                                        maxmin: true, //开启最大化最小化按钮
+                                        area: ['90%', '95%'],
+                                        content: '/Order/DoPay?code=' + msg
+                                    });
+                                })
+                            }
+                                
+                        }
+                        else {
+
+                        }
                     }
                 });
             });
-
         });
+
+      
     </script>
 </body>
 </html>

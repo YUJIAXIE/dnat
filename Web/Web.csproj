@@ -229,6 +229,7 @@
     <Content Include="Content\layui\lay\modules\util.js" />
     <Content Include="Content\layui\StyleSheet1.css" />
     <Content Include="Global.asax" />
+    <Content Include="QRcode\20190528202927687.jpg" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -268,6 +269,7 @@
     <Content Include="Views\User\Detail.cshtml" />
     <Content Include="Views\Order\Index.cshtml" />
     <Content Include="Views\Order\user.json" />
+    <Content Include="Views\Order\DoPay.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
