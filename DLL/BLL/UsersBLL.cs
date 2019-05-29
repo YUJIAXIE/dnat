@@ -41,5 +41,14 @@ namespace DLL.BLL
         {
             return ud.Select(id);
         }
+        /// <summary>
+        /// 购买修改信息
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        public int UpdateUser(Users user)
+        {
+            return ud.UpdateUser(user);
+        }
     }
 }

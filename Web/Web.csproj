@@ -200,6 +200,7 @@
     <Content Include="Content\layui\images\face\71.gif" />
     <Content Include="Content\layui\images\face\8.gif" />
     <Content Include="Content\layui\images\face\9.gif" />
+    <Content Include="Content\layui\layer.js" />
     <Content Include="Content\layui\layui.all.js" />
     <Content Include="Content\layui\layui.js" />
     <Content Include="Content\layui\lay\all-mobile.js" />
@@ -229,7 +230,7 @@
     <Content Include="Content\layui\lay\modules\util.js" />
     <Content Include="Content\layui\StyleSheet1.css" />
     <Content Include="Global.asax" />
-    <Content Include="QRcode\20190528202927687.jpg" />
+    <Content Include="QRcode\1226612.png" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

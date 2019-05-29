@@ -17,6 +17,7 @@ namespace DLL.Models
         public string EndDate { get; set; }
         public int Version { get; set; }
         public int ECSId { get; set; }
+        public int TId { get; set; }
         /// <summary>
         /// 验证码
         /// </summary>

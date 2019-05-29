@@ -12,7 +12,18 @@
     <link href="~/Content/layui/css/layui.css" rel="stylesheet" />
     <script src="~/Content/layui/layui.js"></script>
     <script>
-        
+        function pay(code) {
+            layui.use('layer', function () {
+                parent.layer.open({
+                    type: 2,
+                    title: '付款',
+                    // area:["300px","450px"],
+                    // area:["300px","650px"],
+                    area: ["600px", "450px"],
+                    content: '/Order/DoPay?code=' + code
+                });
+            })
+        }
     </script>
 </head>
 <body>
@@ -55,7 +66,7 @@
         </div>
     </form>
     <script>
-        var price = 0;
+        var price = 1;
         layui.use(['form', 'layedit', 'laydate'], function () {
             var $ = layui.jquery
                , form = layui.form
@@ -64,40 +75,27 @@
                 $('#price').html($(this).attr('price'));
             });
             form.on('submit(demo1)', function (data) {
-                price = $("input[name=price]").val()
-                alert(price);
+                price = $("input[name=price]").val();
                 $.ajax({
                     type: "POST",
                     url: "@Url.Action("SaveOrder", "Order")",
                     data: data.field,
                     success: function (msg) {
-                        if (price > 0) {
+                        if (price > 1) {
                             if (msg == "404")
                                 layer.msg(msg);
-                            else {
-                                layui.use('layer', function () {
-                                    parent.layer.open({
-                                        type: 2,
-                                        title: '单据详情',
-                                        shadeClose: true,
-                                        shade: false,
-                                        maxmin: true, //开启最大化最小化按钮
-                                        area: ['90%', '95%'],
-                                        content: '/Order/DoPay?code=' + msg
-                                    });
-                                })
-                            }
-                                
+                            else
+                                pay(msg);
                         }
                         else {
-
+                            location.href = '@Url.Action("Index","Order")';
                         }
                     }
                 });
             });
         });
 
-      
+
     </script>
 </body>
 </html>

@@ -8,10 +8,84 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title></title>
+    <link href="~/Content/layui/css/layui.css" rel="stylesheet" />
+    <script src="~/Content/layui/layui.js"></script>
+    <script>
+        function confirmOrder() {
+            layui.use('layer', function () {
+                parent.location.reload();//刷新父页面
+                //window.location.reload();
+            })
+            
+        }
+        function closeOrder() {
+            layui.use('layer', function () {
+                parent.layer.closeAll()
+            })
+
+        }
+    </script>
 </head>
 <body>
-    <div>
-        <img src="~/QRcode/20190528202927687.jpg" />
+    <style>
+        #main_template {
+            width: auto;
+            height: auto;
+            text-align: center;
+            background: #fff;
+        }
+
+            #main_template .qrcode img {
+                width: 200px;
+                height: auto;
+                vertical-align: top;
+            }
+
+            #main_template .main_text {
+                margin-top: 5px;
+                font-size: 12px;
+                padding: 10px;
+            }
+
+            #main_template .btn-group {
+                font-size: 0;
+            }
+
+                #main_template .btn-group button {
+                    margin-top: 10px;
+                    border: none;
+                    height: 35px;
+                    line-height: 35px;
+                    width: 90px;
+                    text-align: center;
+                    color: #fff;
+                    border-radius: 3px;
+                    font-size: 18px;
+                }
+
+                    #main_template .btn-group button + button {
+                        margin-left: 20px;
+                    }
+
+        .col-sm-offset-3 {
+            margin-top: 10px;
+        }
+    </style>
+    <div id="main_template">
+        <div class="qrcode">
+            <img src="~/QRcode/@ViewBag.img" width="300" height="300" />
+            <!-- <img src="/WechatIMG52.jpeg"> -->
+        </div>
+        <div class="main_text">
+            <span style="color:red;text-align: center;font-size: 18px;">
+
+                隧道开通之后请加VIP群，群号开通VIP之后可以在隧道管理看到，退出免费群，不要在免费群发任何收费服务器的信息，为保证您可以正常使用隧道请不要暴露隧道ID。再次确认当前隧道是否您选择需要开通的，开通后不能更换服务器和协议！隧道开通后请观看使用教程！根据自己选择的服务器类型下载对应的客户端。
+            </span>
+        </div>
+        <div class="col-sm-8 col-sm-offset-3">
+            <button class="layui-btn" type="button" onclick="confirmOrder()">确定</button>
+            <button class="layui-btn layui-btn-normal" type="button" onclick="closeOrder()">关闭</button>
+        </div>
     </div>
 </body>
 </html>

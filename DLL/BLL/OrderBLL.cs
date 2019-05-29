@@ -30,5 +30,23 @@ namespace DLL.BLL
         {
             return od.InsertOrder(order);
         }
+        /// <summary>
+        /// 修改订单信息
+        /// </summary>
+        /// <param name="order"></param>
+        /// <returns></returns>
+        public int UpdateOrder(Order order)
+        {
+            return od.UpdateOrder(order);
+        }
+        /// <summary>
+        /// 查询订单表
+        /// </summary>
+        /// <param name="order"></param>
+        /// <returns></returns>
+        public DataTable SelectOrder(Order order)
+        {
+            return od.SelectOrder(order);
+        }
     }
 }
