@@ -50,9 +50,7 @@ namespace DLL.DAL
         /// <returns></returns>
         public DataTable SelectUsers(Users Users)
         {
-            string sql = $@"select u.id,u.DoMain,u.RegDate,u.EndDate,c.Value,c1.Value as DoMainName from Users u
-join config c on u.version=c.id
-join config c1 on c1.info='DomainName' where domain ='{Users.DoMain}'and PassWord='{Users.PassWord}'";
+            string sql = $@"select * from Users u join TunnelType t on t.Id=u.TId where domain ='{Users.DoMain}'and PassWord='{Users.PassWord}'";
             return SqlHelper.ExecuteDataTable(sql);
 
         }

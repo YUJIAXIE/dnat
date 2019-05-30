@@ -16,8 +16,8 @@ namespace Client
 {
     public partial class Main : Form
     {
-        public static string Url = "http://www.xyujia.cn";
-        //public static string Url = "http://localhost:81";
+        //public static string Url = "http://www.xyujia.cn";
+        public static string Url = "http://localhost:46324";
         public string processName = "ctc";
         public static Main main;
         IniFiles ini = new IniFiles(Application.StartupPath + "\\Config.ini");
@@ -122,7 +122,7 @@ namespace Client
         public void InitializeTunnel()
         {
             flowLayoutPanel1.Controls.Clear();
-            var json = HTTP.Get(Url + "/Client/FRPConfig", "?Uid=" + Id + "&Id=1&All=false");
+            var json = HTTP.Get(Url + "/Api/FRPConfig", "?Uid=" + Id + "&Id=1&All=false");
             DataTable dt = Json.Json2DataTable(json);
             foreach (DataRow dr in dt.Rows)
             {
@@ -139,13 +139,13 @@ namespace Client
 
         void Test()
         {
-            var Com = HTTP.Get(Url + "/Client/FRPConfig", "?Uid=" + Id + "&Id=0&All=true");
+            var Com = HTTP.Get(Url + "/Api/FRPConfig", "?Uid=" + Id + "&Id=0&All=true");
             DataTable Common = Json.Json2DataTable(Com);
             foreach (DataRow dr in Common.Rows)
             {
                 Frpini.IniWriteValue(dr["MappingName"].ToString(), dr["Info"].ToString(), dr["Value"].ToString());
             }
-            var frp = HTTP.Get(Url + "/Client/FRPConfig", "?Uid=" + Id + "&Id=1&All=true");
+            var frp = HTTP.Get(Url + "/Api/FRPConfig", "?Uid=" + Id + "&Id=1&All=true");
             DataTable User = Json.Json2DataTable(frp);
             foreach (DataRow dr in User.Rows)
             {
@@ -272,7 +272,7 @@ namespace Client
             {
                 string Name = ini.IniReadValue("Account", "Name");
                 string PassWord = ini.IniReadValue("Account", "PassWord");
-                var json = HTTP.Get(Url + "/Client/ClientLogin", "?DoMain=" + Name + "&PassWord=" + PassWord + "");
+                var json = HTTP.Get(Url + "/Api/Login", "?DoMain=" + Name + "&PassWord=" + PassWord + "&Client=True");
                 DataTable dt = Json.Json2DataTable(json);
                 if (dt.Rows.Count == 1)
                 {

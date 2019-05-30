@@ -45,7 +45,7 @@ namespace Client
             m.ShowDialog();
             if (m.DialogResult == DialogResult.Yes)
             {
-                var json = HTTP.Get(Main.Url + "/Client/DeleteFrp", "?UId=" + Main.Id.ToString() + "&MappingName=" + lbMappingName.Text + "");
+                var json = HTTP.Get(Main.Url + "/Api/DeleteFrp", "?UId=" + Main.Id.ToString() + "&MappingName=" + lbMappingName.Text + "");
             }
             Main.main.InitializeTunnel();
             Main.main.picSus.Image = Properties.Resources.ball_grey;

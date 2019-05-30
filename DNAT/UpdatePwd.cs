@@ -74,7 +74,7 @@ namespace Client
             }
             else
             {
-                var result = HTTP.Get(Main.Url + "/Client/UpdatePwd", "?Id=" + Main.Id + "&PassWord=" + ReNewPwd);
+                var result = HTTP.Get(Main.Url + "/Api/UpdatePwd", "?Id=" + Main.Id + "&PassWord=" + ReNewPwd);
                 if (result=="true")
                 {
                     ini.IniWriteValue("Account", "PassWord", ReNewPwd);

@@ -130,7 +130,7 @@ namespace Client
                 {
                     Pwd = ini.IniReadValue("Account", "PassWord");
                 }
-                var json = HTTP.Get(Main.Url + "/Client/ClientLogin", "?DoMain=" + TbAccount.Text + "&PassWord=" + Pwd);
+                var json = HTTP.Get(Main.Url + "/Api/Login", "?DoMain=" + TbAccount.Text + "&PassWord=" + Pwd+ "&Client=True");
                 DataTable dt = Json.Json2DataTable(json);
                 if (dt.Rows.Count == 1)
                 {
@@ -154,9 +154,9 @@ namespace Client
                     {
                         ini.IniWriteValue("Account", "AutoLogin", "0");
                     }
-                    Main.Id = Convert.ToInt32(dt.Rows[0]["id"]);
+                    Main.Id = Convert.ToInt32(dt.Rows[0]["Id"]);
                     Main.Pwd = Pwd;
-                    Main.Version = dt.Rows[0]["Value"].ToString();
+                    Main.Version = dt.Rows[0]["ECSType"].ToString();
                     Main.DoMain = dt.Rows[0]["DoMain"].ToString();
                     Main.DoMainInfo = dt.Rows[0]["DoMainName"].ToString();
                     Main.Date = " [" + dt.Rows[0]["RegDate"] + "---" + dt.Rows[0]["EndDate"].ToString() + "]";
@@ -199,7 +199,7 @@ namespace Client
 
         private void llbResetPassWord_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("http://www.xyujia.cn/Client/ResetPassWord");
+            System.Diagnostics.Process.Start("http://www.xyujia.cn/Login/ResetPassWord");
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)

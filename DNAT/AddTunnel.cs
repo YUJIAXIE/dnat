@@ -162,7 +162,7 @@ namespace Client
                 dt.Rows.Add(new object[] { Main.Id, "custom_domains", url });
 
                 var Json = JsonConvert.SerializeObject(dt);
-                var json = HTTP.Get(Main.Url + "/Client/InsertFrp", "?Tunnel=" + Json);
+                var json = HTTP.Get(Main.Url + "/Api/InsertFrp", "?Tunnel=" + Json);
                 if (json == "true")
                 {
                     Main.main.InitializeTunnel();

@@ -64,6 +64,7 @@ namespace Web.Controllers
                 Users.PassWord = FormsAuthentication.HashPasswordForStoringInConfigFile(Users.PassWord, "MD5");
                 Users.ECSId = Convert.ToInt32(cb.SelectValue("DefaultECSId"));
                 ub.InsertUsers(Users);
+                //此处做域名解析
                 return Content("200");
             }
             else
@@ -74,14 +75,19 @@ namespace Web.Controllers
 
         public ActionResult Login(Users Users)
         {
-            Users.PassWord = FormsAuthentication.HashPasswordForStoringInConfigFile(Users.PassWord, "MD5");
+            if (!Users.Client)
+            {
+                Users.PassWord = FormsAuthentication.HashPasswordForStoringInConfigFile(Users.PassWord, "MD5");
+            }
+           
             DLL.BLL.UsersBLL ub = new DLL.BLL.UsersBLL();
             DataTable dt = ub.SelectUsers(Users);
             if (dt .Rows.Count> 0)
             {
                 if (Users.Client)
                 {
-                    return Content(JsonConvert.SerializeObject(dt));
+                    var ss = JsonConvert.SerializeObject(dt);
+                    return Content(ss);
                 }
                 else
                 {
