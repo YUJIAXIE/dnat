@@ -158,8 +158,8 @@ namespace Client
                     Main.Pwd = Pwd;
                     Main.Version = dt.Rows[0]["ECSType"].ToString();
                     Main.DoMain = dt.Rows[0]["DoMain"].ToString();
-                    Main.DoMainInfo = dt.Rows[0]["DoMainName"].ToString();
-                    Main.Date = " [" + dt.Rows[0]["RegDate"] + "---" + dt.Rows[0]["EndDate"].ToString() + "]";
+                    Main.DoMainInfo = dt.Rows[0]["DoMainName"].ToString() + " [" +Convert.ToDateTime( dt.Rows[0]["RegDate"]).ToShortDateString() + "---" +Convert.ToDateTime(dt.Rows[0]["EndDate"]).ToShortDateString() + "]";
+                    Main.EndDate = dt.Rows[0]["EndDate"].ToString();
                     this.Close();
                 }
                 else

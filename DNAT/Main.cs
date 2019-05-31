@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
@@ -17,7 +18,7 @@ namespace Client
     public partial class Main : Form
     {
         //public static string Url = "http://www.xyujia.cn";
-        public static string Url = "http://localhost:46324";
+        public static string Url = "http://localhost:81";
         public string processName = "ctc";
         public static Main main;
         IniFiles ini = new IniFiles(Application.StartupPath + "\\Config.ini");
@@ -26,8 +27,14 @@ namespace Client
         public static string Version;
         public static string DoMain;//名称，登录成功后保存
         public static string DoMainInfo;
-        public static string Date;
+        /// <summary>
+        /// 到期时间
+        /// </summary>
+        public static string EndDate;
         public static string Pwd;
+
+        System.Timers.Timer pTimer = new System.Timers.Timer(5000);//每隔5秒执行一次，没用winfrom自带的
+        System.Timers.Timer StopRun = new System.Timers.Timer(10000);//每隔5秒执行一次，没用winfrom自带的
         #region 内存回收
         [DllImport("kernel32.dll", EntryPoint = "SetProcessWorkingSetSize")]
         public static extern int SetProcessWorkingSetSize(IntPtr process, int minSize, int maxSize);
@@ -118,11 +125,13 @@ namespace Client
             InitializeComponent();
             main = this;
         }
-
+        /// <summary>
+        /// 隧道列表
+        /// </summary>
         public void InitializeTunnel()
         {
             flowLayoutPanel1.Controls.Clear();
-            var json = HTTP.Get(Url + "/Api/FRPConfig", "?Uid=" + Id + "&Id=1&All=false");
+            var json = HTTP.Get(Url + "/Api/FRPConfig", "?Uid=" + Id + "&Id=1&All=True");
             DataTable dt = Json.Json2DataTable(json);
             foreach (DataRow dr in dt.Rows)
             {
@@ -139,40 +148,57 @@ namespace Client
 
         void Test()
         {
-            var Com = HTTP.Get(Url + "/Api/FRPConfig", "?Uid=" + Id + "&Id=0&All=true");
-            DataTable Common = Json.Json2DataTable(Com);
-            foreach (DataRow dr in Common.Rows)
-            {
-                Frpini.IniWriteValue(dr["MappingName"].ToString(), dr["Info"].ToString(), dr["Value"].ToString());
-            }
-            var frp = HTTP.Get(Url + "/Api/FRPConfig", "?Uid=" + Id + "&Id=1&All=true");
-            DataTable User = Json.Json2DataTable(frp);
-            foreach (DataRow dr in User.Rows)
-            {
-                Frpini.IniWriteValue(dr["MappingName"].ToString(), dr["Info"].ToString(), dr["Value"].ToString());
-            }
-            var dd = Application.StartupPath + "\\" + processName + ".exe";
+            var netTime = Convert.ToDateTime(GetNetDateTime());
 
-            if (File.Exists(dd))
+            int compNum = DateTime.Compare(netTime, Convert.ToDateTime(EndDate));
+            //此处加判断是否过期
+            if (compNum <= 0)
             {
-                if (RunCmd(dd, Frpini.inipath))
+                var Com = HTTP.Get(Url + "/Api/FRPConfig", "?Uid=" + Id + "&Id=0&All=False");
+                DataTable Common = Json.Json2DataTable(Com);
+                foreach (DataRow dr in Common.Rows)
                 {
-                    picSus.Image = Properties.Resources.ball_green;
+                    Frpini.IniWriteValue(dr["MappingName"].ToString(), dr["Info"].ToString(), dr["Value"].ToString());
+                }
+                var frp = HTTP.Get(Url + "/Api/FRPConfig", "?Uid=" + Id + "&Id=1&All=False");
+                DataTable User = Json.Json2DataTable(frp);
+                foreach (DataRow dr in User.Rows)
+                {
+                    Frpini.IniWriteValue(dr["MappingName"].ToString(), dr["Info"].ToString(), dr["Value"].ToString());
+                }
+                var dd = Application.StartupPath + "\\" + processName + ".exe";
+
+                if (File.Exists(dd))
+                {
+                    if (RunCmd(dd, Frpini.inipath))
+                    {
+                        StopRun.Elapsed += Stopctc_Elapsed;//委托，要执行的方法
+                        StopRun.AutoReset = true;//获取该定时器自动执行
+                        StopRun.Enabled = true;//这个一定要写，要不然定时器不会执行的
+                        Control.CheckForIllegalCrossThreadCalls = false;//这个不太懂，有待研究
+                        picSus.Image = Properties.Resources.ball_green;
+                    }
+                    else
+                    {
+                        picSus.Image = Properties.Resources.ball_grey;
+                    }
                 }
                 else
                 {
-                    picSus.Image = Properties.Resources.ball_grey;
+                    Message m = new Message();
+                    m.lbTitle.Text = "程序故障";
+                    m.lbContent.Text = "程序已被篡改，请重新安装程序！";
+                    m.ShowDialog();
+                    Application.Exit();
                 }
             }
             else
             {
                 Message m = new Message();
-                m.lbTitle.Text = "程序故障";
-                m.lbContent.Text = "程序已被篡改，请重新安装程序！";
+                m.lbTitle.Text = "提示";
+                m.lbContent.Text = "域名已过期，请续费！";
                 m.ShowDialog();
-                Application.Exit();
             }
-
             File.Delete(Frpini.inipath);//删除ini文件
 
         }
@@ -184,6 +210,29 @@ namespace Client
         private void pTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
             ClearMemory();
+        }
+        /// <summary>
+        /// 定时清理内存
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Stopctc_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            var netTime = Convert.ToDateTime(GetNetDateTime());
+
+            int compNum = DateTime.Compare(netTime, Convert.ToDateTime(EndDate));
+            //此处加判断是否过期
+            if (compNum > 0)
+            {
+                Main.main.picSus.Image = Properties.Resources.ball_grey;
+                Main.main.KillProcess(processName);
+                StopRun.Stop();
+                Message m = new Message();
+                m.lbTitle.Text = "提示";
+                m.lbContent.Text = "域名已过期，请续费！";
+                m.ShowDialog();
+                
+            }
         }
 
         bool RunCmd(string cmdExe, string cmdStr)
@@ -274,12 +323,14 @@ namespace Client
                 string PassWord = ini.IniReadValue("Account", "PassWord");
                 var json = HTTP.Get(Url + "/Api/Login", "?DoMain=" + Name + "&PassWord=" + PassWord + "&Client=True");
                 DataTable dt = Json.Json2DataTable(json);
+                Login.isLogin = true;
                 if (dt.Rows.Count == 1)
                 {
                     Main.Id = Convert.ToInt32(dt.Rows[0]["id"]);
-                    Main.Version = dt.Rows[0]["Value"].ToString();
+                    Main.Version = dt.Rows[0]["ECSType"].ToString();
                     Main.DoMain = dt.Rows[0]["DoMain"].ToString();
-                    Main.DoMainInfo = dt.Rows[0]["DoMainName"].ToString() + " [" + dt.Rows[0]["RegDate"] + "---" + dt.Rows[0]["EndDate"].ToString() + "]";
+                    Main.DoMainInfo = dt.Rows[0]["DoMainName"].ToString() + " [" + Convert.ToDateTime(dt.Rows[0]["RegDate"]).ToShortDateString() + "---" + Convert.ToDateTime(dt.Rows[0]["EndDate"]).ToShortDateString() + "]";
+                    Main.EndDate = dt.Rows[0]["EndDate"].ToString();
                 }
                 else
                 {
@@ -291,16 +342,20 @@ namespace Client
             }
             lbName.Text = DoMain;
             lbVer.Text = Version;
-            lbDoMainInfo.Text = DoMainInfo + Date;
+            lbDoMainInfo.Text = DoMainInfo;
             ini.IniWriteValue("Account", "ReLogin", "1");
             InitializeTunnel();
             Test();
 
-            System.Timers.Timer pTimer = new System.Timers.Timer(5000);//每隔5秒执行一次，没用winfrom自带的
+
             pTimer.Elapsed += pTimer_Elapsed;//委托，要执行的方法
             pTimer.AutoReset = true;//获取该定时器自动执行
             pTimer.Enabled = true;//这个一定要写，要不然定时器不会执行的
             Control.CheckForIllegalCrossThreadCalls = false;//这个不太懂，有待研究
+
+
+
+
         }
 
         private void btnRelogin_Click(object sender, EventArgs e)
@@ -405,5 +460,48 @@ namespace Client
         {
 
         }
+        /// <summary>
+        /// 获取网络时间
+        /// </summary>
+        /// <returns></returns>
+        public static string GetNetDateTime()
+        {
+            WebRequest request = null;
+            WebResponse response = null;
+            WebHeaderCollection headerCollection = null;
+            string datetime = string.Empty;
+            try
+            {
+                request = WebRequest.Create("https://www.baidu.com");
+                request.Timeout = 3000;
+                request.Credentials = CredentialCache.DefaultCredentials;
+                response = request.GetResponse();
+                headerCollection = response.Headers;
+                foreach (var h in headerCollection.AllKeys)
+                {
+                    if (h == "Date")
+                    {
+                        datetime = headerCollection[h];
+                    }
+                }
+                return datetime;
+            }
+            catch (Exception) { return datetime; }
+            finally
+            {
+                if (request != null)
+                { request.Abort(); }
+                if (response != null)
+                { response.Close(); }
+                if (headerCollection != null)
+                { headerCollection.Clear(); }
+            }
+        }
+
+
+
+
+
+
     }
 }

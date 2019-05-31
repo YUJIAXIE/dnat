@@ -12,18 +12,12 @@ namespace DLL.DAL
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="All">true默认，false行转列</param>
+        /// <param name="All">true 行转列，false默认</param>
         /// <returns></returns>
         public DataTable SelectCommonFrpConfig(string UId, bool All)
         {
             string sql;
             if (All)
-            {
-                sql = $@"select MappingName,Info,Value from ecsconfig e
-join Users u on e.ecsid = u.ECSId
-WHERE u.Id = {UId}";
-            }
-            else
             {
                 sql = $@"SELECT 
    MappingName,
@@ -38,6 +32,13 @@ FROM dbo.ECSConfig e
 join Users u on e.ECSId=u.ECSId
  WHERE u.Id={UId}
 GROUP BY MappingName";
+
+            }
+            else
+            {
+                sql = $@"select MappingName,Info,Value from ecsconfig e
+join Users u on e.ecsid = u.ECSId
+WHERE u.Id = {UId}";
             }
             return SqlHelper.ExecuteDataTable(sql);
         }

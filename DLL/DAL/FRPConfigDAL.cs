@@ -11,19 +11,15 @@ namespace DLL.DAL
     public class FRPConfigDAL
     {
         /// <summary>
-        /// 
+        /// 查询隧道信息
         /// </summary>
-        /// <param name="UId"></param>
-        /// <param name="All"></param>
+        /// <param name="UId">UserId</param>
+        /// <param name="All">是否行转列 true 是 false 否</param>
         /// <returns></returns>
         public DataTable SelectUsersFrpConfig(string UId, bool All)
         {
             string sql;
             if (All)
-            {
-                sql = $"select MappingName,Info,Value from FRPConfig WHERE UId='{UId}'";
-            }
-            else
             {
                 sql = $@"SELECT 
    MappingName,
@@ -34,6 +30,11 @@ namespace DLL.DAL
     MAX(CASE WHEN Info = 'custom_domains' THEN Value ELSE '' END) AS custom_domains
 FROM dbo.FRPConfig WHERE UId={UId} 
 GROUP BY MappingName";
+
+            }
+            else
+            {
+                sql = $"select MappingName,Info,Value from FRPConfig WHERE UId='{UId}'";
             }
             return SqlHelper.ExecuteDataTable(sql);
         }
@@ -69,7 +70,7 @@ GROUP BY MappingName";
         /// <param name="Type">类型</param>
         /// <param name="Uid">客户id</param>
         /// <returns>数量</returns>
-        public int SelectCount(string Type,string UId)
+        public int SelectCount(string Type, string UId)
         {
             string sql = $"select count(*) from FRPConfig where value='{Type}' and UId='{UId}'";
             return (int)SqlHelper.ExecuteScalar(sql);
