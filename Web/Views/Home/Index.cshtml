@@ -1,139 +1,113 @@
-﻿@{
-    Layout = "~/Views/_LayoutPage1.cshtml";
+﻿
+@{
+    Layout = null;
 }
 
-<div id="LAY_app">
-    <div class="layui-layout layui-layout-admin">
-        <div class="layui-header">
-            <!-- 头部区域 -->
-            <ul class="layui-nav layui-layout-left">
-                <li class="layui-nav-item layadmin-flexible" lay-unselect>
-                    <a href="javascript:;" layadmin-event="flexible" title="侧边伸缩">
-                        <i class="layui-icon layui-icon-shrink-right" id="LAY_app_flexible"></i>
-                    </a>
-                </li>
-                <li class="layui-nav-item" lay-unselect>
-                    <a href="javascript:;" layadmin-event="refresh" title="刷新">
-                        <i class="layui-icon layui-icon-refresh-3"></i>
-                    </a>
-                </li>
-                @*<li class="layui-nav-item layui-hide-xs" lay-unselect>
-                    <input type="text" placeholder="搜索..." autocomplete="off" class="layui-input layui-input-search" layadmin-event="serach" lay-action="template/search.html?keywords=">
-                </li>*@
-            </ul>
-            <ul class="layui-nav layui-layout-right" lay-filter="layadmin-layout-right">
+<!DOCTYPE html>
 
-               
-                <li class="layui-nav-item layui-hide-xs" lay-unselect>
-                    <a href="javascript:;" layadmin-event="theme">
-                        <i class="layui-icon layui-icon-theme"></i>
-                    </a>
-                </li>
-                <li class="layui-nav-item layui-hide-xs" lay-unselect>
-                    <a href="javascript:;" layadmin-event="note">
-                        <i class="layui-icon layui-icon-note"></i>
-                    </a>
-                </li>
-                <li class="layui-nav-item layui-hide-xs" lay-unselect>
-                    <a href="javascript:;" layadmin-event="fullscreen">
-                        <i class="layui-icon layui-icon-screen-full"></i>
-                    </a>
-                </li>
-                <li class="layui-nav-item" lay-unselect>
-                    <a href="">退出</a>
-                </li>
-
-               
-            </ul>
-        </div>
-
-        <!-- 侧边菜单 -->
-        <div class="layui-side layui-side-menu">
-            <div class="layui-side-scroll">
-                <div class="layui-logo" lay-href="home/console.html">
-                    <span>云隧道</span>
-                </div>
-                <ul class="layui-nav layui-nav-tree" lay-shrink="all" id="LAY-system-side-menu" lay-filter="layadmin-system-side-menu">
-                    <li data-name="home" class="layui-nav-item layui-nav-itemed layui-this">
-                        <a href="javascript:;" lay-href="@Url.Action("Main","User")" lay-tips="主页" lay-direction="2">
-                            <i class="layui-icon layui-icon-home"></i>
-                            <cite>主页</cite>
-                        </a>
-                    </li>
-
-                    <li data-name="Info" class="layui-nav-item">
-                        <a href="javascript:;" lay-tips="我的信息" lay-direction="2">
-                            <i class="layui-icon layui-icon-user"></i>
-                            <cite>我的信息</cite>
-                        </a>
-                        <dl class="layui-nav-child">
-                            <dd data-name="info">
-                                <a lay-href="@Url.Action("Detail","User")">我的信息</a>
-                            </dd>
-                            @*<dd data-name="console">
-                                <a lay-href="@Url.Action("Detail","User")">修改密码</a>
-                            </dd>*@
-                        </dl>
-                    </li>
-
-                    <li data-name="order" class="layui-nav-item">
-                        <a href="javascript:;" lay-href="@Url.Action("Index","Order")" lay-tips="订单管理" lay-direction="2">
-                            <i class="layui-icon layui-icon-rmb"></i>
-                            <cite>订单管理</cite>
-                        </a>
-                    </li>
-
-                    <li data-name="tunnel" class="layui-nav-item">
-                        <a href="javascript:;" lay-tips="隧道管理" lay-direction="2">
-                            <i class="layui-icon layui-icon-senior"></i>
-                            <cite>隧道管理</cite>
-                        </a>
-                        <dl class="layui-nav-child">
-                            <dd data-name="console">
-                                <a lay-href="@Url.Action("Index","Tunnel")">我的隧道</a>
-                            </dd>
-                            <dd data-name="console">
-                                <a lay-href="@Url.Action("List","Tunnel")">购买云隧道</a>
-                            </dd>
-                        </dl>
-                    </li>
-                </ul>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="内网穿透,内网映射,云隧道,云隧道内网穿透,云隧道内网转发,内外网通讯,云隧道映射,云隧道微信开发,本地微信开发,内网端口映射工具,内网端口映射,怎么做内网映射,怎么内网映射,云隧道免费服务器">
+    <meta name="description" content="快速解决的外网访问内网问题,外网访问您的内网不再是距离">
+    <title>云隧道-内网转发-内网穿透</title>
+    <link href="~/Content/Main/Index.css" rel="stylesheet" />
+    <link href="~/Content/Main/layui/css/layui.css" rel="stylesheet" />
+    <script src="~/Content/Main/layui/layui.js"></script>
+</head>
+<body>
+    <div>
+        <div class="layui-nav" style="width:1100px;margin-left:100px;height:80px;background:none">
+            <div style="float:left">
+                <div class="layui-nav-item layui-this"><a href="/"style="color:#000000">首页</a></div>
+                <div class="layui-nav-item"><a href="" style="color:#000000">客户端下载</a></div>
+                <div class="layui-nav-item"><a href="" style="color:#000000">官方QQ群</a></div>
+                <div class="layui-nav-item"><a href="" style="color:#000000">教程</a></div>
+            </div>
+            <div style="float:right;margin-top:15px">
+                <a href="/login" class="layui-btn layui-btn-primary">登录</a>
+                <a href="/login/register" class="layui-btn layui-btn-normal">注册</a>
             </div>
         </div>
-
-        <!-- 页面标签 -->
-        <div class="layadmin-pagetabs" id="LAY_app_tabs">
-            <div class="layui-icon layadmin-tabs-control layui-icon-prev" layadmin-event="leftPage"></div>
-            <div class="layui-icon layadmin-tabs-control layui-icon-next" layadmin-event="rightPage"></div>
-            <div class="layui-icon layadmin-tabs-control layui-icon-down">
-                <ul class="layui-nav layadmin-tabs-select" lay-filter="layadmin-pagetabs-nav">
-                    <li class="layui-nav-item" lay-unselect>
-                        <a href="javascript:;"></a>
-                        <dl class="layui-nav-child layui-anim-fadein">
-                            <dd layadmin-event="closeThisTabs"><a href="javascript:;">关闭当前标签页</a></dd>
-                            <dd layadmin-event="closeOtherTabs"><a href="javascript:;">关闭其它标签页</a></dd>
-                            <dd layadmin-event="closeAllTabs"><a href="javascript:;">关闭全部标签页</a></dd>
-                        </dl>
-                    </li>
-                </ul>
-            </div>
-            <div class="layui-tab" lay-unauto lay-allowClose="true" lay-filter="layadmin-layout-tabs">
-                <ul class="layui-tab-title" id="LAY_app_tabsheader">
-                    <li lay-id="@Url.Action("Main","User")" lay-attr="@Url.Action("Main","User")" class="layui-this"><i class="layui-icon layui-icon-home"></i></li>
-                </ul>
-            </div>
-        </div>
-
-
-        <!-- 主体内容 -->
-        <div class="layui-body" id="LAY_app_body">
-            <div class="layadmin-tabsbody-item layui-show">
-                <iframe src="@Url.Action("Main","User")" frameborder="0" class="layadmin-iframe"></iframe>
-            </div>
-        </div>
-        <!-- 辅助元素，一般用于移动设备下遮罩 -->
-        <div class="layadmin-body-shade" layadmin-event="shade"></div>
     </div>
-</div>
+    <div class="clear"></div>
 
-
+    <div class="layui-carousel" id="test1">
+        <div carousel-item>
+            <div style="background: url('../../Content/images/banner.png') no-repeat center;">
+                <div class="ban">
+                    <div class="banbox" style="">
+                        <h1>免费服务器支持绑定自定义域名</h1>
+                        <h2>实现内外网通讯</h2>
+                        <h3>外网访问内网服务器不再是距离</h3>
+                        <a href="/login/register">立即注册</a>
+                    </div>
+                </div>
+            </div>
+            <div style="background: url('../../Content/images/banner.png') no-repeat center;">
+                <div class="ban">
+                    <div class="banbox">
+                        <h1>支持内网HTTP映射</h1>
+                        <h2>HTTP转发</h2>
+                        <h3>在您电脑的web服务直接开放给外网，再也不担心没有路由器权限和80端口被营运商封闭了</h3>
+                        <a href="/login/register">立即注册</a>
+                    </div>
+                </div>
+            </div>
+            <div style="background: url('../../Content/images/banner.png') no-repeat center;">
+                <div class="ban">
+                    <div class="banbox">
+                        <h1>微信本地开发</h1>
+                        <h2>微信开发</h2>
+                        <h3>解决本地80端口无法访问，不需要重复的进行文件上传到服务器，节省大量的上传时间，基于本地写完代码就可以通过微信调试</h3>
+                        <a href="/login/register">立即注册</a>
+                    </div>
+                </div>
+            </div>
+            <div style="background: url('../../Content/images/banner.png') no-repeat center;">
+                <div class="ban">
+                    <div class="banbox">
+                        <h1>外网管理内网服务器</h1>
+                        <h2>tcp端口转发</h2>
+                        <h3>不仅实现了http服务的端口转发同时支持tcp的端口，在外网可以通过ssh等方式连接服务器</h3>
+                        <a href="/login/register">立即注册</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="join">
+        <div class="join-box">
+            <div class="join-list1">
+                <h1>为什么使用Sunny-Ngrok？</h1>
+                <ul>
+                    <li><span></span>提供免费内网穿透服务，免费服务器支持绑定自定义域名</li>
+                    <li><span></span>管理内网服务器，内网web进行演示</li>
+                    <li><span></span>快速开发微信程序和第三方支付平台调试</li>
+                    <li><span></span>本地WEB外网访问、本地开发微信、TCP端口转发</li>
+                    <li><span></span>本站新增FRP服务器，基于 <a href="http://github.com/fatedier/frp" target="_balnk" style="color:blue;">FRP</a> 实现https、udp转发</li>
+                    <li><span></span>无需任何配置，下载客户端之后直接一条命令让外网访问您的内网不再是距离</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="copy">
+        Copyright &copy; 2019 All Rights Reserved.
+        <a href="http://www.miitbeian.gov.cn/" target="_blank"></a>
+    </div>
+    <script>
+        layui.use(['element', 'carousel'], function () {
+            var element = layui.element
+            , carousel = layui.carousel;
+            //建造实例
+            carousel.render({
+                elem: '#test1'
+              , width: '100%' //设置容器宽度
+              , height: 500
+              , arrow: 'always' //始终显示箭头
+                //,anim: 'updown' //切换动画方式
+            });
+        });
+    </script>
+</body>
+</html>

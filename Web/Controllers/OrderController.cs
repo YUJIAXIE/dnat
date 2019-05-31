@@ -248,7 +248,7 @@ namespace Web.Controllers
             Users u = new Users();
             u.Id = (int)tunnel.Rows[0]["UserId"];
             u.TId = (int)tunnel.Rows[0]["TId"];
-            var userTid = (int)ub.Select(tunnel.Rows[0]["UserId"].ToString()).Rows[0]["TId"];
+            var userTid = (int)ub.SelectUsers(u).Rows[0]["TId"];
             if (u.TId == userTid)
             {
                 if (tunnel.Rows[0]["PayTime"].ToString()=="")

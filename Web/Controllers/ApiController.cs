@@ -22,12 +22,12 @@ namespace Web.Controllers
         /// </summary>
         /// <param name="DoMain">域名前缀</param>
         /// <returns></returns>
-        public ActionResult IsValidName(string DoMain)
+        public ActionResult IsValidName(Users u)
         {
-            if (DoMain != "" && DoMain != null)
+            if (u.DoMain != "" && u.DoMain != null)
             {
                 DLL.BLL.UsersBLL ub = new DLL.BLL.UsersBLL();
-                var d = ub.IsValidDoMain(DoMain);
+                var d = ub.IsValidDoMain(u.DoMain);
                 if (d)
                     return Content("200");
                 else
@@ -44,12 +44,12 @@ namespace Web.Controllers
         /// </summary>
         /// <param name="Phone">手机号</param>
         /// <returns></returns>
-        public ActionResult IsValidPhone(string Phone)
+        public ActionResult IsValidPhone(Users u)
         {
-            if (Phone != "" && Phone != null)
+            if (u.Phone != "" && u.Phone != null)
             {
                 DLL.BLL.UsersBLL ub = new DLL.BLL.UsersBLL();
-                var d = ub.IsValidPhone(Phone);
+                var d = ub.IsValidPhone(u.Phone);
                 if (d)
                     return Content("200");
                 else
@@ -92,7 +92,7 @@ namespace Web.Controllers
             {
                 return RedirectToAction("Index");
             }
-            
+
         }
 
         public ActionResult Login(Users Users)
@@ -115,7 +115,7 @@ namespace Web.Controllers
                     else
                     {
                         Session["Id"] = dt.Rows[0]["Id"];
-                        return Content(Url.Action("Index", "Home"));
+                        return Content(Url.Action("Index", "User"));
                     }
                 }
                 else
@@ -127,7 +127,7 @@ namespace Web.Controllers
             {
                 return RedirectToAction("Index");
             }
-            
+
 
 
         }
@@ -155,7 +155,7 @@ namespace Web.Controllers
             {
                 return RedirectToAction("Index");
             }
-            
+
         }
 
         public ActionResult DeleteFrp(FrpConfig frp)
@@ -170,7 +170,7 @@ namespace Web.Controllers
             {
                 return RedirectToAction("Index");
             }
-            
+
         }
         public ActionResult InsertFrp(string Tunnel)
         {
@@ -195,16 +195,13 @@ namespace Web.Controllers
             {
                 return RedirectToAction("Index");
             }
-            
+
         }
 
-        public ActionResult UpdatePwd(int Id, string PassWord)
+        public ActionResult UpdatePwd(Users u)
         {
             try
             {
-                Users u = new Users();
-                u.Id = Id;
-                u.PassWord = PassWord;
                 DLL.BLL.UsersBLL ub = new DLL.BLL.UsersBLL();
                 if (ub.UpdatePwd(u) == 1)
                     return Content("true");
@@ -215,7 +212,27 @@ namespace Web.Controllers
             {
                 return RedirectToAction("Index");
             }
-            
+
+        }
+        public ActionResult AddTunnel(Users u)
+        {
+            try
+            {
+                DLL.BLL.FRPConfigBLL fb = new DLL.BLL.FRPConfigBLL();
+                DLL.BLL.UsersBLL ub = new DLL.BLL.UsersBLL();
+                var TunnelCount = Convert.ToInt32(ub.SelectUsers(u).Rows[0]["Tunnel"]);
+                var FRPCount = fb.SelectUsersFrpConfig(u.Id.ToString(), true).Rows.Count;
+                if (FRPCount >= TunnelCount)
+                    return Content("false");
+                else
+
+                    return Content("true");
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Index");
+            }
+
         }
 
     }

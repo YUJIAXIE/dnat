@@ -23,6 +23,11 @@ namespace DLL.BLL
         {
             return ud.InsertUsers(users);
         }
+        /// <summary>
+        /// 登录查询信息
+        /// </summary>
+        /// <param name="Users"></param>
+        /// <returns></returns>
         public DataTable SelectUsers(Users Users)
         {
             return ud.SelectUsers(Users);
@@ -31,15 +36,6 @@ namespace DLL.BLL
         public int UpdatePwd(Users Users)
         {
             return ud.UpdatePwd(Users);
-        }
-        /// <summary>
-        /// 根据ID查询信息
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public DataTable Select(string id)
-        {
-            return ud.Select(id);
         }
         /// <summary>
         /// 购买修改信息

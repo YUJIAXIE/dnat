@@ -7,7 +7,6 @@ using Web.Common;
 
 namespace Web.Controllers
 {
-    [CheckLoginFilter(nums = CheckLoginType.pro)]
     public class HomeController : Controller
     {
         // GET: Home

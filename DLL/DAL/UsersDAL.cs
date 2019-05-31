@@ -50,9 +50,19 @@ namespace DLL.DAL
         /// <returns></returns>
         public DataTable SelectUsers(Users Users)
         {
-            string sql = $@"select * from Users u join TunnelType t on t.Id=u.TId where domain ='{Users.DoMain}'and PassWord='{Users.PassWord}'";
-            return SqlHelper.ExecuteDataTable(sql);
+            string sql;
+            if (Users.Id == 0)
+            {
+                sql = $@"select * from Users u join TunnelType t on t.Id=u.TId where domain ='{Users.DoMain}'and PassWord='{Users.PassWord}'";
 
+            }
+            else
+            {
+                sql = $@"select * from Users u join TunnelType t on t.Id=u.TId where u.id ='{Users.Id}'";
+
+            }
+
+            return SqlHelper.ExecuteDataTable(sql);
         }
         /// <summary>
         /// 修改密码
@@ -64,16 +74,6 @@ namespace DLL.DAL
             string sql = $"UPDATE Users SET PassWord = {Users.PassWord} WHERE UId = {Users.Id}";
             return SqlHelper.ExecuteNonQuery(sql);
 
-        }
-        /// <summary>
-        /// 根据ID查询信息
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public DataTable Select(string id)
-        {
-            string sql = $@"select * from Users where id ='{id}'";
-            return SqlHelper.ExecuteDataTable(sql);
         }
         /// <summary>
         /// 购买修改信息

@@ -15,6 +15,10 @@ namespace Web.Controllers
     [CheckLoginFilter(nums = CheckLoginType.pro)]
     public class UserController : Controller
     {
+        public ActionResult Index()
+        {
+            return View();
+        }
         //主页
         public ActionResult Main()
         {
@@ -29,7 +33,9 @@ namespace Web.Controllers
         {
             var id = Session["Id"].ToString();
             UsersBLL ub = new UsersBLL();
-            var User = ub.Select(id);
+            Users u = new Users();
+            u.Id = Convert.ToInt32(id);
+            var User = ub.SelectUsers(u);
             return View(User);
         }
     }

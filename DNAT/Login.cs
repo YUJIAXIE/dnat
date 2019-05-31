@@ -194,12 +194,12 @@ namespace Client
 
         private void llbReg_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("http://www.xyujia.cn");
+            System.Diagnostics.Process.Start(Main.Url);
         }
 
         private void llbResetPassWord_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("http://www.xyujia.cn/Login/ResetPassWord");
+            System.Diagnostics.Process.Start(Main.Url);
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)

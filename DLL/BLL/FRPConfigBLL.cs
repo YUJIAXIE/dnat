@@ -11,7 +11,12 @@ namespace DLL.BLL
    public class FRPConfigBLL
     {
         DLL.DAL.FRPConfigDAL fd = new DAL.FRPConfigDAL();
-       
+        /// <summary>
+        /// 查询隧道信息
+        /// </summary>
+        /// <param name="UId">UserId</param>
+        /// <param name="All">是否行转列 true 是 false 否</param>
+        /// <returns></returns>
         public DataTable SelectUsersFrpConfig(string UId,bool All)
         {
             return fd.SelectUsersFrpConfig(UId, All);

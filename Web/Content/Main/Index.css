@@ -1,0 +1,44 @@
+﻿.ban {
+            width: 1200px;
+            margin: 0 auto;
+        }
+
+        .banbox {
+            width: 550px;
+            height: auto;
+            float: right;
+            padding-top: 120px;
+        }
+
+            .banbox h1 {
+                font-size: 32px;
+                color: #ffad00;
+                font-weight: normal;
+            }
+
+            .banbox h2 {
+                font-size: 48px;
+                color: #fff;
+                font-weight: normal;
+                padding: 15px 0;
+            }
+
+            .banbox h3 {
+                font-size: 18px;
+                color: #bdfff2;
+                font-weight: normal;
+            }
+
+            .banbox a {
+                width: 220px;
+                height: 50px;
+                display: block;
+                line-height: 50px;
+                font-size: 18px;
+                color: #18bd9c;
+                background: #fff;
+                text-align: center;
+                border-radius: 5px;
+                margin-top: 50px;
+            }
+            .copy { font-size:14px; color:#999; text-align:center; padding:17px 0;}

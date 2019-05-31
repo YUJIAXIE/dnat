@@ -70,10 +70,10 @@
             // 
             this.panel5.BackgroundImage = global::Client.Properties.Resources.logo1;
             this.panel5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.panel5.Location = new System.Drawing.Point(9, 10);
+            this.panel5.Location = new System.Drawing.Point(11, 9);
             this.panel5.Margin = new System.Windows.Forms.Padding(2);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(22, 24);
+            this.panel5.Size = new System.Drawing.Size(25, 25);
             this.panel5.TabIndex = 12;
             // 
             // lbTitle
@@ -81,7 +81,7 @@
             this.lbTitle.AutoSize = true;
             this.lbTitle.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbTitle.ForeColor = System.Drawing.Color.White;
-            this.lbTitle.Location = new System.Drawing.Point(33, 14);
+            this.lbTitle.Location = new System.Drawing.Point(38, 13);
             this.lbTitle.Name = "lbTitle";
             this.lbTitle.Size = new System.Drawing.Size(44, 17);
             this.lbTitle.TabIndex = 2;

@@ -154,13 +154,13 @@ namespace Client
             //此处加判断是否过期
             if (compNum <= 0)
             {
-                var Com = HTTP.Get(Url + "/Api/FRPConfig", "?Uid=" + Id + "&Id=0&All=False");
+                var Com = HTTP.Get(Url + "/Api/FRPConfig", "?UId=" + Id + "&Id=0&All=False");
                 DataTable Common = Json.Json2DataTable(Com);
                 foreach (DataRow dr in Common.Rows)
                 {
                     Frpini.IniWriteValue(dr["MappingName"].ToString(), dr["Info"].ToString(), dr["Value"].ToString());
                 }
-                var frp = HTTP.Get(Url + "/Api/FRPConfig", "?Uid=" + Id + "&Id=1&All=False");
+                var frp = HTTP.Get(Url + "/Api/FRPConfig", "?UId=" + Id + "&Id=1&All=False");
                 DataTable User = Json.Json2DataTable(frp);
                 foreach (DataRow dr in User.Rows)
                 {
@@ -231,7 +231,7 @@ namespace Client
                 m.lbTitle.Text = "提示";
                 m.lbContent.Text = "域名已过期，请续费！";
                 m.ShowDialog();
-                
+
             }
         }
 
@@ -299,8 +299,20 @@ namespace Client
         }
         private void btn_AddTunnel_Click(object sender, EventArgs e)
         {
-            AddTunnel at = new AddTunnel();
-            at.ShowDialog();
+            var result = Convert.ToBoolean(HTTP.Get(Url + "/Api/AddTunnel", "?Id=" + Id));
+            if (result)
+            {
+                AddTunnel at = new AddTunnel();
+                at.ShowDialog();
+            }
+            else
+            {
+                Message m = new Message();
+                m.lbTitle.Text = "提示";
+                m.lbContent.Text = "禁止添加\r\n\r\n原因：已超出购买的最大隧道数量";
+                m.ShowDialog();
+            }
+
         }
 
         private void Main_Load(object sender, EventArgs e)
@@ -352,10 +364,7 @@ namespace Client
             pTimer.AutoReset = true;//获取该定时器自动执行
             pTimer.Enabled = true;//这个一定要写，要不然定时器不会执行的
             Control.CheckForIllegalCrossThreadCalls = false;//这个不太懂，有待研究
-
-
-
-
+            
         }
 
         private void btnRelogin_Click(object sender, EventArgs e)
@@ -498,10 +507,9 @@ namespace Client
             }
         }
 
-
-
-
-
-
+        private void llbRenew_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start(Main.Url);
+        }
     }
 }

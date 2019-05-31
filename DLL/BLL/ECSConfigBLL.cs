@@ -11,9 +11,9 @@ namespace DLL.BLL
     {
         DAL.ECSConfigDAL ed = new DAL.ECSConfigDAL();
         /// <summary>
-        /// 
+        /// 查询服务器信息
         /// </summary>
-        /// <param name="All">true默认，false行转列</param>
+        /// <param name="All">true 行转列，false默认</param>
         /// <returns></returns>
         public DataTable SelectCommonFrpConfig(string UId, bool All)
         {
