@@ -44,8 +44,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="aliyun-net-sdk-alidns, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\aliyun-net-sdk-alidns\bin\Release\aliyun-net-sdk-alidns.dll</HintPath>
+    </Reference>
     <Reference Include="aliyun-net-sdk-Core">
       <HintPath>C:\Users\谢豫佳\Downloads\aliyun-net-sdk-core-1.1.9\aliyun-net-sdk-Core.dll</HintPath>
+    </Reference>
+    <Reference Include="AopSdk">
+      <HintPath>..\alipay-sdk-NET-3.2.1\bin\Release\AopSdk.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
@@ -110,6 +117,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\aliyun-net-sdk-alidns.dll" />
+    <Content Include="bin\aliyun-net-sdk-Core.dll" />
+    <Content Include="bin\AopSdk.dll" />
+    <Content Include="bin\ThoughtWorks.QRCode.dll" />
     <Content Include="Content\Client\Register\css\style.css" />
     <Content Include="Content\Client\Register\js\easyform.js" />
     <Content Include="Content\Client\Register\js\jquery-2.1.0.min.js" />
@@ -480,18 +491,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="bin\roslyn\" />
+    <Folder Include="bin\zh-Hans\" />
     <Folder Include="Controllers\Admin\" />
     <Folder Include="Views\Api\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\alipay-sdk-NET-3.2.1\AopSdk.csproj">
-      <Project>{9C11CAE5-5188-4E71-825B-68FC3135728A}</Project>
-      <Name>AopSdk</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\aliyun-net-sdk-alidns\aliyun-net-sdk-alidns.vs2010.csproj">
-      <Project>{36b59cbf-ddc5-4fa8-a1e4-0cef50f5e295}</Project>
-      <Name>aliyun-net-sdk-alidns.vs2010</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DLL\DLL.csproj">
       <Project>{8cbebc3e-8f36-4363-99c9-f7d17d5f2dba}</Project>
       <Name>DLL</Name>
