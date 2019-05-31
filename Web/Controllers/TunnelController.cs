@@ -28,7 +28,7 @@ namespace Web.Controllers
         {
             var id = Session["id"].ToString();
             FRPConfigBLL fb = new FRPConfigBLL();
-            var frp = fb.SelectUsersFrpConfig(id, false);
+            var frp = fb.SelectUsersFrpConfig(id, true);
             var frpjson = JsonConvert.SerializeObject(frp);
             string JSONstring = string.Empty;
             JSONstring += "{";

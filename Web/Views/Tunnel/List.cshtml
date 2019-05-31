@@ -8,7 +8,6 @@
     <meta name="viewport" content="width=device-width" />
     <title>Index</title>
     <link rel="stylesheet" href="~/Content/Main/layui/css/layui.css" media="all">
-    <link rel="stylesheet" href="~/Content/Main/style/admin.css" media="all" />
     <style>
         .type {
             font-size: 22px;
@@ -55,28 +54,19 @@
                 <span style="float:left">速率</span><span style="float:right">@item["Rate"]</span>
             </div>
             <div class="hh">
-                <a class="layui-btn layui-btn-normal" data-type="test2" onclick="jumpTunnel('@item["Id"]')">立即购买</a>
+                <a class="layui-btn layui-btn-normal" onclick="jumpTunnel('@item["Id"]')">立即购买</a>
             </div>
         </div>
     }
     <script src="~/Content/Main/layui/layui.js"></script>
-
     <script>
         function jumpTunnel(id) {
-            layui.config({
-                base: '../Content/Main/' //静态资源所在路径
-            }).extend({
-                index: 'lib/index' //主入口模块
-            }).use(['index'], function () {
-                var $ = layui.$
-                , admin = layui.admin
-                , element = layui.element
-                , layer = layui.layer;
-                element.render();
+            layui.use('layer', function () {
+                var layer = layui.layer;
                 layer.confirm('请注意！！！<br/>相同类型服务器累计时间<br/><span style="color:#ff0000;">到期时间=当前到期+购买时间</span><br/>不同类型服务器不会累计时间<br/><span style="color:#ff0000;">到期时间=以付款时间+购买时间</span>', {
                     btn: ['确定', '取消'], title: '购买注意事项'
                 }, function () {
-                    window.location.href = 'Add?id=' + id;
+                    location.href = 'Add?Id=' + id;
                 });
             })
         }

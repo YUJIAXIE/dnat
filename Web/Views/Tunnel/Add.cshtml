@@ -14,11 +14,9 @@
     <script>
         function pay(code) {
             layui.use('layer', function () {
-                parent.layer.open({
+                layer.open({
                     type: 2,
                     title: '付款',
-                    // area:["300px","450px"],
-                    // area:["300px","650px"],
                     area: ["600px", "450px"],
                     content: '/Order/DoPay?code=' + code
                 });
@@ -27,7 +25,7 @@
     </script>
 </head>
 <body>
-    <form class="layui-form" action="">
+    <form class="layui-form">
         <div class="layui-col-md12">
             <div class="layui-card">
                 <div class="layui-card-header">购买信息</div>
@@ -37,7 +35,7 @@
                         <div class="layui-input-block">
                             @foreach (DataRow item in Model.Rows)
                             {
-                                if (@item["Days"].ToString() == "30")
+                                if (item["Days"].ToString() == "30")
                                 {
                                     price = item["Price"].ToString();
                                     <input type="radio" name="price" price="@item["Price"]" lay-filter="price" value="@item["id"]" title="@item["Type"] (@item["Price"])" checked="">
@@ -67,7 +65,7 @@
     </form>
     <script>
         var price = 1;
-        layui.use(['form', 'layedit', 'laydate'], function () {
+        layui.use('form', function () {
             var $ = layui.jquery
                , form = layui.form
             , layer = layui.layer;
