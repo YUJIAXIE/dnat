@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width" />
     <title>购买云隧道</title>
     <link href="~/Content/Main/layui/css/layui.css" rel="stylesheet" />
-    <script src="~/Content/Main/layui/layui.js"></script>
+    <script src="~/Content/layui/layui.js"></script>
     <script>
         function pay(code) {
             layui.use('layer', function () {
@@ -55,7 +55,7 @@
                     </div>
                     <div class="layui-form-item">
                         <div class="layui-input-block">
-                            <button class="layui-btn" lay-submit="" lay-filter="demo1">确定购买</button>
+                            <a class="layui-btn" id="Save">确定购买</a>
                             <a class="layui-btn layui-btn-normal" href="@Url.Action("List","Tunnel")">返回服务器列表</a>
                         </div>
                     </div>
@@ -68,16 +68,17 @@
         layui.use('form', function () {
             var $ = layui.jquery
                , form = layui.form
+               , element = layui.element
             , layer = layui.layer;
             form.on('radio(price)', function (data) {
                 $('#price').html($(this).attr('price'));
             });
-            form.on('submit(demo1)', function (data) {
-                price = $("input[name=price]").val();
+            $("#Save").click(function () {
+                price = $('#price').html();
                 $.ajax({
                     type: "POST",
-                    url: "@Url.Action("SaveOrder", "Order")",
-                    data: data.field,
+                    url: '@Url.Action("SaveOrder", "Order")',
+                    data: { price: $("input[name=price]:checked").val() },
                     success: function (msg) {
                         if (price > 1) {
                             if (msg == "404")
@@ -86,11 +87,12 @@
                                 pay(msg);
                         }
                         else {
-                            location.href = '@Url.Action("Index","Order")';
+                            parent.location.href = '@Url.Action("Index","Order")';
                         }
                     }
                 });
-            });
+            })
+           
         });
 
 

@@ -63,7 +63,7 @@ namespace Web.Controllers
                 o.OrderId = orderId = datetime.ToString("yyyyMMddHHmmssfff");
                 o.UserId = (int)Session["Id"];
                 o.PriceId = price;
-                o.OrderExplain = "购买" + pb.IdSelectPrice(price).Rows[0]["Type"] + "云隧道";
+                o.OrderExplain = "云隧道";
                 o.CreateTime = datetime.ToString();
                 o.TradingStatus = "待付款";
                 IAopClient client = new DefaultAopClient(cb.SelectValue("serverUrl"), cb.SelectValue("appId"), cb.SelectValue("merchant_private_key"), "json", "1.0", "RSA2", cb.SelectValue("alipay_public_key"), "GBK", false);
@@ -72,6 +72,14 @@ namespace Web.Controllers
                 "\"out_trade_no\":\"" + o.OrderId + "\"," +
                 "\"total_amount\":" + pb.IdSelectPrice(price).Rows[0]["Price"] + "," +
                 "\"subject\":\"" + o.OrderExplain + "\"," +
+                "\"goods_detail\":[{" +
+                "\"goods_id\":\"" + price + "\"," +
+                "\"goods_name\":\"云隧道\"," +
+                "\"quantity\":1," +
+                "\"price\":" + pb.IdSelectPrice(price).Rows[0]["Price"] + "," +
+                "\"body\":\"" + pb.IdSelectPrice(price).Rows[0]["Type"] + "\"" +
+                "}]," +
+                "\"body\":\"购买" + pb.IdSelectPrice(price).Rows[0]["Type"] + "云隧道\"," +
                 "\"timeout_express\":\"1h\"" +
                 "  }";
                 AlipayTradePrecreateResponse response = client.Execute(request);
@@ -242,27 +250,29 @@ namespace Web.Controllers
             o.TradingStatus = "支付成功";
             o.OrderId = no.OutTradeNo;
             //o.UserId = (int)id;
-            ob.UpdateOrder(o);
             var tunnel = ob.SelectOrder(o);
-
             Users u = new Users();
             u.Id = (int)tunnel.Rows[0]["UserId"];
             u.TId = (int)tunnel.Rows[0]["TId"];
-            var userTid = (int)ub.SelectUsers(u).Rows[0]["TId"];
-            if (u.TId == userTid)
+            var user = ub.SelectUsers(u);
+            if (u.TId == (int)user.Rows[0]["TId"])
             {
-                if (tunnel.Rows[0]["PayTime"].ToString()=="")
+                if (tunnel.Rows[0]["PayTime"].ToString() == "")
                 {
-                    u.EndDate = Convert.ToDateTime(tunnel.Rows[0]["EndDate"]).AddDays((int)tunnel.Rows[0]["Days"]).ToString();
+                    int day = (int)tunnel.Rows[0]["Days"];
+                    DateTime end = Convert.ToDateTime(user.Rows[0]["EndDate"]);
+                    u.EndDate = end.AddDays(day).ToString();
+                    ub.UpdateUser(u);
                 }
-                
+
             }
             else
             {
-                u.EndDate = DateTime.Now.AddDays((int)tunnel.Rows[0]["Days"]).ToString();
-
+                int day = (int)tunnel.Rows[0]["Days"];
+                u.EndDate = DateTime.Now.AddDays(day).ToString();
+                ub.UpdateUser(u);
             }
-            ub.UpdateUser(u);
+            ob.UpdateOrder(o);
         }
         /// <summary>
         /// 请添加支付失败后的处理

@@ -66,7 +66,7 @@
                 layer.confirm('请注意！！！<br/>相同类型服务器累计时间<br/><span style="color:#ff0000;">到期时间=当前到期+购买时间</span><br/>不同类型服务器不会累计时间<br/><span style="color:#ff0000;">到期时间=以付款时间+购买时间</span>', {
                     btn: ['确定', '取消'], title: '购买注意事项'
                 }, function () {
-                    location.href = 'Add?Id=' + id;
+                   window.location.href = 'Add?Id=' + id;
                 });
             })
         }

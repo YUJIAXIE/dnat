@@ -7,12 +7,21 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title></title>
+    <title>234567</title>
     <link href="~/Content/Main/layui/css/layui.css" rel="stylesheet" />
-    <script src="~/Content/Main/layui/layui.js"></script>
+    <script src="~/Content/layui/layui.js"></script>
     <script>
-        function confirmOrder() { window.location.reload(); }
-        function closeOrder() { layer.closeAll(); }
+        function confirmOrder() {
+            layui.use('layer', function () {
+                parent.window.location.href = "@Url.Action("Index","Order")";
+
+            })
+        }
+        function closeOrder() {
+            layui.use('layer', function () {
+                parent.layer.closeAll();
+            })
+        }
     </script>
 </head>
 <body>
@@ -72,8 +81,17 @@
         </div>
         <div class="col-sm-8 col-sm-offset-3">
             <button class="layui-btn" type="button" onclick="confirmOrder()">确定</button>
-            <button class="layui-btn layui-btn-normal" type="button" onclick="closeOrder()">关闭</button>
+                <button class="layui-btn layui-btn-normal" type="button" onclick="closeOrder()">关闭</button>
+            @*<a class="layui-btn" lay-href="Order/Index">确定</a>
+            <a class="layui-btn layui-btn-normal" lay-href="Order/Index">订单管理</a>*@
         </div>
     </div>
+    <script>
+        layui.config({
+            base: '../Content/Main/' //静态资源所在路径
+        }).extend({
+            index: 'lib/index' //主入口模块
+        }).use('index');
+    </script>
 </body>
 </html>
