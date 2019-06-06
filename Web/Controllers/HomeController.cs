@@ -14,5 +14,9 @@ namespace Web.Controllers
         {
             return View();
         }
+        public ActionResult NewIndex()
+        {
+            return View();
+        }
     }
 }

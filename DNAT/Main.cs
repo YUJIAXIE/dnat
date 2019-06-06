@@ -17,8 +17,8 @@ namespace Client
 {
     public partial class Main : Form
     {
-        //public static string Url = "http://www.xyujia.cn";
-        public static string Url = "http://localhost:81";
+        public static string Url = "http://www.xyujia.cn";
+        //public static string Url = "http://localhost:81";
         public string processName = "ctc";
         public static Main main;
         IniFiles ini = new IniFiles(Application.StartupPath + "\\Config.ini");
